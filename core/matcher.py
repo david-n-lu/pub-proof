@@ -20,6 +20,7 @@ from core.text_normalization import lightweight_normalize as normalize
 # -------------------------
 # Build automaton
 # -------------------------
+
 def build_automaton(product_map: Dict[str, dict]):
     """
     Build an Aho-Corasick automaton from product aliases.
@@ -41,39 +42,62 @@ def build_automaton(product_map: Dict[str, dict]):
             if len(alias_norm) < 2:
                 continue
             
-            A.add_word(alias_norm, (alias_norm, sku))
+            A.add_word(alias_norm, (alias_norm, sku, classify_alias(alias_norm, product_map)))
 
     A.make_automaton()
 
     return A
 
 
+def classify_alias(alias: str, product_map: Dict[str, dict]):
+    alias = alias.strip()
+
+    if alias in product_map: # hashmap lookup
+        return "sku"
+
+    if len(alias.split()) >= 4: # 4 words = long alias
+        return "long_alias"
+
+    if len(alias.split()) >= 2 or len(alias) > 12: # 2+ words or 12 chars = mediumm alias
+        return "medium_alias"
+
+    return "short_alias"
+
 # -------------------------
 # Candidate extraction
 # -------------------------
-def extract_candidates(text: str, automaton):
+
+ALIAS_WEIGHTS = {
+    "sku": 5.0,
+    "long_alias": 2.5,
+    "medium_alias": 1.5,
+    "short_alias": 0.5
+}
+
+def extract_candidates(text: str, automaton, allowed_skus=None):
     """
     Scan a sentence for product aliases using the automaton.
     Returns all SKUs whose aliases appear in the text.
     Runs in near-linear time over input text.
     """
+    
+    matches = defaultdict(float)
 
-    matches = set()
-
-    if not text or not isinstance(text, str):
+    if not text:
         return []
 
     text_norm = normalize(text)
 
     for _, value in automaton.iter(text_norm):
+        alias, sku, alias_type = value
 
-        if not value:
+        if allowed_skus is not None and sku not in allowed_skus:
             continue
 
-        alias, sku = value
-        matches.add(sku)
+        weight = ALIAS_WEIGHTS.get(alias_type, 1.0)
+        matches[sku] += weight
 
-    return list(matches)
+    return matches
 
 
 # -------------------------
@@ -89,7 +113,7 @@ SECTION_WEIGHT = {
     "unknown": 1
 }
 
-def score_match(section: str, text: str, manufacturer: str) -> int:
+def score_match(section: str, text: str, manufacturer: str, alias_scores: dict[str, float] = None) -> int:
     """
     Heuristic scoring for evidence strength.
     Rewards manufacturer co-occurrence and high-value sections like Methods.
@@ -112,6 +136,9 @@ def score_match(section: str, text: str, manufacturer: str) -> int:
 
     if "purchased" in t or "obtained" in t:
         score += 1
+    
+    if alias_scores:
+        score += max(alias_scores.values())
 
     return score
 
@@ -145,7 +172,7 @@ def find_product_manufacturer_evidence(
         if not skus:
             continue
 
-        score = score_match(section, text, manufacturer)
+        score = score_match(section, text, manufacturer, skus)
 
         if score >= min_score:
             key = text

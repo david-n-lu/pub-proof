@@ -45,12 +45,17 @@ def split_into_sentences(text: str) -> List[str]:
     ]
 
 
-def extract_sentences(sections: List[Dict]) -> List[Dict]:
+def extract_sentences(
+    sections: List[Dict],
+    manufacturer: str = None
+) -> List[Dict]:
     """
     Convert XML sections into sentence-level records.
 
-    Each sentence retains its originating section label for downstream
-    scoring (e.g. methods > discussion weighting in matcher_v2).
+    If manufacturer is provided, only keep sentences that contain it
+    (light pre-filter for downstream matcher efficiency and precision).
+
+    Each sentence retains its originating section label.
 
     Returns:
         List of dicts:
@@ -62,6 +67,9 @@ def extract_sentences(sections: List[Dict]) -> List[Dict]:
 
     sentences = []
 
+    if manufacturer:
+        manufacturer_norm = manufacturer.lower()
+
     for sec in sections:
         section = sec.get("section", "unknown")
         text = sec.get("text", "")
@@ -70,10 +78,17 @@ def extract_sentences(sections: List[Dict]) -> List[Dict]:
             continue
 
         for sent in split_into_sentences(text):
+
+            # ----------------------------
+            # Optional manufacturer filter
+            # ----------------------------
+            if manufacturer:
+                if manufacturer_norm not in sent.lower():
+                    continue
+
             sentences.append({
                 "section": section,
                 "context": sent
             })
 
     return sentences
-

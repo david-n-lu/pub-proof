@@ -25,6 +25,8 @@ from core.sentence_extractor import extract_sentences
 
 from core.matcher import build_automaton, find_product_manufacturer_evidence
 
+from core.text_normalization import lightweight_normalize as normalize
+
 import pandas as pd
 
 
@@ -103,7 +105,7 @@ def run_pipeline(
 
             sections = parse_article_xml(xml)
             
-            sent = extract_sentences(sections)
+            sent = extract_sentences(sections, manufacturer)
 
             for s in sent:
                 s["id"] = pmid
@@ -126,7 +128,7 @@ def run_pipeline(
 
             sections = parse_article_xml(xml)
             
-            sent = extract_sentences(sections)
+            sent = extract_sentences(sections, manufacturer)
 
             for s in sent:
                 s["id"] = pmcid
@@ -137,11 +139,12 @@ def run_pipeline(
         print(f"EuropePMC parsed | sentences_total={len(sentences)}")
         
         # 7. Run matcher_v2
+
         evidence = find_product_manufacturer_evidence(
             sentences=sentences,
             automaton=automaton,
             manufacturer=manufacturer,
-            min_score=3
+            min_score=6
         )
 
         print(f"Matcher complete | evidence_found={len(evidence)}")
