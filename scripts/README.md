@@ -1,60 +1,46 @@
-## Overview
+# Scripts
 
-This project extracts product-manufacturer evidence from biomedical literature (PubMed + EuropePMC).
+Utility scripts for data processing, debugging, and testing.
 
-It identifies whether scientific papers mention specific biotech products using:
-- Product names
-- Aliases (from product database)
-- SKU / catalog numbers
-- Manufacturer context
+## Running Scripts
 
----
+Scripts in this directory import modules from the project's `core/` package.
 
-## Pipeline
+Because of this, scripts should be run as Python modules from the project root:
 
-1. Load product catalog (SKU, names, aliases)
-2. Query PubMed and EuropePMC using manufacturer + product signals
-3. Fetch full text XML (where available)
-4. Parse XML into structured sections
-5. Split sections into sentences with provenance tracking
-6. Run Aho-Corasick-based alias matching over sentences
-7. Score matches based on section + manufacturer context
-8. Extract high-confidence evidence snippets
-9. Export results with metadata (PMID / PMCID / source)
+```bash
+python -m scripts.clean_products
+python -m scripts.test_full_text
+python -m scripts.inspect_headers
+```
 
----
+Do NOT run scripts directly:
 
-## Matching Strategy (Experimental)
+```bash
+python scripts/clean_products.py      # ❌ May cause import errors
+python scripts/test_full_text.py      # ❌ May cause import errors
+```
 
-This project uses an Aho-Corasick automaton for fast alias detection.
+Running with `-m` ensures that the project root is added to Python's import path and allows imports such as:
 
-⚠️ Current limitations:
-- High recall, but precision is noisy
-- Alias quality heavily impacts performance
-- Some false positives due to ambiguous or generic aliases
+```python
+from core.schema import ...
+from core.utils import ...
+```
 
-Future improvements planned:
-- Weighted alias confidence scoring
-- Context-aware filtering (manufacturer proximity, section weighting)
-- Better entity disambiguation across products
+to work correctly.
 
----
+## Adding New Scripts
 
-## Output
+1. Create a new file in `scripts/`.
+2. Run it using:
 
-Each evidence record contains:
-- manufacturer
-- product_name
-- sku
-- matched text (sentence-level evidence)
-- score
-- section (e.g., abstract, methods, results)
-- source (PubMed / EuropePMC)
-- publication URL (when available)
-- document identifiers (PMID or PMCID)
+```bash
+python -m scripts.<script_name>
+```
 
----
+Example:
 
-## Notes
-
-This is an experimental research pipeline and is actively being refined for precision and scalability.
+```bash
+python -m scripts.normalize_products
+```
