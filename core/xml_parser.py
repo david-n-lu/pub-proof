@@ -1,106 +1,112 @@
+"""
+XML parsing layer for PubMed and Europe PMC (JATS format).
+
+Converts raw XML into structured sections:
+[
+    {
+        "section": str,
+        "text": str
+    }
+]
+
+Does NOT:
+- split sentences
+- normalize text
+- run NLP or matching
+"""
+
+
 from lxml import etree
+from typing import List, Dict
 
 
 def parse_article_xml(xml_text: str) -> list[dict]:
     """
-    Detect article type and return normalized sections.
+    Detect XML type and route to correct parser.
+
+    Supports:
+    - PubMedArticle (abstract-level XML)
+    - article (PMC / Europe PMC full text JATS XML)
 
     Returns:
-    [
-        {
-            "section": str,
-            "text": str
-        }
-    ]
+        List of section dictionaries with raw extracted text.
     """
 
     root = etree.fromstring(xml_text.encode("utf-8"))
 
     tag = etree.QName(root).localname
 
+    # -----------------------------
+    # PubMed direct article
+    # -----------------------------
     if tag == "PubmedArticle":
         return parse_pubmed_xml(root)
 
+    # -----------------------------
+    # PMC / Europe PMC single article
+    # -----------------------------
     if tag == "article":
         return parse_pmc_xml(root)
+
+    # -----------------------------
+    # PMC / Europe PMC wrapper (IMPORTANT FIX)
+    # -----------------------------
+    if tag in {"pmc-articleset", "pmc-articleSet", "articleSet"}:
+        articles = root.xpath(".//article")
+
+        sections = []
+        for article in articles:
+            sections.extend(parse_pmc_xml(article))
+
+        return sections
 
     raise ValueError(f"Unsupported XML format: {tag}")
 
 
-# =========================================================
-# PubMed XML
-# =========================================================
+def parse_pubmed_xml(root) -> List[Dict]:
+    """
+    Extract title + abstract sections from PubMed XML.
 
-def parse_pubmed_xml(root) -> list[dict]:
+    PubMed XML is shallow (no full text), so we only extract:
+    - ArticleTitle
+    - AbstractText
+    """
+
     sections = []
 
-    # Title
     for node in root.xpath(".//ArticleTitle"):
-        text = clean_xml_text(node)
-
+        text = clean(node)
         if text:
-            sections.append({
-                "section": "title",
-                "text": text
-            })
+            sections.append({"section": "title", "text": text})
 
-    # Abstract
     for node in root.xpath(".//AbstractText"):
-        text = clean_xml_text(node)
-
+        text = clean(node)
         if text:
-            label = node.get("Label")
-
-            sections.append({
-                "section": (
-                    f"abstract:{label.lower()}"
-                    if label
-                    else "abstract"
-                ),
-                "text": text
-            })
+            sections.append({"section": "abstract", "text": text})
 
     return sections
 
 
-# =========================================================
-# PMC / EuropePMC JATS XML
-# =========================================================
+def parse_pmc_xml(root) -> List[Dict]:
+    """
+    Extract structured full-text sections from JATS XML.
 
-def parse_pmc_xml(root) -> list[dict]:
+    Each <sec> block is treated as a section.
+    Section titles are normalized to lowercase.
+    """
+
     sections = []
 
-    # Article title
-    for node in root.xpath(".//article-title"):
-        text = clean_xml_text(node)
-
-        if text:
-            sections.append({
-                "section": "title",
-                "text": text
-            })
-
-    # Abstract
-    for node in root.xpath(".//abstract"):
-        text = clean_xml_text(node)
-
-        if text:
-            sections.append({
-                "section": "abstract",
-                "text": text
-            })
-
-    # Body sections
     for sec in root.xpath(".//body//sec"):
+        title = sec.find("title")
 
-        title_node = sec.find("title")
+        section_name = (
+            clean(title).lower()
+            if title is not None
+            else "unknown"
+        )
 
-        if title_node is not None:
-            section_name = clean_xml_text(title_node).lower()
-        else:
-            section_name = "unknown"
-
-        text = clean_xml_text(sec)
+        text = clean(sec)
 
         if text:
             sections.append({
@@ -111,19 +117,20 @@ def parse_pmc_xml(root) -> list[dict]:
     return sections
 
 
-# =========================================================
-# Helpers
-# =========================================================
-
-def clean_xml_text(node) -> str:
+def clean(node) -> str:
     """
-    Flatten XML node into readable text.
+    Extract and normalize all text from an XML node.
+
+    Flattens nested tags, removes extra whitespace,
+    and returns a clean single string for downstream processing.
     """
 
-    text = " ".join(
+    if node is None:
+        return ""
+
+    return " ".join(
         t.strip()
         for t in node.itertext()
         if t and t.strip()
-    )
+    ).strip()
 
-    return " ".join(text.split())

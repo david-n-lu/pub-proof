@@ -1,24 +1,30 @@
 """
-Search PubMed PMIDs that mention a specific product
-- input: product_name, catalog_number, manufacturer
-- output: PMIDs
+PubMed / PMC retrieval layer.
 
-Find full text articles that mention a specific product on PMC given a PMID
-- input: PMID
-- throughput: PMCID
-- throughput: PMC XML
-- output: full text articles that mention the product
+Responsibilities:
+- Search PubMed for PMIDs
+- Convert PMID → PMCID
+- Fetch PMC full-text XML
+
+Does NOT:
+- parse XML
+- extract text
+- run NLP
 """
 
+
 import requests
-from core.query_building import build_search_query
-from core.xml_to_text import extract_abstract_from_xml, extract_full_text_from_xml
-from core.query_building import build_search_query
 
-def search_pubmed(manufacturer, product_name = None, catalog_number = None, terms = None, max_results=20):
+
+def search_pubmed(
+    query,
+    max_results=20
+):
+    """
+    Search PubMed and return a list of PMIDs.
+    """
+
     url = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi"
-
-    query = build_search_query(manufacturer, product_name, catalog_number, terms)
 
     params = {
         "db": "pubmed",
@@ -28,34 +34,21 @@ def search_pubmed(manufacturer, product_name = None, catalog_number = None, term
     }
 
     try:
-        response = requests.get(url, params = params, timeout=30)
-        response.raise_for_status()
+        r = requests.get(url, params=params, timeout=30)
+        r.raise_for_status()
+        return r.json()["esearchresult"]["idlist"]
 
     except Exception as e:
-        print(type(e))
-        print(e)
-
-    data = response.json()
-
-    return data["esearchresult"]["idlist"]
+        print(f"[PubMed search error] {e}")
+        return []
 
 
-def get_pubmed_abstract(pmid):
-    url = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi"
 
-    params = {
-        "db": "pubmed",
-        "id": pmid,
-        "retmode": "xml"
-    }
+def pmid_to_pmcid(pmid: str):
+    """
+    Convert PMID to PMCID using NCBI ID converter.
+    """
 
-    response = requests.get(url, params=params)
-    response.raise_for_status()
-
-    return extract_abstract_from_xml(response.text)
-
-
-def pmid_to_pmcid(pmid):
     url = "https://www.ncbi.nlm.nih.gov/pmc/utils/idconv/v1.0/"
 
     params = {
@@ -63,19 +56,27 @@ def pmid_to_pmcid(pmid):
         "ids": pmid
     }
 
-    r = requests.get(url, params=params)
-    r.raise_for_status()
+    try:
+        r = requests.get(url, params=params, timeout=30)
+        r.raise_for_status()
 
-    data = r.json()
+        records = r.json().get("records", [])
+        if not records:
+            return None
 
-    records = data.get("records", [])
-    if not records:
+        return records[0].get("pmcid")
+
+    except Exception as e:
+        print(f"[PMID→PMCID error] {e}")
         return None
 
-    return records[0].get("pmcid")
 
 
-def fetch_pmc_full_text_pmcid(pmcid):
+def fetch_pmc_xml_from_pmcid(pmcid: str):
+    """
+    Fetch raw PMC XML using PMCID.
+    """
+
     url = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi"
 
     params = {
@@ -84,18 +85,31 @@ def fetch_pmc_full_text_pmcid(pmcid):
         "retmode": "xml"
     }
 
-    r = requests.get(url, params=params)
-    r.raise_for_status()
+    try:
+        r = requests.get(url, params=params, timeout=30)
+        r.raise_for_status()
+        return r.text
 
-    return r.text
+    except Exception as e:
+        print(f"[PMC fetch error] {e}")
+        return None
 
 
-def fetch_pmc_full_text(pmid):
+def fetch_pubmed_xml(pmid: str):
+    """
+    Fetch raw PMC XML from a PMID.
+
+    Flow:
+    PMID → PMCID → PMC XML (raw)
+
+    Returns:
+        Raw XML string or None if unavailable.
+    """
+
     pmcid = pmid_to_pmcid(pmid)
+
     if not pmcid:
         print(f"No PMCID found for PMID {pmid}")
         return None
 
-    full_text = fetch_pmc_full_text_pmcid(pmcid)
-    full_text = extract_full_text_from_xml(full_text)
-    return full_text
+    return fetch_pmc_xml_from_pmcid(pmcid)

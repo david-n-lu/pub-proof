@@ -7,22 +7,22 @@ Builds boolean search queries from product metadata (manufacturer,
 product_name, sku, other terms).
 """
 
-def build_search_query(manufacturer: str, 
+def build_query(manufacturer: str, 
                        product_name: str = None,  
-                       catalog_number: str = None,
-                       terms: list[str] = None):
+                       sku: str = None,
+                       tokens: list[str] = None):
     if not manufacturer:
         raise ValueError("No manufacturer provided.")
 
-    terms = terms if terms else []
+    tokens = tokens if tokens else []
 
     if product_name:
-        terms.append(f'"{product_name}"')
+        tokens.append(f'"{product_name}"')
 
-    if catalog_number:
-        terms.append(f'"{catalog_number}"')
+    if sku:
+        tokens.append(f'"{sku}"')
 
-    query = " OR ".join(terms)
+    query = " OR ".join(tokens)
     query = f'{manufacturer} AND ({query})'
     
     # print(query)

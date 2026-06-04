@@ -1,66 +1,79 @@
+"""
+Sentence extraction layer for biomedical text.
+
+Converts structured XML sections into sentence-level records
+used by downstream matching (Aho–Corasick + scoring).
+
+Input:
+    [
+        {"section": str, "text": str}
+    ]
+
+Output:
+    [
+        {"section": str, "context": str}
+    ]
+"""
+
+
 import re
 from typing import List, Dict
 
 
-_SENTENCE_SPLIT_RE = re.compile(r"(?<=[.!?])\s+")
-
+_SENT_SPLIT = re.compile(r"(?<=[.!?])\s+")
 
 def split_into_sentences(text: str) -> List[str]:
     """
-    Lightweight sentence splitter for PubMed / PMC text
+    Split raw text into sentences using lightweight regex rules.
+
+    This avoids heavy NLP libraries and works well for biomedical abstracts
+    and PMC full-text sections where sentence punctuation is mostly reliable.
+
+    Returns:
+        List of cleaned sentence strings.
     """
 
     if not text:
         return []
 
-    # normalize whitespace
     text = re.sub(r"\s+", " ", text).strip()
-
-    # split on sentence boundaries
-    sentences = _SENTENCE_SPLIT_RE.split(text)
 
     return [
         s.strip()
-        for s in sentences
+        for s in _SENT_SPLIT.split(text)
         if s.strip()
     ]
 
 
 def extract_sentences(sections: List[Dict]) -> List[Dict]:
     """
-    Convert section blocks into sentence-level contexts.
+    Convert XML sections into sentence-level records.
 
-    Input:
-    [
-        {
-            "section": "methods",
-            "text": "Sentence one. Sentence two."
-        }
-    ]
+    Each sentence retains its originating section label for downstream
+    scoring (e.g. methods > discussion weighting in matcher_v2).
 
-    Output:
-    [
+    Returns:
+        List of dicts:
         {
-            "section": "methods",
-            "context": "Sentence one."
-        },
-        {
-            "section": "methods",
-            "context": "Sentence two."
+            "section": str,
+            "context": str
         }
-    ]
     """
 
-    output = []
+    sentences = []
 
-    for section in sections:
-        section_name = section.get("section", "unknown")
-        text = section.get("text", "")
+    for sec in sections:
+        section = sec.get("section", "unknown")
+        text = sec.get("text", "")
 
-        for sentence in split_into_sentences(text):
-            output.append({
-                "section": section_name,
-                "context": sentence
+        if not text:
+            continue
+
+        for sent in split_into_sentences(text):
+            sentences.append({
+                "section": section,
+                "context": sent
             })
 
-    return output
+    return sentences
+
