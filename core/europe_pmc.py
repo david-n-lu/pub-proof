@@ -5,26 +5,13 @@ Search Europe PMC for articles mentioning a specific product
 """
 
 import requests
-from core.utils import extract_full_text_from_xml
+from core.xml_to_text import extract_full_text_from_xml
+from core.query_building import build_search_query
 
-def search_europe_pmc(manufacturer, product_name, catalog_number = "", page_size=25):
+def search_europe_pmc(manufacturer, product_name = None, catalog_number = None, terms = None, page_size=25):
     url = "https://www.ebi.ac.uk/europepmc/webservices/rest/search"
 
-    terms = []
-
-    if manufacturer:
-        terms.append(f'"{manufacturer}"')
-
-    if product_name:
-        terms.append(f'"{product_name}"')
-
-    if catalog_number:
-        terms.append(f'"{catalog_number}"')
-
-    if not terms:
-        raise ValueError("No search terms provided.")
-
-    query = " AND ".join(terms)
+    query = build_search_query(manufacturer, product_name, catalog_number, terms)
 
     params = {
         "query": query,

@@ -13,43 +13,11 @@ Relies on:
 import re
 import pandas as pd
 from pathlib import Path
-from core.schema import CANONICAL_TO_KEEP
-
-from core.schema import COLUMN_MAP
+from core.schema import CANONICAL_TO_KEEP, COLUMN_MAP
+from core.text_normalization import normalize_biotech_text
 
 RAW_DIR = "data/raw_products"
 OUT_FILE = "data/cleaned_products/product_aliases.csv"
-
-# ----------------------------
-# Biotech normalization
-# ----------------------------
-def normalize_biotech_text(text: str) -> str:
-    text = str(text).lower()
-
-    # fix encoding issues first
-    text = fix_mojibake(text)
-
-    # remove trademark symbols
-    text = text.replace("™", "")
-    text = text.replace("®", "")
-    text = text.replace("©", "")
-
-    # normalize µ variants
-    text = text.replace("µl", "ul")
-    text = text.replace("μl", "ul")
-
-    # collapse whitespace
-    text = re.sub(r"\s+", " ", text)
-
-    return text.strip()
-
-def fix_mojibake(text: str) -> str:
-    if not isinstance(text, str):
-        return text
-    try:
-        return text.encode("latin1").decode("utf-8")
-    except Exception:
-        return text
 
 
 # ----------------------------

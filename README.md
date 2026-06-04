@@ -21,14 +21,18 @@ PubProof/
 ├── core/
 │   ├── database.py
 │   ├── europe_pmc.py
+│   ├── io.py
 │   ├── pubmed.py
+│   ├── query_building
 │   ├── schema.py
-│   └── utils.py
+│   ├── text_normalization.py
+│   └── xml_to_text.py
 │
 ├── data/
 │   ├── raw_products/
 │   ├── cleaned_products/
 │   └── evidence/
+│   ├── PRODUCT_INPUT.csv
 │
 ├── docs/
 │   └── schema_decisions.md
@@ -36,6 +40,7 @@ PubProof/
 ├── scripts/
 │   ├── clean_products.py
 │   ├── inspect_headers.py
+│   ├── README.md
 │   └── test_full_text.py
 │
 ├── LICENSE
@@ -200,6 +205,26 @@ data/cleaned_products/
 
 ### 4. Run evidence matching
 
+### Add a sample of the products to find evidence for in data/
+
+example: genecopoeia_pipeline_test.csv
+
+### Edit 3 variables in main.py
+
+1. manufacturer: name of your company
+
+2. INPUT_DIR: .csv file of the products to find evidence for
+
+3. ALIASES_DIR: .csv file of product aliases for all your products
+
+example:
+
+1. manufacturer = "GeneCopoeia"
+
+2. INPUT_DIR = "data/genecopoeia_pipeline_test.csv"
+
+3. ALIASES_DIR = "data/cleaned_products/product_aliases.csv"
+
 ### Execute the main pipeline: python main.py
 
 This will:
@@ -213,49 +238,13 @@ Extract supporting evidence
 Save structured outputs to:
 data/evidence/
 
-### Matching assumptions and field semantics
-
-PubProof relies on a few important assumptions about how product fields are used across the pipeline.
-
-### product_name is used for literature search (PubMed + Europe PMC)
-
-When querying:
-
-PubMed
-Europe PMC
-
-the system uses product_name (or its normalized alias) as the primary search term.
-
-### Important constraint:
-
-The pipeline works best when product_name is a subset of the full product name as it appears in real-world usage.
-
-For example:
-
-Full product name:
-"Lenti-Pac™️ HIV Expression Packaging Kit"
-
-Good product_name:
-"Lenti-Pac HIV"
-
-This improves recall in literature searches, since publications often abbreviate or partially refer to products.
-
-If product_name is too specific or overly branded, retrieval performance may degrade.
-
-### sku is a unique identifier (not used for search)
-
-The sku field is not used for PubMed or Europe PMC queries.
-
-Instead, it serves as a stable product identifier for downstream processing and export.
-
-### use sku in this function to best find aliases: main.py → export_evidence_to_csv()
-### to change, change key_name in: matcher.py → build_product_alias_map()
 
 ### Output format
 
 Each evidence record includes:
 
 manufacturer
+product_name
 sku
 evidence
 source
@@ -265,13 +254,14 @@ publication_url
 Example:
 
 {
-    "manufacturer": GeneCopoeia,
-    "sku": qp001,
-    "evidence": The real-time PCR reactions were prepared using All-in-One™ qPCR Mix (GeneCopoeia, Rockville, USA) and All-in-One™ qPCR Primers (GeneCopoeia, Rockville, USA) according to the manufacturer's instructions.,
-    "match_type": qPCR primers,
-    "source": PMCID,
-    "publication_id": PMC3288107,
-    "publication_url": https://europepmc.org/article/PMC/3288107
+    
+    manufacturer: GeneCopoeia,
+    product_name: All-in-One™ qPCR Primers
+    sku: qp001,
+    evidence: Validated All-in-One™ qPCR primers for Kaiso, PXR, NF-κB, HER2, ABCB1 (P-gp), HIF1A, and ACTB (β-actin) were obtained from GeneCopoeia and confirmed for specificity and efficiency.,
+    source: PMCID,
+    publication_id: PMC12719565,
+    publication_url: https://europepmc.org/article/PMC/12719565
 }
 
 ## Data Sources

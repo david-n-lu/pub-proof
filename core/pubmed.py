@@ -11,27 +11,14 @@ Find full text articles that mention a specific product on PMC given a PMID
 """
 
 import requests
-from core.utils import extract_abstract_from_xml, extract_full_text_from_xml
+from core.query_building import build_search_query
+from core.xml_to_text import extract_abstract_from_xml, extract_full_text_from_xml
+from core.query_building import build_search_query
 
-def search_pubmed(manufacturer, product_name, catalog_number = "", max_results=20):
+def search_pubmed(manufacturer, product_name = None, catalog_number = None, terms = None, max_results=20):
     url = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi"
 
-    terms = []
-
-    if manufacturer:
-        terms.append(f'"{manufacturer}"')
-
-    if product_name:
-        terms.append(f'"{product_name}"')
-
-    if catalog_number:
-        terms.append(f'"{catalog_number}"')
-
-    if not terms:
-        raise ValueError("No search terms provided.")
-
-    query = " AND ".join(terms)
-    # print(query)
+    query = build_search_query(manufacturer, product_name, catalog_number, terms)
 
     params = {
         "db": "pubmed",

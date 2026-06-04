@@ -12,7 +12,6 @@ Gets evidence of product name alternative names mentioned in same context as man
 import pandas as pd
 import re
 from core.text_normalization import normalize_biotech_text
-from core.schema import CANONICAL_FIELDS
 
 
 # def find_string_context(text, string, n = 1):
@@ -148,61 +147,6 @@ def find_product_name_contexts(text, product_name, n = 1):
 
 def find_catalog_number_contexts(text, catalog_number, n = 1):
     return find_string_context(text, catalog_number, n)
-
-
-
-def build_product_alias_map(df):
-    """
-
-    Builds a canonical → alias-set mapping for product entity resolution.
-
-    Key idea:
-    - Uses CANONICAL_FIELDS to decide what to include
-    - Automatically excludes 'manufacturer'
-    - Produces a unified set of searchable terms per product
-
-    Output structure:
-        {
-            product_name_clean: {
-                product_name
-                alias_1,
-                alias_2,
-                ...
-                sku,
-                bio_targets
-            }
-        }
-
-    Expected input:
-        df with at least:
-        - product_name_clean
-        - aliases (optional, pipe-delimited string)
-
-    Returns:
-        dict[str, set[str]]: canonical name → set of normalized aliases
-    """
-    
-    key_name = "sku"
-    df["smallest"] = df[key_name].str.split(" ").apply(lambda x: min(x, key=len))
-    keys = df["smallest"].tolist()
-
-    value_cols = list(CANONICAL_FIELDS)
-    exclude_cols = ["manufacturer"]
-
-    value_cols = [item for item in value_cols if item not in exclude_cols]
-    values = (df[value_cols].astype(str).apply(' '.join, axis=1)).tolist()
-    values = [list(set(string.split())) for string in values]
-
-    exclude_values = ["human", "rat", "mouse", "rabbit"]
-    exclude_values = set(exclude_values)
-    values = [[item for item in sublist if item not in exclude_values] for sublist in values]
-
-    # print(len(keys))
-    # print(len(values))
-
-    product_map = dict(zip(keys, values))
-
-    return product_map
 
 
 def find_product_manufacturer_evidence(
