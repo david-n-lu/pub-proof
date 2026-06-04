@@ -1,0 +1,75 @@
+# =========================
+
+# Python
+
+# =========================
+
+**pycache**/
+*.py[cod]
+*$py.class
+
+# Virtual Environments
+
+venv/
+.venv/
+env/
+ENV/
+
+# =========================
+
+# Environment Variables
+
+# =========================
+
+.env
+.env.*
+
+# =========================
+
+# IDE / Editor
+
+# =========================
+
+.vscode/
+.idea/
+
+# =========================
+
+# Jupyter
+
+# =========================
+
+.ipynb_checkpoints/
+
+# =========================
+
+# OS Files
+
+# =========================
+
+.DS_Store
+Thumbs.db
+
+# =========================
+
+# Logs
+
+# =========================
+
+*.log
+
+# =========================
+
+# Raw and Generated Data
+
+# =========================
+
+data/cleaned_products/*
+data/evidence/*
+data/raw_products/* 
+
+# Keep folder structure
+
+!data/raw_products/.gitkeep
+!data/cleaned_products/.gitkeep
+!data/evidence/.gitkeep
