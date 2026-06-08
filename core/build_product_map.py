@@ -3,20 +3,13 @@ import pandas as pd
 import re
 from collections import defaultdict
 from typing import Dict, Set
+from core.text_normalization import lightweight_normalize, heavy_normalize
+from itertools import combinations
 
 
 sku_columns = ["Manufacturer SKU", "Part ID", "Part ID.1", "crispr_product_id"]
 alias_columns = ["Alias", "Alias Names", "Symbol"]
 product_name_column = "Product Name"
-
-def normalize(text: str) -> str:
-    if not text:
-        return ""
-
-    text = str(text).lower()
-    text = re.sub(r"[^a-z0-9\s\-]", " ", text)
-    text = re.sub(r"\s+", " ", text).strip()
-    return text
 
 
 def build_product_map(csv_dir: str | Path) -> Dict[str, dict]:
@@ -37,7 +30,7 @@ def build_product_map(csv_dir: str | Path) -> Dict[str, dict]:
                 val = row.get(col)
 
                 if pd.notna(val) and str(val).strip():
-                    sku = normalize(val)
+                    sku = lightweight_normalize(val)
                     break
 
             
@@ -46,8 +39,8 @@ def build_product_map(csv_dir: str | Path) -> Dict[str, dict]:
             if not sku or not product_name:
                 continue
 
-            sku = normalize(sku)
-            product_name = normalize(product_name)
+            sku = lightweight_normalize(sku)
+            product_name = heavy_normalize(product_name)
 
             aliases = set()
 
@@ -55,7 +48,7 @@ def build_product_map(csv_dir: str | Path) -> Dict[str, dict]:
                 val = row.get(col)
 
                 if pd.notna(val):
-                    val = normalize(str(val))
+                    val = lightweight_normalize(str(val))
 
                     # unify separators
                     val = re.sub(r"[|,]", ";", val)
@@ -71,12 +64,18 @@ def build_product_map(csv_dir: str | Path) -> Dict[str, dict]:
                     "aliases": set()
                 }
 
-            # always include product name as alias (important)
+            # include product name as alias
             product_map[sku]["aliases"].add(product_name)
+
+            # include sku as alias
+            product_map[sku]["aliases"].add(sku)
 
             for a in aliases:
                 if a:
                     product_map[sku]["aliases"].add(a)
+
+            # add subsets of full product name to aliases for more permissive matching
+            product_map[sku]["aliases"].update(generate_subsets(product_name))
 
     return product_map
 
@@ -90,9 +89,65 @@ def build_alias_index(product_map: Dict[str, dict]) -> Dict[str, str]:
 
     for sku, data in product_map.items():
         for alias in data["aliases"]:
-            alias_norm = normalize(alias)
+            alias_norm = lightweight_normalize(alias)
 
             if alias_norm:
                 index[alias_norm] = sku
 
     return index
+
+
+GENERIC_BIOTECH_TERMS = {
+    # core product packaging
+    "kit", "assay", "system", "solution", "reagent", "reagents",
+    "panel", "set", "bundle", "pack", "package", "packaging",
+    "mix", "mixture", "formulation", "cocktail",
+
+    # lab consumables
+    "buffer", "buffers", "substrate", "media", "medium",
+    "diluent", "diluents", "concentrate", "control", "controls",
+    "standard", "standards", "calibrator", "calibrators",
+
+    # molecular biology workflows
+    "expression", "purification", "amplification", "detection",
+    "quantification", "sequencing", "cloning", "transfection",
+    "transformation", "labeling", "staining", "extraction",
+    "isolation", "synthesis", "screening", "profiling",
+
+    # biomolecules / entities (generic context words)
+    "protein", "proteins", "antibody", "antibodies",
+    "enzyme", "enzymes", "dna", "rna", "plasmid", "plasmids",
+    "vector", "vectors", "virus", "viral",
+    "cell", "cells", "tissue", "tissues",
+    "serum", "plasma",
+
+    # commercial / marketing descriptors
+    "premium", "grade", "ultra", "plus", "max", "mini",
+    "starter", "advanced", "complete", "ready", "ready-to-use",
+    "high-performance", "research", "research-grade", "rtu",
+
+    # biological modifiers (often not identity)
+    "human", "mouse", "rat", "recombinant", "synthetic",
+    "natural", "purified"
+}
+
+
+def generate_subsets(product_name: str):
+    """
+    Build relevant word subsets of full product names for better aliases matching
+
+    Example: "Lenti-Pac HIV Expression Packaging Kit (20 reactions)"
+    - "Lenti-Pac"
+    - "HIV"
+    - "Lenti-Pac HIV"
+    """
+
+    words = product_name.split()
+
+    words = [ w for w in words if w not in GENERIC_BIOTECH_TERMS]
+
+    return [
+        " ".join(combo)
+        for r in range(1, len(words) + 1)
+        for combo in combinations(words, r)
+    ]

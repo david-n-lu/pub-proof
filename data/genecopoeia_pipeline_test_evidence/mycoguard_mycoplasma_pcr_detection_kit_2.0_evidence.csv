@@ -1,0 +1,2 @@
+﻿manufacturer,product_name,sku,source,url,score,text,aliases
+GeneCopoeia,MycoGuard™ Mycoplasma PCR Detection Kit 2.0,MP004,EuropePMC,https://europepmc.org/article/PMC/12079504,15.0,Cells underwent routine mycoplasma testing with MycoGuard™ Mycoplasma PCR Detection Kit (Genecopoeia #MP004) and were verified free of mycoplasma prior to the commencement of experiments.,"{'pcr': 0.5, 'mycoplasma': 0.5, 'mycoplasma pcr': 1.5, 'mp004': 10.0, 'mycoplasma pcr detection kit': 2.5}"

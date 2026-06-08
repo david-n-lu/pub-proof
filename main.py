@@ -12,6 +12,8 @@ Pipeline:
 8. Evidence export
 """
 
+from math import prod
+
 from core.io import load_evidence_input
 from core.build_product_map import build_product_map, build_alias_index
 
@@ -23,9 +25,9 @@ from core.query_building import build_query
 from core.xml_parser import parse_article_xml
 from core.sentence_extractor import extract_sentences
 
-from core.matcher import build_automaton, find_product_manufacturer_evidence
+from core.matcher import find_product_manufacturer_evidence
 
-from core.text_normalization import lightweight_normalize as normalize
+from core.text_normalization import normalize
 
 import pandas as pd
 
@@ -36,7 +38,7 @@ def export_evidence_to_csv(product_identifier, evidence, output_folder="data/evi
     # ----------------------------
     df = pd.DataFrame(evidence)
 
-    safe_name = product_identifier.lower().replace(" ", "_")
+    safe_name = normalize(product_identifier).replace(" ", "_").replace("/", "-")
     output_path = f"{output_folder}{safe_name}_evidence.csv"
 
     df.to_csv(
@@ -52,9 +54,10 @@ def export_evidence_to_csv(product_identifier, evidence, output_folder="data/evi
 
 def run_pipeline(
     input_path="data/genecopoeia_pipeline_test.csv",
-    alias_path="data/raw_products",
+    alias_path="data/genecopoeia_pipeline_test_raw_products", #data/raw_products",
+    output_folder="data/genecopoeia_pipeline_test_evidence/", #"data/evidence/",
     manufacturer="GeneCopoeia",
-    max_results=25
+    max_results=50
 ):
     
     # 1. Load inputs
@@ -65,13 +68,7 @@ def run_pipeline(
     product_map = build_product_map(alias_path)
     print("Built product map")
 
-    automaton = build_automaton(product_map)
-    print("Built Aho-Corasick automaton")
-
-
     # 3. Process each product
-    all_records = []
-
     for item in inputs:
 
         sku = item["sku"]
@@ -113,7 +110,7 @@ def run_pipeline(
 
             sentences.extend(sent)
 
-        print(f"PubMed parsed | sentences_total={len(sentences)}")
+        print(f"PubMed parsed | sentences_total = {len(sentences)}")
         
         # 6. Fetch + parse Europe PMC
         for result in europe_ids:
@@ -136,18 +133,23 @@ def run_pipeline(
 
             sentences.extend(sent)
 
-        print(f"EuropePMC parsed | sentences_total={len(sentences)}")
+        print(f"EuropePMC parsed | sentences_total = {len(sentences)}")
         
         # 7. Run matcher_v2
 
+        # print(product_map[normalize(sku)]["aliases"])
+
         evidence = find_product_manufacturer_evidence(
             sentences=sentences,
-            automaton=automaton,
             manufacturer=manufacturer,
-            min_score=6
+            sku = sku,
+            aliases = product_map[normalize(sku)]["aliases"],
+            min_score=2
         )
 
-        print(f"Matcher complete | evidence_found={len(evidence)}")
+        print(f"Matcher complete | evidence_found = {len(evidence)}")
+
+        records = []
 
         # 8. Attach metadata + store
         for e in evidence:
@@ -164,7 +166,7 @@ def run_pipeline(
                 url = f"https://europepmc.org/article/PMC/{id.replace('PMC', '')}"
 
 
-            all_records.append({
+            records.append({
             "manufacturer": manufacturer,
             "product_name": product_name,
             "sku": sku,
@@ -173,22 +175,22 @@ def run_pipeline(
             "url": url,
             
             "score": e["score"],
-            "section": e["hits"]["section"],
-            "skus": e["hits"]["skus"],
+            # "section": e["hits"]["section"],
             "text": e["hits"]["text"],
+            "aliases": e["hits"]["aliases"],
         })
         
-        print(f"Records built for {manufacturer} | {product_name} | total_records={len(all_records)}")
+        print(f"Records built for {manufacturer} | {product_name} | num_records = {len(records)}")
         print("-" * 60)
         
 
-    df = export_evidence_to_csv(
-        product_identifier="all_products",
-        evidence=all_records
-    )
+        df = export_evidence_to_csv(
+            product_identifier=product_name,
+            evidence=records,
+            output_folder=output_folder
+        )
 
-    print(f"Exported {len(df)} records")
-    return df
+        # print(f"Exported {len(df)} records")
 
 
 if __name__ == "__main__":
