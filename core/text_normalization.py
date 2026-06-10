@@ -81,45 +81,66 @@ def heavy_normalize(text: str) -> str:
     """
     Heavy normalization for biotech product name matching.
 
-    Goals:
-    - remove catalog / SKU noise
-    - remove counts, versions, metadata
-    - normalize symbols
+    Intended for:
+    - alias generation
+    - deduplication
+    - fuzzy matching
 
-    Output is for aliasing / deduping, not search.
+    Removes catalog metadata, reaction counts, versions, and
+    other non-essential product descriptors while preserving
+    meaningful product terminology.
     """
     if not text:
         return ""
 
-    text = str(text)
+    text = fix_mojibake(str(text)).lower()
 
-    # fix encoding issues first (must exist in your codebase)
-    text = fix_mojibake(text)
-
-    text = text.lower()
-
-    # normalize trademark / special symbols
-    text = text.replace("™", "").replace("®", "").replace("©", "")
-    text = text.replace("*", "")
-
-    # normalize micro symbols
+    # normalize symbols
+    text = re.sub(r"[™®©]", "", text)
+    text = re.sub(r"[\u2010-\u2015]", "-", text)  # unicode dashes → hyphen
     text = text.replace("µl", "ul").replace("μl", "ul")
 
-    # remove catalog / SKU metadata
-    text = re.sub(r"\((?:old\s*)?cat\s*#\s*[^)]+\)", " ", text, flags=re.IGNORECASE)
-    text = re.sub(r"\(lot\s*[^)]+\)", " ", text, flags=re.IGNORECASE)
-    text = re.sub(r"\(cat\s*#\s*[^)]+\)", " ", text, flags=re.IGNORECASE)
+    # remove mojibake artifacts
+    text = text.replace("�", "").replace("*", "")
 
-    # remove all parenthetical content (reactions, counts, etc.)
+    # remove catalog / lot metadata
+    text = re.sub(r"\((?:old\s*)?cat\s*#\s*[^)]+\)", " ", text, flags=re.I)
+    text = re.sub(r"\(cat\s*#\s*[^)]+\)", " ", text, flags=re.I)
+    text = re.sub(r"\(lot\s*[^)]+\)", " ", text, flags=re.I)
+
+    # remove remaining parenthetical metadata
     text = re.sub(r"\([^)]*\)", " ", text)
 
-    # remove standalone numbers and decimals (2, 2.0, 600)
-    text = re.sub(r"\b\d+(\.\d+)?\b", " ", text)
+    # remove standalone numeric metadata
+    text = re.sub(r"\b\d+(?:\.\d+)?\b", " ", text)
 
-    # normalize punctuation → spaces (but keep hyphens for product lines)
-    text = re.sub(r"[^a-z0-9\s\-]", " ", text)
+    # keep only letters, numbers, spaces, and hyphens
+    text = re.sub(r"[^a-z0-9\s-]", " ", text)
 
     # collapse whitespace
     text = re.sub(r"\s+", " ", text).strip()
 
     return text
+
+
+def safe_filename(text: str, max_len: int = 180) -> str:
+    """
+    Convert normalized product name into Windows-safe filename.
+    """
+
+    text = heavy_normalize(text)
+
+    # remove mojibake leftovers (important for your case)
+    text = text.replace("�", "")
+
+    # replace illegal Windows filename characters
+    text = re.sub(r'[<>:"/\\|?*]', "", text)
+
+    # replace spaces with underscores
+    text = re.sub(r"\s+", "_", text)
+
+    # collapse underscores
+    text = re.sub(r"_+", "_", text).strip("_")
+
+    # trim length (Windows path limit protection)
+    return text[:max_len]

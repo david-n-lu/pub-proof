@@ -65,11 +65,14 @@ Thumbs.db
 # =========================
 
 data/cleaned_products/*
+data/europe_pmc/*
 data/evidence/*
-data/raw_products/* 
+data/raw_products/*
 
-# Keep folder structure
+# Keep specific subfolders
 
-!data/raw_products/.gitkeep
-!data/cleaned_products/.gitkeep
-!data/evidence/.gitkeep
+!data/genecopoeia_pipeline_test_evidence
+!data/genecopoeia_pipeline_test_evidence/**
+
+!data/genecopoeia_pipeline_test_raw_products
+!data/genecopoeia_pipeline_test_raw_products/**

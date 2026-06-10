@@ -1,2 +1,0 @@
-﻿manufacturer,product_name,sku,source,url,score,text,aliases
-GeneCopoeia,Biotechnology Reagent/Kit,BI001,EuropePMC,https://europepmc.org/article/PMC/11843919,12.5,"Mono-biotinylated rGc (mono_bio-Gc) was prepared using a BirA biotin–protein ligase kit (GeneCopoeia, Rockville, MD, USA, BI001).","{'biotin protein ligase': 1.5, 'bi001': 10.0, 'biotin': 0.5, 'ligase': 0.5}"

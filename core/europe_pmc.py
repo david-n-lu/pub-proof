@@ -90,10 +90,6 @@ def fetch_europe_pmc_xml(pmcid: str):
         return None
 
 
-
-
-
-
 """
 Search Europe PMC for articles mentioning a specific product
 - input: product_name, catalog_number, manufacturer

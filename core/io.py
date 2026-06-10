@@ -17,7 +17,7 @@ No matching, API calls, or business logic should live here.
 from typing import Dict, List, Any
 import pandas as pd
 from core.schema import CANONICAL_FIELDS
-from core.text_normalization import normalize_biotech_text, fix_product_name
+from core.text_normalization import heavy_normalize
 
 # ----------------------------
 # Input: Evidence Search CSV
@@ -48,7 +48,7 @@ def load_evidence_input(csv_path: str) -> List[Dict[str, str]]:
         raise ValueError(f"Missing required columns: {missing}")
 
     df = df[["sku", "product_name"]].dropna()
-    df["product_name"] = df["product_name"].apply(fix_product_name)
+    df["product_name"] = df["product_name"].apply(heavy_normalize)
 
 
     def tokenize(sku: str, product_name: str) -> List[str]:
@@ -56,8 +56,8 @@ def load_evidence_input(csv_path: str) -> List[Dict[str, str]]:
         Creates token list from sku + product_name.
         Normalized, split on whitespace.
         """
-        sku_tokens = normalize_biotech_text(sku).split()
-        name_tokens = normalize_biotech_text(product_name).split()
+        sku_tokens = heavy_normalize(sku).split()
+        name_tokens = heavy_normalize(product_name).split()
         return sku_tokens + name_tokens
 
     df["tokens"] = df.apply(
