@@ -5,51 +5,43 @@ Match products against a manufacturer sentence corpus.
 """
 
 import json
-import re
+from matching.normalization import normalize_for_matching
+from matching.alias_scoring import score_alias, score_proximity
 
-ALIAS_WEIGHTS = {
-    "sku": 10.0,
-    "long_alias": 2.5,
-    "medium_alias": 1.0,
-    "short_alias": 0.5,
-}
+# ALIAS_WEIGHTS = {
+#     "sku": 10.0,
+#     "long_alias": 2.5,
+#     "medium_alias": 1.0,
+#     "short_alias": 0.5,
+# }
+# 
+# def score_alias(alias: str, sku: str) -> float:
+#     """
+#     Classify an alias based on specificity.
 
-def score_alias(alias: str, sku: str) -> str:
-    """
-    Classify an alias based on specificity.
+#     More specific aliases receive higher evidence weights.
+#     """
 
-    More specific aliases receive higher evidence weights.
-    """
+#     alias = alias.strip()
 
-    alias = alias.strip()
+#     if alias == (sku):
+#         return ALIAS_WEIGHTS["sku"]
 
-    if alias == (sku):
-        return ALIAS_WEIGHTS["sku"]
+#     if len(alias.split()) >= 4:
+#         return ALIAS_WEIGHTS["long_alias"]
 
-    if len(alias.split()) >= 4:
-        return ALIAS_WEIGHTS["long_alias"]
+#     if len(alias.split()) >= 2 or len(alias) > 12:
+#         return ALIAS_WEIGHTS["medium_alias"]
 
-    if len(alias.split()) >= 2 or len(alias) > 12:
-        return ALIAS_WEIGHTS["medium_alias"]
-
-    return ALIAS_WEIGHTS["short_alias"]
-
-def normalize(text: str) -> str:
-    text = str(text).lower()
-
-    text = re.sub(r"[\u2010-\u2015]", "-", text)  # unify dash types
-
-    # keep letters, numbers, spaces, and hyphens
-    # remove everything else
-    text = re.sub(r"[^a-z0-9\s-]", " ", text)
-
-    text = re.sub(r"\s+", " ", text).strip()
-
-    return text
+#     return ALIAS_WEIGHTS["short_alias"]
 
 
-def match_sentence(sentence, alias_map, max_alias_words=8):
-    words = normalize(sentence).split()
+def match_sentence(sentence, alias_map, product_map, manufacturer = "GeneCopoeia", max_alias_words=15):
+    words = normalize_for_matching(sentence).split()
+
+    # Get all matching indices
+    manufacturer = normalize_for_matching(manufacturer)
+    manufacturer_indices = [i for i, x in enumerate(words) if x == manufacturer]
 
     matches = {}
 
@@ -65,22 +57,29 @@ def match_sentence(sentence, alias_map, max_alias_words=8):
 
             if phrase not in alias_map:
                 continue
+            
+            alias_skus = alias_map[phrase]
+            alias_score = score_alias(phrase, length, alias_skus, product_map)
+            alias_proximity = score_proximity(start, length, manufacturer_indices)
+            # score = alias_quality + alias_proximity
 
-            # alias : [sku1, sku2, sku3]
-            for sku in alias_map[phrase]:
+            for sku in alias_skus:
 
                 if sku not in matches:
-                    matches[sku] = []
+                    matches[sku] = {} # dictionary
                 
-                matches[sku].append({
-                        "alias": phrase,
-                        "score": score_alias(phrase, sku)
-                    })
+                if phrase not in matches[sku]:
+                    # matches[sku][phrase] = {
+                    #     "score": alias_score,
+                    #     "proximity": alias_proximity,
+                    # }
+
+                    matches[sku][phrase] = alias_score + alias_proximity
 
     return matches
 
 
-def match_corpus(sentence_corpus_path, product_map, alias_map, min_score = 3):
+def match_corpus(sentence_corpus_path, product_map, alias_map, manufacturer, min_score = 3):
     """
     Match all sentences in a manufacturer sentence corpus.
 
@@ -108,11 +107,11 @@ def match_corpus(sentence_corpus_path, product_map, alias_map, min_score = 3):
                 sentence = record.get("sentence", "")
 
             matches = match_sentence(
-                sentence=sentence,
-                alias_map=alias_map,
+                sentence, 
+                alias_map, 
+                product_map, 
+                manufacturer=manufacturer
             )
-
-            
 
             # # add all results
             # count = 0
@@ -143,10 +142,12 @@ def match_corpus(sentence_corpus_path, product_map, alias_map, min_score = 3):
             new_record = None
             for sku, aliases in matches.items():
 
-                total = sum(alias.get("score", 0) for alias in aliases)
+                total = sum(aliases.values()) # dictionary
+                # total = sum(v.get("score", 0) for v in aliases.values())
+                # total += sum(v.get("proximity", 0) for v in aliases.values())
 
-                if total < min_score:
-                    continue
+                # if total < min_score:
+                #     continue
             
                 if total <= max:
                     continue
@@ -165,7 +166,7 @@ def match_corpus(sentence_corpus_path, product_map, alias_map, min_score = 3):
                 results.append(new_record)
                 total_hits += 1
             else:
-                no_matches.append(sentence)
+                no_matches.append(record.copy())
             
             print(f"{1 if new_record else 0} results for {sentence[:100]}...")
             total_processed += 1
@@ -173,4 +174,4 @@ def match_corpus(sentence_corpus_path, product_map, alias_map, min_score = 3):
     print(f"Total Hits: {total_hits}")
     print(f"Total Processed: {total_processed}")
 
-    return results
+    return results, no_matches

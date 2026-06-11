@@ -11,17 +11,18 @@ def test_matcher(
     product_map: dict = None,
     alias_map: dict = None,
     output_csv: str = "tests/data/matcher_results.csv",
-    min_score: int = 3,
+    min_score: int = 10,
 ):
     """
     Run matcher against a sentence corpus and export results for inspection.
     """
 
 
-    matches = match_corpus(
+    matches, no_matches = match_corpus(
         sentence_corpus_path=sentence_corpus_path,
         product_map=product_map,
         alias_map=alias_map,
+        manufacturer=manufacturer,
         min_score=min_score,
     )
 
@@ -53,11 +54,26 @@ def test_matcher(
                 m.get("score"),
                 m.get("sentence"),
             ])
+        
+        for m in no_matches:
+            id = m.get("pmcid").replace("PMC","")
 
-    print(f"Exported {len(matches):,} matches to {output_csv}")
+            writer.writerow([
+                manufacturer,
+                "",
+                "",
+                f"https://europepmc.org/article/PMC/{id}",
+                "", # cite_from_europe_pmc(id),
+                "",
+                "",
+                m.get("sentence"),
+            ])
+
+    print(f"Exported {len(matches)} matches to {output_csv}")
+    print(f"Exported {len(no_matches)} no-matches to {output_csv}")
 
 
-def debug_match_sentence(sentence: str, alias_map: dict, max_alias_words: int = 8):
+def debug_match_sentence(sentence: str, alias_map: dict, product_map: dict, manufacturer, max_alias_words: int = 15):
     print("=" * 80)
     print("SENTENCE:")
     print(sentence)
@@ -65,6 +81,8 @@ def debug_match_sentence(sentence: str, alias_map: dict, max_alias_words: int = 
     matches = match_sentence(
         sentence=sentence,
         alias_map=alias_map,
+        product_map=product_map,
+        manufacturer=manufacturer,
         max_alias_words=max_alias_words,
     )
 
@@ -84,6 +102,7 @@ def debug_match_sentence(sentence: str, alias_map: dict, max_alias_words: int = 
 if __name__ == "__main__":
 
     alias_path = "data/raw_products"
+    manufacturer = "GeneCopoeia"
 
     product_map = build_product_map(alias_path)
     print("Built product map")
@@ -91,7 +110,9 @@ if __name__ == "__main__":
     alias_map = build_alias_index(product_map)
     print("Build alias map")
 
-    test_matcher(product_map=product_map, alias_map=alias_map)
+    test_matcher(manufacturer=manufacturer,
+                 product_map=product_map,
+                 alias_map=alias_map)
 
     # sentence = "First-strand cDNA synthesis was performed with 1 μg total RNA using the SureScript™ First-Strand cDNA Synthesis Kit (GeneCopoeia, USA), incorporating oligo(dT) primers and RNase inhibitor."
-    # debug_match_sentence(sentence=sentence, alias_map=alias_map)
+    # debug_match_sentence(sentence=sentence, alias_map=alias_map, product_map=product_map, manufacturer)

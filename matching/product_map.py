@@ -3,7 +3,7 @@ import pandas as pd
 import re
 from collections import defaultdict
 from typing import Dict, Set
-from core.text_normalization import lightweight_normalize, heavy_normalize
+from matching.normalization import normalize, normalize_for_matching
 from itertools import combinations
 
 
@@ -30,7 +30,7 @@ def build_product_map(csv_dir: str | Path) -> Dict[str, dict]:
                 val = row.get(col)
 
                 if pd.notna(val) and str(val).strip():
-                    sku = lightweight_normalize(val)
+                    sku = str(val)
                     break
 
             
@@ -39,40 +39,51 @@ def build_product_map(csv_dir: str | Path) -> Dict[str, dict]:
             if not sku or not product_name:
                 continue
 
-            sku = lightweight_normalize(sku)
-            product_name = heavy_normalize(product_name)
+            sku = normalize(sku)
+            product_name = normalize(product_name)
 
             aliases = set()
 
             for col in alias_columns:
                 val = row.get(col)
 
-                if pd.notna(val):
-                    val = lightweight_normalize(str(val))
+                if pd.isna(val):
+                    continue
 
-                    for p in val.split(" "):
-                        p = lightweight_normalize(p)
-                        if p:
-                            aliases.add(p)
+                val = normalize(str(val))
 
+                for a in val.split(" "):
+                    if a:
+                        aliases.add(a)
+
+
+            sku = normalize_for_matching(sku)
             if sku not in product_map:
                 product_map[sku] = {
                     "product_name": product_name,
                     "aliases": set()
                 }
 
-            # include product name as alias
+            product_name = normalize_for_matching(product_name)
+
+            # include product name and as alias
             product_map[sku]["aliases"].add(product_name)
 
             # include sku as alias
             product_map[sku]["aliases"].add(sku)
 
             for a in aliases:
+                a = normalize_for_matching(a)
                 if a and a not in GENERIC_BIOTECH_TERMS:
                     product_map[sku]["aliases"].add(a)
 
             # add subsets of full product name to aliases for more permissive matching
             product_map[sku]["aliases"].update(generate_subsets(product_name))
+
+            # alias_num_threshold = 1000
+            # num_aliases = len(product_map[sku]["aliases"])
+            # if num_aliases > alias_num_threshold:
+            #     print(f"{product_map[sku]["product_name"]} has {num_aliases} aliases")
 
     return product_map
 
@@ -91,8 +102,7 @@ def build_alias_index(product_map: Dict[str, dict]) -> Dict[str, set]:
 
     for sku, data in product_map.items():
         for alias in data["aliases"]:
-            # alias_norm = alias
-            alias_norm = lightweight_normalize(alias)
+            alias_norm = normalize_for_matching(alias)
 
             if alias_norm and alias_norm not in GENERIC_BIOTECH_TERMS:
                 if alias_norm in index:
@@ -105,11 +115,12 @@ def build_alias_index(product_map: Dict[str, dict]) -> Dict[str, set]:
                 # sum += 1
         
         # items += 1
+        # if items % 1000 == 0:
+        #     print(f"item {items} indexed")
     
     # print(items, sum, dup, unique)
 
     return index
-
 
 GENERIC_BIOTECH_TERMS = {
     # core product packaging
@@ -146,6 +157,7 @@ GENERIC_BIOTECH_TERMS = {
 
     # basic function words
     "a",
+    "as",
     "an",
     "the",
     "and",
@@ -170,6 +182,8 @@ GENERIC_BIOTECH_TERMS = {
     "after",
     "before",
     "during",
+    "removed",
+    "along",
 
     # numbers
     "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10",
@@ -266,7 +280,48 @@ GENERIC_BIOTECH_TERMS = {
     "moreover",
     "furthermore",
     "addition",
+
+    # miscellaneous
+     "signal",
+     "retention",
+     "number",
+     "wild-type"
 }
+
+GENERIC_NUMBERS = {str(i) for i in range(1, 1000)}
+UNITS = {
+    "ul", "µl", "ml", "l",
+    "ug", "µg", "mg", "g",
+    "ng", "pg",
+    "um", "µm", "mm", "cm",
+    "nm",
+    "uM", "mM", "M",
+    "set", "sets",
+    "vial", "vials",
+    "reaction", "reactions",
+    "chamber", "chambers",
+    "plate", "plates",
+    "well", "wells",
+    "tube", "tubes",
+    "pack", "packs",
+    "kit", "kits"
+}
+PUNCTUATION = [
+    ".", ",", "?", "!", ":", ";",
+    "'", "\"",
+    "(", ")", "[", "]", "{", "}",
+    "-", "—", "–", "_",
+    "/", "\\",
+    "|",
+    "@", "#", "$", "%", "&", "*",
+    "+", "=",
+    "<", ">",
+    "^", "`", "~"
+]
+
+GENERIC_BIOTECH_TERMS.update(GENERIC_NUMBERS)
+GENERIC_BIOTECH_TERMS.update(UNITS)
+GENERIC_BIOTECH_TERMS.update(PUNCTUATION)
 
 
 def generate_subsets(product_name: str):
@@ -300,8 +355,14 @@ def test():
 
     print(f"\nTotal SKUs: {len(product_map)}")
 
+    # quick sanity stats
+    alias_lengths = [len(v["aliases"]) for v in product_map.values()]
+    print("\n--- STATS ---")
+    print(f"Avg aliases per product: {sum(alias_lengths)/len(alias_lengths):.2f}")
+    print(f"Max aliases per product: {max(alias_lengths)}")
+
     # show first n products
-    n = 10
+    n = 1
     print(f"\n--- FIRST {n} PRODUCTS ---")
     for i, (sku, data) in enumerate(product_map.items()):
         if i >= n:
@@ -317,23 +378,17 @@ def test():
     print(f"\nTotal aliases indexed: {len(alias_index)}")
 
     # show first n alias mappings
-    n = 10
+    # n = 5
     print(f"\n--- FIRST {n} ALIASES ---")
     for i, (alias, sku) in enumerate(alias_index.items()):
         if i >= n:
             break
         print(f"{alias}  ->  {sku}")
 
-    # quick sanity stats
-    alias_lengths = [len(v["aliases"]) for v in product_map.values()]
-    print("\n--- STATS ---")
-    print(f"Avg aliases per product: {sum(alias_lengths)/len(alias_lengths):.2f}")
-    print(f"Max aliases per product: {max(alias_lengths)}")
-
     # # SureScript™ First-Strand cDNA Synthesis Kit for gene qPCR array (20 RT reactions)
     # product_name = "SureScript™ First-Strand cDNA Synthesis Kit for gene qPCR array (20 RT reactions)"
     
-    # product_name = heavy_normalize(product_name)
+    # product_name = normalize_for_matching(product_name)
     # print(product_name)
 
     # for alias in generate_subsets(product_name):
@@ -342,9 +397,9 @@ def test():
 
 
     alias = "SureScript"
-    alias = heavy_normalize(alias)
+    alias = normalize_for_matching(alias)
     sku = alias_index.get(alias, "")
     print(alias + ":", sku)
 
-
-# test()
+if __name__ == "__main__":
+    test()

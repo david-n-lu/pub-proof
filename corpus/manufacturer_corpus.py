@@ -104,10 +104,10 @@ def build_manufacturer_sentence_corpus(
     with open(input_path, "r", encoding="utf-8") as f:
         for i, line in enumerate(f):
 
-            if i < start_line:
+            if i+1 < start_line:
                 continue
 
-            if max_docs and i > max_docs:
+            if max_docs and i+1 > max_docs:
                 break
 
             record = json.loads(line)
@@ -138,14 +138,14 @@ def build_manufacturer_sentence_corpus(
 
             # buffer.extend(sentences)
 
-            print(f"[PROCESSED] {i} | {pmcid}")
+            print(f"[PROCESSED] {i+1} | {pmcid}")
             print(f"[RESULT] {pmcid} → {len(sentences)} sentences")
 
             # flush every BATCH_SIZE papers
-            if (i) % batch_size == 0:
+            if (i+1) % batch_size == 0:
                 flush(output_path, buffer)
                 buffer = []  # reset
-                print(f"[FLUSH] saved batch at {i}")
+                print(f"[FLUSH] saved batch at {i+1}")
 
     
     # final flush
@@ -184,7 +184,15 @@ if __name__ == "__main__":
     # start_line = 8501
     # start_line = 8601
     # start_line = 8801
-    start_line = 8901
+    # start_line = 8901
+
+    # start_line = 101
+    # start_line = 201
+    # start_line = 901
+    # start_line = 1401
+    # start_line = 2601
+    # start_line = 3401
+    start_line = 6701
 
     build_manufacturer_sentence_corpus(
         input_path="data/europe_pmc/genecopoeia.jsonl",
