@@ -110,9 +110,13 @@ if __name__ == "__main__":
     alias_map = build_alias_index(product_map)
     print("Build alias map")
 
-    test_matcher(manufacturer=manufacturer,
-                 product_map=product_map,
-                 alias_map=alias_map)
+    test_matcher(manufacturer = manufacturer,
+                 sentence_corpus_path = "tests/data/genecopoeia_sentences_1000.jsonl",
+                 product_map = product_map,
+                 alias_map = alias_map,
+                 output_csv = "tests/data/matcher_results_1000.csv",
+                 min_score = 0,
+                )
 
     # sentence = "First-strand cDNA synthesis was performed with 1 μg total RNA using the SureScript™ First-Strand cDNA Synthesis Kit (GeneCopoeia, USA), incorporating oligo(dT) primers and RNase inhibitor."
     # debug_match_sentence(sentence=sentence, alias_map=alias_map, product_map=product_map, manufacturer)

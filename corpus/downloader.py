@@ -107,6 +107,10 @@ def fetch_articles(
 
         if not hits:
             break
+        
+        # for key in hits[0].keys():
+        #     print(f"{key}: {hits[0][key]}\n")
+        #     # print(key)
 
         for h in hits:
             
@@ -119,6 +123,7 @@ def fetch_articles(
 
             seen.add(key)
 
+
             results.append(
                 {
                     "pmcid": pmcid,
@@ -130,20 +135,22 @@ def fetch_articles(
                     # publication info
                     "title": h.get("title"),
                     "abstract": h.get("abstractText"),
-                    "journal": h.get("journalTitle"),
+                    "journal": h.get("journalInfo", {}).get("journal", {}).get("title"),
+                    "journal_medline": h.get("journalInfo", {}).get("journal", {}).get("medlineAbbreviation"),
+                    "journal_iso": h.get("journalInfo", {}).get("journal", {}).get("isoabbreviation"),
                     "authors": h.get("authorString"),
                     "affiliation": h.get("affiliation"),
                     "year": (h.get("firstPublicationDate") or "")[:4],
                     "date": h.get("firstPublicationDate"),
-                    "volume": h.get("journalVolume"),
-                    "issue": h.get("issue"),
-                    "pages": h.get("pageInfo"),
+                    "volume": h.get("journalInfo", {}).get("volume"),
+                    "issue": h.get("journalInfo", {}).get("issue"),
+                    # "pages": h.get("pageInfo"),
 
                     # impact
                     "cited_by_count": h.get("citedByCount"),
 
                     # article metadata
-                    "pub_type": h.get("pubType"),
+                    # "pub_type": h.get("pubType"),
                     "is_open_access": h.get("isOpenAccess"),
                     # "has_pdf": h.get("hasPDF"),
 

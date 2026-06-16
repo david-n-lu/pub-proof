@@ -75,6 +75,8 @@ def match_sentence(sentence, alias_map, product_map, manufacturer = "GeneCopoeia
                     # }
 
                     matches[sku][phrase] = alias_score + alias_proximity
+                else:
+                    matches[sku][phrase] = max(matches[sku][phrase], alias_score + alias_proximity)
 
     return matches
 
@@ -146,8 +148,8 @@ def match_corpus(sentence_corpus_path, product_map, alias_map, manufacturer, min
                 # total = sum(v.get("score", 0) for v in aliases.values())
                 # total += sum(v.get("proximity", 0) for v in aliases.values())
 
-                # if total < min_score:
-                #     continue
+                if total < min_score:
+                    continue
             
                 if total <= max:
                     continue

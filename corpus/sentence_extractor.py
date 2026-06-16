@@ -1,6 +1,45 @@
 import re
-import json
 
+ABBREVIATIONS = [
+    # references / figures
+    "fig", "figure", "figs",
+    "ref", "refs",
+    "eq", "equation", "eqs",
+    "sec", "section",
+    "chap", "chapter",
+    "supp", "suppl",
+
+    # publication metadata
+    "vol", "no", "pp", "p",
+    "ed", "eds",
+
+    # people / titles
+    "dr", "mr", "mrs", "ms", "prof",
+
+    # companies
+    "inc", "corp", "co", "ltd", "llc",
+
+    # common latin abbreviations
+    # "e.g", "i.e", "etc", "et al", "cf", "vs",
+    "etc", "et al", "cf", "vs",
+
+    # catalog / product references
+    "cat", "lot",
+
+    # addresses / misc
+    "st", "ave", "dept",
+]
+
+def protect_abbreviations(text: str):
+    for abbr in ABBREVIATIONS:
+        # matches "cat." or "fig." etc
+        pattern = r"\b" + re.escape(abbr) + r"\."
+        text = re.sub(pattern, abbr + "<DOT>", text, flags=re.IGNORECASE)
+    return text
+
+
+def restore_abbreviations(text: str):
+    return text.replace("<DOT>", ".")
 
 def get_sentences_with_manufacturer(full_text: str, manufacturer: str, window: int = 200):
     """
@@ -15,6 +54,7 @@ def get_sentences_with_manufacturer(full_text: str, manufacturer: str, window: i
     """
 
     # --- sentence splitter (MVP-level) ---
+    full_text = protect_abbreviations(full_text)
     sentences = re.split(r'(?<=[.!?])\s+', full_text)
 
     # --- normalization helper ---
@@ -47,6 +87,7 @@ def get_sentences_with_manufacturer(full_text: str, manufacturer: str, window: i
 
         results.append(snippet)
 
+    results = [restore_abbreviations(s) for s in results]
     return results
 
 

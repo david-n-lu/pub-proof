@@ -44,17 +44,17 @@ def build_product_map(csv_dir: str | Path) -> Dict[str, dict]:
 
             aliases = set()
 
-            for col in alias_columns:
-                val = row.get(col)
+            # for col in alias_columns:
+            #     val = row.get(col)
 
-                if pd.isna(val):
-                    continue
+            #     if pd.isna(val):
+            #         continue
 
-                val = normalize(str(val))
+            #     val = normalize(str(val))
 
-                for a in val.split(" "):
-                    if a:
-                        aliases.add(a)
+            #     for a in val.split(" "):
+            #         if a:
+            #             aliases.add(a)
 
 
             sku = normalize_for_matching(sku)
@@ -318,10 +318,25 @@ PUNCTUATION = [
     "<", ">",
     "^", "`", "~"
 ]
+BAD_ALIAS_FILTER = ["green", "2.0", "sp", "fragments", "out", "culture", "sema5a", "expressing", "gfp", "sera", 
+                    "va", "two", "nes", "promoter", "sensitivity", "open", "frame", "see", "universal", "psi", 
+                    "transfer", "fluc", "mutation", "provided", "negative", "lentivirus", "which", "forward", 
+                    "dual", "target", "li", "terminus", "deletion", "this", "also", "gel", "day", "tx", "1.5", 
+                    "another", "cat", "restriction", "array", "mixed", "predicted", "injury", "isolated", "vitro", 
+                    "clone", "000", "small", "detected", "per", "positive", "essential", "all", "one", "that", 
+                    "nonspecific", "il", "produced", "short", "product", "normal", "active", "2020", "2.5", 
+                    "blocking", "id", "overexpressed", "full", "tag", "ha", "coding", "sequence", "targeting", 
+                    "strand", "mature", "scrambled", "reverse", "tu", "expressed", "wild", "type", "da", "mutant", 
+                    "resistant", "str", "down", "pez", "six", "three", "map", "nuclei", "template", "right", "wt", 
+                    "fhit", "concentration", "against", "full-length", "containing", "binding", "platelets",
+                    "maintenance", "glucose", "independent", "high", "sodium", "no", "post", "supernatant",
+                    "selection", "germ", "required", "cross", "fused", "only", "vessel", "ca", "fragment", "mut",
+                    "variants", "end"]
 
 GENERIC_BIOTECH_TERMS.update(GENERIC_NUMBERS)
 GENERIC_BIOTECH_TERMS.update(UNITS)
 GENERIC_BIOTECH_TERMS.update(PUNCTUATION)
+GENERIC_BIOTECH_TERMS.update(BAD_ALIAS_FILTER)
 
 
 def generate_subsets(product_name: str):
