@@ -202,7 +202,11 @@ if __name__ == "__main__":
     # start_line = 2401
     # start_line = 3501
     # start_line = 4201
-    start_line = 5201
+    # start_line = 5201
+    # start_line = 5301
+    # start_line = 6501
+    # start_line = 6901
+    start_line = 8301
 
     build_manufacturer_sentence_corpus(
         input_path="data/europe_pmc/genecopoeia.jsonl",

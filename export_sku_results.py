@@ -13,10 +13,9 @@ No. QP056; BlazeTaq™ SYBR Green qPCR Mix 2.0 (with ROX), Cat. No. QP031]
 
 import csv
 import json
-from multiprocessing import process
+import re
 from matching.product_map import build_product_map
 from matching.sku_matcher import find_sku
-from matching.normalization import normalize_for_matching
 
 
 def format_list_csv(list, delimiter = "|"):
@@ -102,6 +101,7 @@ def shorten_product_name(product_name):
         "trna",
         "rrna",
         "mirna",
+        "and",
     ]
 
     def is_float(value):
@@ -110,13 +110,15 @@ def shorten_product_name(product_name):
             return True
         except ValueError:
             return False
+    
 
     for w in product_name.split():
         w_norm = w.lower()
 
         # no 20, 20ml allowed
         # 2.0, 3.0 allowed
-        if is_float(w_norm) or any(is_float(w_norm.replace(u.lower(),"")) for u in UNITS):
+
+        if is_float(w_norm) or any(is_float(w_norm.replace(u.lower(),"").replace("(","").replace(")","")) for u in UNITS):
             if w_norm not in EDITIONS:
                 break
             
@@ -125,13 +127,25 @@ def shorten_product_name(product_name):
         
         if w_norm not in DONT_CAPITALIZE:
             w = w[0].upper() + w[1:]
+        
+        w = w.replace(",","").replace("*","")
+
+        # miRNA Scrambled Control-MR03 Lentiviral Particles(25 Μl X
+        # gets rid of (25 Ml X if product name poorly formatted
+        
+        w_original = w
+        w = re.sub(r"\(\d.*$", "", w)
 
         short.append(w)
 
+        # gets rid of (25 Ml X if product name poorly formatted
+        if not w_original == w:
+            break
+
     short = " ".join(short)
 
-    print(product_name)
-    print(short)
+    # print(product_name)
+    # print(short)
 
     return short
 
@@ -140,35 +154,58 @@ def run_pipeline(manufacturer: str, sentence_corpus_path: str, product_map_path:
     product_map = build_product_map(product_map_path)
     print("Built product map")
 
-    results = []
+    # results = []
+    results = {} # pmcid: record
     
     sentences_processed = 0
 
     with open(sentence_corpus_path, "r", encoding="utf-8") as f:
 
-        sentence_index = 0
+        # sentence_index = 0
 
         for line in f:
             record = json.loads(line)
+            pmcid = record.get("pmcid") # always exists because of manufacturer_corpus.py filtering
             sentence = record.get("sentence", "")
             
             skus = find_sku(sentence=sentence, skus=product_map, manufacturer=manufacturer)
 
             result = record.copy()
-            result["idx"] = sentence_index
-            sentence_index += 1
+            # result["idx"] = sentence_index
+            # sentence_index += 1
 
             if not skus:
                 continue
 
-            skus = list({s["sku"] for s in skus})
-            products = [product_map.get(sku).get("product_name") for sku in skus]
+            # skus = list({s["sku"] for s in skus})
+            # products = [product_map.get(sku).get("product_name") for sku in skus]
 
-            result["product_name"] = format_list_csv(products)
-            result["sku"] = format_list_csv(skus)
-            result["citation"] = get_citation(record) + " " + format_products(skus, products)
+            if not pmcid in results:
+                results[pmcid] = result
+                results[pmcid]["product_name"] = []
+                results[pmcid]["sku"] = []
+                results[pmcid]["sentences"] = []
+            
+            # used list to keep in order seen in text
+            # list is small so don't need set
+            for sku in [s["sku"] for s in skus]:
+                if sku in results[pmcid]["sku"]:
+                    continue
+                
+                product = product_map.get(sku).get("product_name")
 
-            results.append(result)
+                results[pmcid]["product_name"].append(product)
+                results[pmcid]["sku"].append(sku)
+            results[pmcid]["sentences"].append(sentence)
+
+            # results[pmcid]["product_name"].extend(products)
+            # results[pmcid]["sku"].extend(skus)
+
+            # result["product_name"] = format_list_csv(products)
+            # result["sku"] = format_list_csv(skus)
+            # result["citation"] = get_citation(record) + " " + format_products(skus, products)
+
+            # results.append(result)
 
             sentences_processed += 1
 
@@ -190,25 +227,42 @@ def run_pipeline(manufacturer: str, sentence_corpus_path: str, product_map_path:
             "sentence",
         ])
 
+        check_product_names = {}
 
-        for r in results:
+        # for r in results:
+
+        for pmcid, r in results.items():
             id = r.get("pmcid").replace("PMC","")
+            skus = r.get("sku","")
+            products = r.get("product_name","")
+            citation = get_citation(r) + " " + format_products(skus, products)
+            sentences = r.get("sentences")
+
+            for p in products:
+                check_product_names[p] = shorten_product_name(p)
 
             writer.writerow([
                 manufacturer,
-                r.get("sku",""),
-                r.get("product_name"),
-                r.get("citation"),
+                # r.get("sku",""),
+                format_list_csv(skus),
+                # r.get("product_name"),
+                format_list_csv(products),
+                citation,
                 f"https://europepmc.org/article/PMC/{id}",
-                r.get("sentence"),
+                # r.get("sentence"),
+                " ".join(sentences),
             ])
+        
+        for long, short in check_product_names.items():
+            print(f"Original:  {long}")
+            print(f"Shortened: {short}")
 
 
 if __name__ == "__main__":
     manufacturer = "GeneCopoeia"
-    sentence_corpus_path = "tests/data/genecopoeia_sentences_1000.jsonl"
+    sentence_corpus_path = "data/europe_pmc/genecopoeia_sentences.jsonl"
     product_map_path = "data/raw_products"
-    output_csv_path = "tests/data/matcher_results_with_sku.csv"
+    output_csv_path = "data/europe_pmc/matcher_results_with_sku.csv"
 
     run_pipeline(manufacturer=manufacturer,
                  sentence_corpus_path=sentence_corpus_path,

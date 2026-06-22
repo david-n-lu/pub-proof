@@ -40,6 +40,7 @@ def build_product_map(csv_dir: str | Path) -> Dict[str, dict]:
                 continue
 
             sku = normalize(sku)
+            original_product_name = product_name
             product_name = normalize(product_name)
 
             aliases = set()
@@ -60,7 +61,7 @@ def build_product_map(csv_dir: str | Path) -> Dict[str, dict]:
             sku = normalize_for_matching(sku)
             if sku not in product_map:
                 product_map[sku] = {
-                    "product_name": product_name,
+                    "product_name": original_product_name,
                     "aliases": set()
                 }
 
@@ -78,7 +79,13 @@ def build_product_map(csv_dir: str | Path) -> Dict[str, dict]:
                     product_map[sku]["aliases"].add(a)
 
             # add subsets of full product name to aliases for more permissive matching
-            product_map[sku]["aliases"].update(generate_subsets(product_name))
+            # product_map[sku]["aliases"].update(generate_subsets(product_name))
+
+            # product_map[sku]["aliases"].update(product_name.split())
+            for a in product_name.split():
+                product_map[sku]["aliases"].add(a)
+                product_map[sku]["aliases"].update(a.split("-"))
+
 
             # alias_num_threshold = 1000
             # num_aliases = len(product_map[sku]["aliases"])
@@ -93,6 +100,22 @@ def build_alias_index(product_map: Dict[str, dict]) -> Dict[str, set]:
     alias → sku
     """
 
+    STOP_WORDS = {
+    "a", "an", "the",
+    "and", "or", "but", "nor",
+    "if", "then", "else", "when", "while",
+    "for", "of", "in", "on", "at", "by", "with", "from", "to", "into", "onto", "over", "under",
+    "is", "am", "are", "was", "were", "be", "been", "being",
+    "have", "has", "had", "do", "does", "did",
+    "this", "that", "these", "those",
+    "it", "its", "they", "them", "their", "we", "you", "he", "she", "him", "her",
+    "as", "than", "too", "very",
+    }
+    STOP_NUMBERS = [str(i) for i in range(1000)]
+    STOP_LETTERS = list("abcdefghijklmnopqrstuvwxyz")
+    STOP_WORDS.update(STOP_NUMBERS)
+    STOP_WORDS.update(STOP_LETTERS)
+
     index = {}
 
     # items = 0
@@ -104,7 +127,9 @@ def build_alias_index(product_map: Dict[str, dict]) -> Dict[str, set]:
         for alias in data["aliases"]:
             alias_norm = normalize_for_matching(alias)
 
-            if alias_norm and alias_norm not in GENERIC_BIOTECH_TERMS:
+            # if alias_norm:
+            # if alias_norm and alias_norm not in GENERIC_BIOTECH_TERMS:
+            if alias_norm and alias_norm not in STOP_WORDS:
                 if alias_norm in index:
                     index[alias_norm].add(sku)
                     # dup += 1
@@ -121,6 +146,29 @@ def build_alias_index(product_map: Dict[str, dict]) -> Dict[str, set]:
     # print(items, sum, dup, unique)
 
     return index
+
+
+
+def generate_subsets(product_name: str):
+    """
+    Build relevant word subsets of full product names for better aliases matching
+
+    Example: "Lenti-Pac HIV Expression Packaging Kit (20 reactions)"
+    - "Lenti-Pac"
+    - "HIV"
+    - "Lenti-Pac HIV"
+    """
+
+    words = product_name.split()
+
+    words = [ w for w in words if w not in GENERIC_BIOTECH_TERMS]
+
+    return [
+        " ".join(combo)
+        for r in range(1, len(words) + 1)
+        for combo in combinations(words, r)
+    ]
+
 
 GENERIC_BIOTECH_TERMS = {
     # core product packaging
@@ -339,27 +387,6 @@ GENERIC_BIOTECH_TERMS.update(PUNCTUATION)
 GENERIC_BIOTECH_TERMS.update(BAD_ALIAS_FILTER)
 
 
-def generate_subsets(product_name: str):
-    """
-    Build relevant word subsets of full product names for better aliases matching
-
-    Example: "Lenti-Pac HIV Expression Packaging Kit (20 reactions)"
-    - "Lenti-Pac"
-    - "HIV"
-    - "Lenti-Pac HIV"
-    """
-
-    words = product_name.split()
-
-    words = [ w for w in words if w not in GENERIC_BIOTECH_TERMS]
-
-    return [
-        " ".join(combo)
-        for r in range(1, len(words) + 1)
-        for combo in combinations(words, r)
-    ]
-
-
 
 def test():
 
@@ -416,5 +443,244 @@ def test():
     sku = alias_index.get(alias, "")
     print(alias + ":", sku)
 
+
+
+
+def test_generic_names():
+    GENERIC = {
+    "agent",
+    "agonist",
+    "analog",
+    "antagonist",
+    "antibody",
+    "antibodies",
+    "antigen",
+    "assay",
+    "bead",
+    "beads",
+    "buffer",
+    "calibrator",
+    "cassette",
+    "cell",
+    "cells",
+    "chip",
+    "clone",
+    "cocktail",
+    "column",
+    "compound",
+    "composition",
+    "conjugate",
+    "construct",
+    "control",
+    "cytokine",
+    "derivative",
+    "dye",
+    "enzyme",
+    "extract",
+    "filter",
+    "fluorophore",
+    "fusion",
+    "growth factor",
+    "guide",
+    "immunoglobulin",
+    "indicator",
+    "inhibitor",
+    "kit",
+    "label",
+    "ladder",
+    "ligand",
+    "ligase",
+    "line",
+    "lysate",
+    "marker",
+    "master mix",
+    "mastermix",
+    "medium",
+    "media",
+    "membrane",
+    "mix",
+    "modulator",
+    "molecule",
+    "nanobody",
+    "nuclease",
+    "oligo",
+    "oligonucleotide",
+    "panel",
+    "peptide",
+    "plasmid",
+    "plate",
+    "polymerase",
+    "preparation",
+    "primer",
+    "probe",
+    "product",
+    "protein",
+    "reagent",
+    "receptor",
+    "reporter",
+    "resin",
+    "sample",
+    "serum",
+    "slide",
+    "solution",
+    "standard",
+    "stain",
+    "strip",
+    "substrate",
+    "tag",
+    "template",
+    "vector",
+    "virus",
+    "well",
+    
+    "protein",
+    "antibody",
+    "receptor",
+    "kit",
+    "cells",
+    "cell"
+    "vector",
+    "enzyme"
+    "standard",
+    "polymerase",
+    "inhibitor",
+    "clone",
+    "plasmid",
+    "reporter",
+    "solution",
+    "probe",
+    "raegent",
+    "control",
+    "membrane",
+    "molecule",
+    "marker",
+    "antigen",
+    "mix",
+    "ligase",
+    "serum",
+    "assay",
+    "nuclease",
+    "peptide",
+    "line"
+    "fusion",
+    "dye",
+    "virus",
+    "template",
+    "ligand",
+    "antagonist",
+    "panel",
+    "cytokine",
+    "medium",
+    "buffer",
+    "primer",
+    "substrate",
+
+    "array",
+    "arrays",
+    "proteins",
+    "mab",
+    "primers",
+    "particles",
+    "particle",
+    "pab",
+    "clones",
+    "system",
+    "fab",
+    "sgrna",
+    "library",
+    "ribonucleoprotein",
+    "lentiviral",
+    "gene",
+    "genes"
+}
+    csv_dir = "data/raw_products"
+
+    product_map = build_product_map(csv_dir)
+    print("Built product map")
+
+    products = set()
+    for sku, info in product_map.items():
+        products.add(info["product_name"])
+    
+    noun_counts = {}
+    miscellaneous = set()
+    for p in products:
+        words = normalize_for_matching(p).split()
+
+        added = False
+        for word in words:
+            all_words = [word]
+            all_words.extend(word.split("-"))
+
+            for w in all_words:
+                if w not in GENERIC:
+                    continue
+
+
+                if w not in noun_counts:
+                    noun_counts[w] = 0
+                
+                noun_counts[w] += 1
+                
+                added = True
+        
+        if not added:
+            miscellaneous.add(p)
+    
+    print(len(products))
+    print(noun_counts)
+    print(len(miscellaneous))
+    print(list(miscellaneous)[:20])
+
+
+    counts = {}
+
+    for p in products:
+        words = normalize_for_matching(p).split()
+
+        for word in words:
+            all_words = [word]
+            all_words.extend(word.split("-"))
+
+            for w in all_words:
+                if w not in counts:
+                    counts[w] = 0
+                
+                counts[w] += 1
+    
+    print(len(counts))
+    counts = dict(sorted(counts.items(), key=lambda item: item[1], reverse=True))
+
+    i = 0
+    n = 20
+    for k, v in counts.items():
+        if i >= n:
+            break
+
+        print(f"{k}: {v}")
+
+        i += 1
+
+
+def test_alias_map():
+    product_name = "BlazeTaq™ SYBR® Green qPCR Mix 2.0"
+    print(product_name)
+    print(normalize_for_matching(product_name))
+
+    csv_dir = "data/raw_products"
+
+    product_map = build_product_map(csv_dir)
+    print("Built product map")
+
+    alias_map = build_alias_index(product_map)
+    print("Build alias map")
+    print(len(alias_map))
+
+    print(alias_map.get("green"))
+
+
+
 if __name__ == "__main__":
-    test()
+    # test()
+    # test_generic_names()
+    test_alias_map()
