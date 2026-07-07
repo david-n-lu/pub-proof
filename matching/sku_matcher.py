@@ -8,6 +8,7 @@ Returns all SKU matches and their distance to the manufacturer in the sentence
 
 
 from matching.normalization import normalize_for_matching
+from itertools import combinations
 
 
 def find_sku(sentence, skus, manufacturer = "GeneCopoeia"):
@@ -26,8 +27,16 @@ def find_sku(sentence, skus, manufacturer = "GeneCopoeia"):
 
     for i, word in enumerate(words):
 
-        all_words = [word]
-        all_words.extend(word.split("-"))
+        all_words = set()
+
+        all_words.add(word)
+
+        tokens = word.split("-")
+
+        all_words.update(tokens)
+        all_words.update(["-".join(c) for r in range(2, len(tokens)) for c in combinations(tokens, r)])
+
+        all_words = sorted(list(all_words), key=len, reverse=True)
 
         # works for LT001 and LT001-02
         for w in all_words:
@@ -36,8 +45,12 @@ def find_sku(sentence, skus, manufacturer = "GeneCopoeia"):
             if w in skus:
                 matches.append({
                     "sku": w,
+                    "sentence_sku": word,
                     "distance": min([abs(i-index) for index in manufacturer_indices])
                 })
+
+                # print(w)
+                # print(all_words)
 
                 break
 

@@ -6,12 +6,16 @@ UNICODE_NORMALIZATION = {
     "–": "-",
     "—": "-",
     "−": "-",
+    "‐": "-",
+    "‒": "-",
     "×": "x",
     "µ": "u",
-    "™": "",
-    "®": "",
+    "μ": "u",
+    "™": " ",
+    "®": " ",
     "’": "'",
     "´": "'",
+    "′": "'",
 }
 
 
@@ -101,22 +105,34 @@ def shorten_product_name(product_name):
     "M", "mM", "uM", "nM", "pM",
     
     "rxns"]
-    DONT_CAPITALIZE = [
-        "cdna",
-        "qpcr",
-        "pcr",
-        "rt-pcr",
-        "rtpcr",
-        "qpcr",
-        "rt-qpcr",
-        "dna",
-        "rna",
-        "mrna",
-        "trna",
-        "rrna",
-        "mirna",
-        "and",
-    ]
+    DONT_CAPITALIZE = ["and"]
+
+    # put spaces outside of parentheses
+    product_name = re.sub(r'\(', ' (', product_name)
+    product_name = re.sub(r'\)', ') ', product_name)
+    product_name = re.sub(r'\s+', ' ', product_name).strip()
+
+    # Format product names with descriptions attached
+    # Before: miTarget™ 3′ UTR miRNA Target Clones: miRNA 3´UTR target expression clone for Human MYCN (NM_005378.5)
+    # After: miTarget™ 3′ UTR miRNA Target Clones for Human MYCN (NM_005378.5)
+    prepositions = ["for", "against", "targeting"]
+    colon_index = product_name.find(":")
+    preposition_index = -1
+    if colon_index != -1:
+        for p in prepositions:
+            preposition_index = product_name.find(p)
+            
+            if preposition_index != -1:
+                break
+        
+        if preposition_index != -1:
+            product_name = product_name[:colon_index] + " " + product_name[preposition_index:]
+
+            # OmicsLink™ ShRNA Clone: ShRNA Clone Set Against Human USF2 (NM_001321150.1)(Includes Free Control)
+            # OmicsLink™ ShRNA Clone Against Human USF2 (NM_001321150.1)
+            EXCLUDE = ["includes"]
+
+    DONT_CAPITALIZE.extend(prepositions)
 
     def is_float(value):
         try:
@@ -124,22 +140,24 @@ def shorten_product_name(product_name):
             return True
         except ValueError:
             return False
-    
 
     for w in product_name.split():
         w_norm = w.lower()
+        w_norm = re.sub(r"[()]", "", w_norm)
 
         # no 20, 20ml allowed
         # 2.0, 3.0 allowed
 
-        if is_float(w_norm) or any(is_float(w_norm.replace(u.lower(),"").replace("(","").replace(")","")) for u in UNITS):
+        if is_float(w_norm) or any(is_float(w_norm.replace(u.lower(),"")) for u in UNITS):
             if w_norm not in EDITIONS:
                 break
             
         if w_norm in EXCLUDE:
             break
         
-        if w_norm not in DONT_CAPITALIZE:
+        if w_norm not in DONT_CAPITALIZE and \
+        not any(char.isupper() for char in w) and \
+        not any(char.isdigit() for char in w):
             w = w[0].upper() + w[1:]
         
         w = w.replace(",","").replace("*","")
@@ -161,407 +179,124 @@ def shorten_product_name(product_name):
     # print(product_name)
     # print(short)
 
-    return short
+    if short:
+        return short
+    
+    return product_name
+
+
+
+AMBIGUOUS_SKU_TOKENS = {
+    # editions/sizes
+    "v1", "v2", "v3",
+    "0025", "0050", "0100",
+    "01", "02",
+    "b", "10",
+    "b1", "f1", "p1", 
+    "025", "050", "100", "200", "400",
+    "025", "100",
+    "a1", "a6", "b1", "b6", "c1", "c6", "d1", "d6", "e1", "e6", "f1", "f6", "g1", "g6", "h1", "h6",
+    "20", "25", "50", "100",
+    
+    # redundant: included in thousands of SKUs
+    "cg04", "3", "10", "mt05", "lvru6gp", "pg04", "mr03", "10", "m35",
+
+
+    # old sku tokens
+    "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m",
+    "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z",
+    "a00", "200c",
+    "1", "8", "01", "02", "08", "09", "10", "15"
+}
+
+def get_shortened_sku(sku):
+    tokens = sku.split("-")
+
+    index = len(tokens) - 1
+
+    while (index >= 0 and tokens[index] in AMBIGUOUS_SKU_TOKENS):
+        index -= 1
+    
+    if index < len(tokens) - 1 and index >= 0:
+        return "-".join(tokens[:index + 1])
+
+    return sku
+
+
+
+
+def get_redundant_strings_in_skus(skus, THRESHOLD = 2, IGNORE_PREFIX = True):
+    """
+    Gets rid of longest common suffixes given a list of skus
+
+    If a suffix appeared in at least THRESHOLD skus, remove it.
+    IGNORE_PREFIX determines whether a common prefix is ignored
+
+    Example:
+    Chops "-CG04-3-10" from "HCP389717-CG04-3-10", "HCP389718-CG04-3-10", "HCP352138-CG04-3-10"
+    Doesn't Chop "mab" from "mAb-00009", "mAb-00010", "mAb-00011"
+    """
+
+    # -----------------------------
+    # 1. Get common strings found among list of skus. Can ignore prefixes
+    # -----------------------------
+    string_counts = {}
+
+    for sku in skus:
+        strings = sku.split("-")
+
+        if not strings:
+            continue
+
+        if IGNORE_PREFIX:
+            strings = strings[1:]
+        
+        for string in strings:
+            if not string in string_counts:
+                string_counts[string] = 0
+            string_counts[string] += 1
+
+    remove_list = {key for key, value in string_counts.items() if value >= THRESHOLD}
+    
+    print({k: v for k, v in string_counts.items() if v >= THRESHOLD})
+
+    # -----------------------------
+    # 2. Map original skus to shortened skus
+    # -----------------------------
+    shortened_skus = {}
+
+    for sku in skus:
+        short = []
+
+        for string in sku.split("-"):
+            if string not in remove_list:
+                short.append(string)
+        
+        short = "-".join(short)
+        shortened_skus[sku] = short
+    
+    return shortened_skus
 
 
 
 
 if __name__ == "__main__":
-    product_names = """Luc-Pair Duo-Luciferase HS Assay Kits (100rxns)
-Biotin Protein Ligase
-EndoFectin™ Max transfection reagent (1ml)
-Secrete-Pair Dual Luminescence Assay Kit (300 rxns)
-EndoFectin™ Max transfection reagent (1ml)
-SureScript™ First-Strand cDNA Synthesis Kit for gene qPCR array (20 RT reactions)
-Mycoplasma PCR detection kit (50 rxns)
-Lenti-Pac 293Ta Cell Line (1.5 x 10^6 cells)
-Lenti-Pac™ SARS-CoV-2 Full Length Spike protein-pseudotyped (D614G) Lentivirus Packaging Kit (40 reactions)
-Lenti-Pac HIV Expression Packaging Kit (20 reactions)
-Lenti-Pac HIV Expression Packaging Kit (20 reactions)
-Biotin Protein Ligase
-Luc-Pair Luciferase Assay Kits 2.0 (100rxns)
-Secrete-Pair Dual Luminescence Assay Kit (300 rxns)
-EndoFectin™ Lenti transfection reagent (3ml)
-Lenti-Pac 293Ta Cell Line (1.5 x 10^6 cells)
-Secrete-Pair Dual Luminescence Assay Kit (300 rxns)
-Secrete-Pair Dual Luminescence Assay Kit (300 rxns)
-All-in-One™ qPCR Mix (200 qPCR reactions)
-All-in-One™ qPCR Mix (200 qPCR reactions)
-pEZ-Lv235 expression vector for LxR recombination cloning (lentiviral)
-EndoFectin™ Lenti transfection reagent (1ml)
-Lenti-Pac HIV Expression Packaging Kit (40 reactions)
-RNAzol® RT RNA Isolation Reagent|SureScript™ First-Strand cDNA Synthesis Kit for gene qPCR array (20 RT reactions)|BlazeTaq™ SYBR® Green qPCR mix 2.0 (200 qPCR reactions)
-T7 endonuclease I assay kit, 50 rxns
-Luc-Pair Duo-Luciferase HT Assay Kits (100ml)
-Luc-Pair Luciferase Assay Kits 2.0 (100rxns)
-SureScript™ First-Strand cDNA Synthesis Kit for gene qPCR array (20 RT reactions)|BlazeTaq™ SYBR® Green qPCR mix 2.0 (200 qPCR reactions)
-Secrete-Pair Dual Luminescence Assay Kit (100 rxns)
-Luc-Pair Duo-Luciferase HS Assay Kits (100rxns)
-Secrete-Pair Dual Luminescence Assay Kit (300 rxns)
-EndoFectin™ Lenti transfection reagent (1ml)
-EndoFectin™ Max transfection reagent (3ml)
-EndoFectin™ Max transfection reagent (3ml)
-BlazeTaq™ SYBR® Green qPCR mix 2.0 (without ROX) (200 qPCR reactions)
-Lenti-Pac HIV qRT-PCR Titration Kit (20 RT reactions, 50 PCR reactions)
-EndoFectin™ Max transfection reagent (1ml)
-Luc-Pair Duo-Luciferase HS Assay Kits (100rxns)
-SureScript™ First-Strand cDNA Synthesis Kit for gene qPCR array (20 RT reactions)
-Secrete-Pair Dual Luminescence Assay Kit (300 rxns)
-SureScript™ First-Strand cDNA Synthesis Kit for gene qPCR array (20 RT reactions)
-Secrete-Pair Gaussia Luciferase Assay Kit (1000 rxns)
-All-in-One™ qPCR Mix (200 qPCR reactions)
-Secrete-Pair Gaussia Luciferase Assay Kit (100 rxns)
-Secrete-Pair Dual Luminescence Assay Kit (100 rxns)
-Lenti-Pac HIV Expression Packaging Kit (20 reactions)
-Luc-Pair Duo-Luciferase HS Assay Kits (100rxns)
-All-in-one (Cas9 + sgRNA) clone targeting human AAVS1
-BlazeTaq™ SYBR® Green qPCR mix 2.0 (200 qPCR reactions)
-BlazeTaq™ SYBR® Green qPCR mix 2.0 (600 qPCR reactions)
-BlazeTaq™ SYBR® Green qPCR mix 2.0 (without ROX) (200 qPCR reactions)
-Lenti-Pac HIV Expression Packaging Kit (20 reactions)
-SureScript™ First-Strand cDNA Synthesis Kit for gene qPCR array (20 RT reactions)
-All-in-One™ qPCR Mix (200 qPCR reactions)
-Lenti-Pac HIV qRT-PCR Titration Kit (20 RT reactions, 50 PCR reactions)
-Secrete-Pair Gaussia Luciferase Assay Kit (100 rxns)
-Lenti-Pac 293Ta Cell Line (1.5 x 10^6 cells)
-BlazeTaq™ SYBR® Green qPCR mix 2.0 (200 qPCR reactions)|SureScript™ First-Strand cDNA Synthesis Kit for gene qPCR array (20 RT reactions)
-BlazeTaq™ One-Step SYBR Green RT-qPCR Kit (200 rxn, with ROX)
-Brain and Neuronal-associated Antigen Array
-All-in-one (Cas9 + sgRNA) clone targeting human AAVS1
-EndoFectin™ Max transfection reagent (1ml)
-Lenti-Pac HIV Expression Packaging Kit (40 reactions)|Lenti-Pac™ Lentivirus Concentration Solution (50 ml)|Lenti-Pac HIV qRT-PCR Titration Kit (20 RT reactions, 50 PCR reactions)
-All-in-One™ miRNA qRT-PCR Detection Kit 2.0* (20 RT and 200 qPCR reactions) (Old cat # QP015)
-Luc-Pair Duo-Luciferase HS Assay Kits (100rxns)
-All-in-One™ miRNA qRT-PCR Detection Kit 2.0* (60 RT and 600 qPCR reactions)(Old cat # QP016)
-Lenti-Pac HIV Expression Packaging Kit (40 reactions)|SureScript™ First-Strand cDNA Synthesis Kit for gene qPCR array (60 RT reactions)|BlazeTaq™ SYBR® Green qPCR mix 2.0 (1000 qPCR reactions)
-Lenti-Pac HIV Expression Packaging Kit (20 reactions)
-SureScript™ First-Strand cDNA Synthesis Kit for gene qPCR array (20 RT reactions)
-ExoSure™ Exosome Isolation Kit (20 reactions) 
-EndoFectin™ Max transfection reagent (1ml)
-All-in-One™ miRNA qRT-PCR Detection Kit 2.0* (20 RT and 200 qPCR reactions) (Old cat # QP015)
-Secrete-Pair Dual Luminescence Assay Kit (100 rxns)
-Lenti-Pac HIV Expression Packaging Kit (20 reactions)
-All-in-One™ qPCR Mix (200 qPCR reactions)
-EndoFectin™ Lenti transfection reagent (3ml)
-Luc-Pair Duo-Luciferase HS Assay Kits (100rxns)
-Fireflyer luciferase (hLuc) and Renillar luciferase (Rluc) reporter vector |Luc-Pair Duo-Luciferase HS Assay Kits (100rxns)
-Secrete-Pair Dual Luminescence Assay Kit (300 rxns)
-Lenti-Pac 293Ta Cell Line (1.5 x 10^6 cells)
-Lenti-Pac HIV Expression Packaging Kit (40 reactions)
-EndoFectin™ Max transfection reagent (1ml)
-Mycoplasma PCR detection kit (50 rxns)
-Secrete-Pair Dual Luminescence Assay Kit (100 rxns)
-RNAzol® RT RNA Isolation Reagent
-All-in-One™ qPCR Mix (200 qPCR reactions)
-SureScript™ First-Strand cDNA Synthesis Kit for gene qPCR array (20 RT reactions)|BlazeTaq™ SYBR® Green qPCR mix 2.0 (200 qPCR reactions)
-IndelCheck™ CRISPR/TALEN indel detection system advanced (50 rxns)
-EndoFectin™ Max transfection reagent (1ml)
-All-in-One™ miRNA qRT-PCR Detection Kit 2.0* (20 RT and 200 qPCR reactions) (Old cat # QP015)
-SureScript™ First-Strand cDNA Synthesis Kit for gene qPCR array (60 RT reactions)
-Luc-Pair Duo-Luciferase HS Assay Kits (100rxns)
-Biotin Protein Ligase
-SureScript™ First-Strand cDNA Synthesis Kit for gene qPCR array (60 RT reactions)|BlazeTaq™ SYBR® Green qPCR mix 2.0 (200 qPCR reactions)
-Luc-Pair Duo-Luciferase HT Assay Kits (10ml)
-BlazeTaq™ SYBR® Green qPCR mix 2.0 (200 qPCR reactions)
-SureScript™ First-Strand cDNA Synthesis Kit for gene qPCR array (60 RT reactions)
-Lenti-Pac HIV Expression Packaging Kit (20 reactions)|Lenti-Pac HIV qRT-PCR Titration Kit (20 RT reactions, 50 PCR reactions)
-Luc-Pair Luciferase Assay Kits 2.0 (100rxns)
-EndoFectin™ RNAi  transfection reagent (1 mL)
-Luc-Pair Luciferase Assay Kits 2.0 (1000rxns)
-EndoFectin™ Max transfection reagent (1ml)
-SureScript™ First-Strand cDNA Synthesis Kit for gene qPCR array (20 RT reactions)|BlazeTaq™ SYBR® Green qPCR mix 2.0 (200 qPCR reactions)
-Luc-Pair Luciferase Assay Kits 2.0 (100rxns)
-miRNA Scrambled Control-MR03 Lentiviral Particles(25 µl x 4 vials)(Old cat # LPP-CmiR0001-MR03-100-C)
-Lenti-Pac HIV Expression Packaging Kit (40 reactions)|Luc-Pair Duo-Luciferase HS Assay Kits (100rxns)
-Luc-Pair Luciferase Assay Kits 2.0 (100rxns)
-BlazeTaq™ SYBR® Green qPCR mix 2.0 (200 qPCR reactions)
-EndoFectin™ Max transfection reagent (1ml)
-All-in-One™ miRNA qRT-PCR Detection Kit 2.0* (20 RT and 200 qPCR reactions) (Old cat # QP015)
-SureScript™ First-Strand cDNA Synthesis Kit for gene qPCR array (60 RT reactions)
-All-in-One™ qPCR Mix (200 qPCR reactions)
-EndoFectin™ Max transfection reagent (1ml)
-Luc-Pair Duo-Luciferase HS Assay Kits (100rxns)
-EndoFectin™ Max transfection reagent (3ml)
-Lenti-Pac™ Lentivirus Concentration Solution (50 ml)
-Luc-Pair™ Firefly Luciferase HS Assay Kits (100rxns)
-EndoFectin™ Max transfection reagent (1ml)
-BlazeTaq™ SYBR® Green qPCR mix 2.0 (200 qPCR reactions)
-Lenti-Pac 293Ta Cell Line (1.5 x 10^6 cells)
-All-in-One™ miRNA qRT-PCR Detection Kit 2.0* (20 RT and 200 qPCR reactions) (Old cat # QP015)
-EndoFectin™ Max transfection reagent (1ml)
-All-in-One™ qPCR Mix (200 qPCR reactions)
-All-in-One™ miRNA qRT-PCR Detection Kit 2.0* (20 RT and 200 qPCR reactions) (Old cat # QP015)
-EndoFectin™ Lenti transfection reagent (1ml)
-EndoFectin™ Max transfection reagent (1ml)
-Lenti-Pac HIV Expression Packaging Kit (20 reactions)
-All-in-One™ miRNA qRT-PCR Detection Kit 2.0* (20 RT and 200 qPCR reactions) (Old cat # QP015)
-Secrete-Pair Gaussia Luciferase Assay Kit (1000 rxns)
-EndoFectin™ Max transfection reagent (1ml)
-Secrete-Pair Dual Luminescence Assay Kit (100 rxns)
-EndoFectin™ Max transfection reagent (1ml)
-Secrete-Pair Dual Luminescence Assay Kit (100 rxns)
-EndoFectin™ Lenti transfection reagent (1ml)
-Luc-Pair Luciferase Assay Kits 2.0 (100rxns)
-Secrete-Pair Gaussia Luciferase Assay Kit (1000 rxns)
-SureScript™ First-Strand cDNA Synthesis Kit for gene qPCR array (20 RT reactions)|BlazeTaq™ SYBR® Green qPCR mix 2.0 (200 qPCR reactions)
-Luc-Pair Duo-Luciferase HS Assay Kits (100rxns)
-EndoFectin™ Lenti transfection reagent (1ml)
-Luc-Pair Duo-Luciferase HS Assay Kits (100rxns)
-All-in-One™ qPCR Mix (200 qPCR reactions)
-All-in-One™ miRNA qRT-PCR Detection Kit 2.0* (60 RT and 600 qPCR reactions)(Old cat # QP016)
-SureScript™ First-Strand cDNA Synthesis Kit for gene qPCR array (60 RT reactions)
-Secrete-Pair Dual Luminescence Assay Kit (100 rxns)
-Lenti-Pac HIV Expression Packaging Kit (20 reactions)
-EndoFectin™ Max transfection reagent (1ml)
-Lenti-Pac HIV Expression Packaging Kit (40 reactions)
-Lenti-Pac HIV Expression Packaging Kit (20 reactions)
-Luc-Pair Luciferase Assay Kits 2.0 (100rxns)
-Secrete-Pair Dual Luminescence Assay Kit (100 rxns)
-Lenti-Pac™ Lentivirus Concentration Solution (50 ml)
-EndoFectin™ Max transfection reagent (1ml)
-All-in-One™ qPCR Mix (200 qPCR reactions)
-EndoFectin™ Lenti transfection reagent (1ml)
-All-in-One™ qPCR Mix (200 qPCR reactions)
-Secrete-Pair Gaussia Luciferase Assay Kit (1000 rxns)
-Luc-Pair Luciferase Assay Kits 2.0 (1000rxns)
-All-in-One™ qPCR Mix (200 qPCR reactions)
-Luc-Pair Luciferase Assay Kits 2.0 (100rxns)
-EndoFectin™ Max transfection reagent (1ml)
-All-in-One™ qPCR Mix (200 qPCR reactions)
-All-in-One™ qPCR Mix (4000 qPCR reactions)
-Lenti-Pac HIV Expression Packaging Kit (40 reactions)
-Secrete-Pair Dual Luminescence Assay Kit (1000 rxns)
-GeneHero™ mouse ROSA26 safe harbor gene knock-in kit
-EndoFectin™ Max transfection reagent (1ml)
-SureScript™ First-Strand cDNA Synthesis Kit for gene qPCR array (20 RT reactions)|BlazeTaq™ SYBR® Green qPCR mix 2.0 (200 qPCR reactions)
-All-in-One™ qPCR Mix (200 qPCR reactions)
-Secrete-Pair Dual Luminescence Assay Kit (100 rxns)
-Lenti-Pac HIV Expression Packaging Kit (40 reactions)|EndoFectin™ Lenti transfection reagent (3ml)
-EndoFectin™ Lenti transfection reagent (1ml)
-Infection and Vaccination-associated Autoimmune Antigen Array
-EndoFectin™ Max transfection reagent (1ml)
-All-in-One™ qPCR Mix (200 qPCR reactions)
-Lenti-Pac HIV Expression Packaging Kit (20 reactions)
-All-in-One™ qPCR Mix (4000 qPCR reactions)
-Secrete-Pair Dual Luminescence Assay Kit (100 rxns)
-Secrete-Pair Gaussia Luciferase Assay Kit (1000 rxns)
-VividFISH™ FFPE pretreatment kit|FISH CEP probe for human chromosome Y-orange
-All-in-One™ qPCR Mix (200 qPCR reactions)
-All-in-One™ miRNA qRT-PCR Detection Kit 2.0* (20 RT and 200 qPCR reactions) (Old cat # QP015)
-NileHiFi® Long Amplicon PCR Kit
-Secrete-Pair Gaussia Luciferase Assay Kit (1000 rxns)
-Lenti-Pac HIV Expression Packaging Kit (40 reactions)|Lenti-Pac 293Ta Cell Line (1.5 x 10^6 cells)
-EndoFectin™ Max transfection reagent (3ml)
-All-in-One™ qPCR Mix (200 qPCR reactions)
-Mycoplasma PCR detection kit (50 rxns)
-All-in-one (Cas9 + sgRNA) clone targeting human AAVS1|DC-DON-SH01 expression vector for restriction enzyme cloning (AAVS1 knockin)
-Lenti-Pac HIV qRT-PCR Titration Kit (20 RT reactions, 50 PCR reactions)
-EndoFectin™ Max transfection reagent (1ml)|BlazeTaq™ SYBR® Green qPCR mix 2.0 (200 qPCR reactions)|SureScript™ First-Strand cDNA Synthesis Kit for gene qPCR array (20 RT reactions)
-Lenti-Pac 293Ta Cell Line (1.5 x 10^6 cells)|Lenti-Pac HIV Expression Packaging Kit (40 reactions)
-Biotin Protein Ligase
-Luc-Pair™ Firefly Luciferase HS Assay Kits (1000rxns)
-EndoFectin™ Max transfection reagent (1ml)
-EndoFectin™ Max transfection reagent (1ml)
-Lenti-Pac 293Ta Cell Line (1.5 x 10^6 cells)
-All-in-One™ miRNA qRT-PCR Detection Kit 2.0* (60 RT and 600 qPCR reactions)(Old cat # QP016)
-Mycoplasma PCR detection kit (50 rxns)
-Luc-Pair Duo-Luciferase HS Assay Kits (100rxns)
-Gaussia luciferase (Gluc) and secreted alkaline phosphatase (SEAP) reporter vector
-EndoFectin™ Max transfection reagent (3ml)
-Secrete-Pair Dual Luminescence Assay Kit (300 rxns)
-Luc-Pair Duo-Luciferase HS Assay Kits (100rxns)
-Lenti-Pac HIV Expression Packaging Kit (20 reactions)
-Mycoplasma PCR detection kit (50 rxns)
-EndoFectin™ Lenti transfection reagent (1ml)
-Secrete-Pair Dual Luminescence Assay Kit (100 rxns)
-Luc-Pair Duo-Luciferase HS Assay Kits (100rxns)
-Secrete-Pair Dual Luminescence Assay Kit (1000 rxns)
-Fireflyer luciferase (hLuc) and Renillar luciferase (Rluc) reporter vector 
-Lenti-Pac HIV Expression Packaging Kit (20 reactions)
-Lenti-Pac HIV Expression Packaging Kit (40 reactions)|Luc-Pair Duo-Luciferase HS Assay Kits (100rxns)
-SureScript™ First-Strand cDNA Synthesis Kit for gene qPCR array (20 RT reactions)
-BlazeTaq™ SYBR® Green qPCR mix 2.0 (200 qPCR reactions)
-Luc-Pair Luciferase Assay Kits 2.0 (100rxns)
-All-in-One™ qPCR Mix (4000 qPCR reactions)
-Luc-Pair Luciferase Assay Kits 2.0 (100rxns)
-Luc-Pair Luciferase Assay Kits 2.0 (100rxns)
-Lenti-Pac HIV Expression Packaging Kit (40 reactions)
-All-in-One™ miRNA qRT-PCR Detection Kit 2.0* (20 RT and 200 qPCR reactions) (Old cat # QP015)
-Lenti-Pac HIV Expression Packaging Kit (40 reactions)
-All-in-One™ miRNA qRT-PCR Detection Kit 2.0* (20 RT and 200 qPCR reactions) (Old cat # QP015)
-EndoFectin™ Max transfection reagent (1ml)
-Luc-Pair™ Firefly Luciferase HS Assay Kits (1000rxns)
-Lenti-Pac HIV Expression Packaging Kit (40 reactions)
-Luc-Pair Duo-Luciferase HS Assay Kits (100rxns)
-pEZ-Lv235 expression vector for LxR recombination cloning (lentiviral)
-All-in-One™ qPCR Mix (200 qPCR reactions)
-BlazeTaq™ SYBR® Green qPCR mix 2.0 (200 qPCR reactions)
-BlazeTaq™ SYBR® Green qPCR mix 2.0 (without ROX) (200 qPCR reactions)
-BlazeTaq™ One-Step SYBR Green RT-qPCR Kit (200 rxn, with ROX)
-Secrete-Pair Dual Luminescence Assay Kit (1000 rxns)
-Secrete-Pair Gaussia Luciferase Assay Kit (1000 rxns)
-All-in-One™ qPCR Mix (200 qPCR reactions)
-SureScript™ First-Strand cDNA Synthesis Kit for gene qPCR array (20 RT reactions)
-Secrete-Pair Dual Luminescence Assay Kit (100 rxns)
-Secrete-Pair Dual Luminescence Assay Kit (1000 rxns)
-RNAzol® RT RNA Isolation Reagent
-SureScript™ First-Strand cDNA Synthesis Kit for gene qPCR array (20 RT reactions)
-DC-DON-SH02 expression vector for restriction enzyme cloning (ROSA26 knockin)|Genome-TALER™  mouse ROSA26 safe harbor gene knock-in kit (without donor)
-EndoFectin™ Max transfection reagent (1ml)
-Secrete-Pair Dual Luminescence Assay Kit (100 rxns)
-Lenti-Pac 293Ta Cell Line (1.5 x 10^6 cells)
-EndoFectin™ Max transfection reagent (3ml)
-Luc-Pair™ Firefly Luciferase HS Assay Kits (1000rxns)
-Biotin Protein Ligase
-All-in-One™ qPCR Mix (200 qPCR reactions)
-DC-DON-SH01 expression vector for restriction enzyme cloning (AAVS1 knockin)|All-in-one (Cas9 + sgRNA) clone targeting human AAVS1
-Secrete-Pair Dual Luminescence Assay Kit (1000 rxns)
-BlazeTaq™ SYBR® Green qPCR mix 2.0 (200 qPCR reactions)|All-in-One™ miRNA qRT-PCR Detection Kit 2.0* (20 RT and 200 qPCR reactions) (Old cat # QP015)
-Secrete-Pair Dual Luminescence Assay Kit (100 rxns)
-Luc-Pair Luciferase Assay Kits 2.0 (100rxns)
-All-in-One™ miRNA qRT-PCR Detection Kit 2.0* (60 RT and 600 qPCR reactions)(Old cat # QP016)
-Lenti-Pac HIV Expression Packaging Kit (20 reactions)
-EndoFectin™ Max transfection reagent (1ml)
-EndoFectin™ Max transfection reagent (3ml)
-BlazeTaq™ One-Step SYBR Green RT-qPCR Kit (200 rxn, with ROX)
-All-in-One™ miRNA qRT-PCR Detection Kit 2.0* (20 RT and 200 qPCR reactions) (Old cat # QP015)
-All-in-One™ qPCR Mix (200 qPCR reactions)
-All-in-One™ miRNA qRT-PCR Detection Kit 2.0* (20 RT and 200 qPCR reactions) (Old cat # QP015)
-BlazeTaq™ SYBR® Green qPCR mix 2.0 (200 qPCR reactions)
-RNAzol® RT RNA Isolation Reagent
-All-in-One™ qPCR Mix (1000 qPCR reactions)
-Lenti-Pac HIV Expression Packaging Kit (20 reactions)
-GCI-L3 Chemically Competent E.coli Cells (10 tubes)|GCI-5? Chemically Competent E.coli Cells, (10 tubes)|Lenti-Pac HIV Expression Packaging Kit (20 reactions)|Lenti-Pac 293Ta Cell Line (1.5 x 10^6 cells)
-All-in-One™ miRNA qRT-PCR Detection Kit 2.0* (20 RT and 200 qPCR reactions) (Old cat # QP015)
-Luc-Pair Luciferase Assay Kits 2.0 (100rxns)
-Secrete-Pair Dual Luminescence Assay Kit (300 rxns)
-Lenti-Pac HIV Expression Packaging Kit (20 reactions)
-Secrete-Pair Dual Luminescence Assay Kit (100 rxns)
-Secrete-Pair Gaussia Luciferase Assay Kit (1000 rxns)
-Secrete-Pair Dual Luminescence Assay Kit (100 rxns)
-Luc-Pair Luciferase Assay Kits 2.0 (100rxns)
-Secrete-Pair Dual Luminescence Assay Kit (300 rxns)
-Secrete-Pair Gaussia Luciferase Assay Kit (100 rxns)
-Lenti-Pac™ Lentivirus Concentration Solution (50 ml)
-Secrete-Pair Dual Luminescence Assay Kit (100 rxns)
-EndoFectin™ Max transfection reagent (1ml)|Secrete-Pair Dual Luminescence Assay Kit (300 rxns)
-T7 endonuclease I assay kit, 200 rxns
-Lenti-Pac HIV Expression Packaging Kit (40 reactions)
-GeneHero™ mouse ROSA26 safe harbor gene knock-in kit
-Biotin Protein Ligase
-Secrete-Pair Dual Luminescence Assay Kit (100 rxns)
-Cancer and Neoplasm-associated Antigen Array
-Biotin Protein Ligase
-Lenti-Pac HIV Expression Packaging Kit (40 reactions)
-BlazeTaq™ One-Step SYBR Green RT-qPCR Kit (200 rxn, with ROX)
-All-in-One™ qPCR Mix (200 qPCR reactions)
-Secrete-Pair Gaussia Luciferase Assay Kit (100 rxns)
-Secrete-Pair Gaussia Luciferase Assay Kit (100 rxns)
-SureScript™ First-Strand cDNA Synthesis Kit for gene qPCR array (60 RT reactions)
-All-in-One™ qPCR Mix (200 qPCR reactions)
-EndoFectin™ Max transfection reagent (3ml)
-All-in-One™ qPCR Mix (200 qPCR reactions)
-Lenti-Pac™ Lentivirus Concentration Solution (50 ml)
-SureScript™ First-Strand cDNA Synthesis Kit for gene qPCR array (60 RT reactions)
-BlazeTaq™ One-Step SYBR Green RT-qPCR Kit (200 rxn, with ROX)
-BlazeTaq™ One-Step SYBR Green RT-qPCR Kit (200 rxn, with ROX)
-BlazeTaq™ One-Step SYBR Green RT-qPCR Kit (200 rxn, with ROX)
-SureScript™ First-Strand cDNA Synthesis Kit for gene qPCR array (60 RT reactions)|BlazeTaq™ SYBR® Green qPCR mix 2.0 (600 qPCR reactions)|All-in-One™ miRNA qRT-PCR Detection Kit 2.0* (60 RT and 600 qPCR reactions)(Old cat # QP016)
-EndoFectin™ Max transfection reagent (1ml)
-Luc-Pair Duo-Luciferase HS Assay Kits (100rxns)
-EndoFectin™ Lenti transfection reagent (1ml)
-EndoFectin™ Max transfection reagent (1ml)
-Secrete-Pair Gaussia Luciferase Assay Kit (100 rxns)
-Coronavirus infection-associated Autoimmune Antigen Array
-EndoFectin™ Lenti transfection reagent (1ml)
-All-in-One™ miRNA qRT-PCR Detection Kit 2.0* (20 RT and 200 qPCR reactions) (Old cat # QP015)
-SureScript™ First-Strand cDNA Synthesis Kit for gene qPCR array (20 RT reactions)
-Genome-TALER™ human AAVS1 safe harbor gene knock-in kit (without donor)
-All-in-One™ qPCR Mix (200 qPCR reactions)
-Secrete-Pair Dual Luminescence Assay Kit (300 rxns)
-Secrete-Pair Dual Luminescence Assay Kit (100 rxns)
-All-in-One™ qPCR Mix (200 qPCR reactions)
-SureScript™ First-Strand cDNA Synthesis Kit for gene qPCR array (20 RT reactions)
-AAVPrime™ AAV Serotype Testing Kit
-Biotin Protein Ligase
-All-in-One™ qPCR Mix (600 qPCR reactions)
-All-in-one (Cas9 + sgRNA) clone targeting human AAVS1
-Luc-Pair Duo-Luciferase HS Assay Kits (100rxns)
-Luc-Pair Duo-Luciferase HS Assay Kits (100rxns)
-T7 endonuclease I assay kit, 50 rxns
-Biotin Protein Ligase
-Secrete-Pair Dual Luminescence Assay Kit (100 rxns)
-T7 endonuclease I assay kit, 50 rxns
-Lenti-Pac HIV Expression Packaging Kit (40 reactions)
-EndoFectin™ Lenti transfection reagent (1ml)
-Secrete-Pair Dual Luminescence Assay Kit (300 rxns)
-Secrete-Pair Gaussia Luciferase Assay Kit (100 rxns)
-SureScript™ First-Strand cDNA Synthesis Kit for gene qPCR array (60 RT reactions)
-EndoFectin™ Max transfection reagent (1ml)
-All-in-One™ miRNA qRT-PCR Detection Kit 2.0* (20 RT and 200 qPCR reactions) (Old cat # QP015)
-All-in-One™ qPCR Mix (200 qPCR reactions)
-EndoFectin™ Max transfection reagent (1ml)
-EndoFectin™ Max transfection reagent (1ml)
-EndoFectin™ Max transfection reagent (1ml)
-Fireflyer luciferase (hLuc) and Renillar luciferase (Rluc) reporter vector 
-Luc-Pair Luciferase Assay Kits 2.0 (100rxns)
-BlazeTaq™ One-Step SYBR Green RT-qPCR Kit (200 rxn, with ROX)
-Luc-Pair Duo-Luciferase HS Assay Kits (100rxns)
-Secrete-Pair Dual Luminescence Assay Kit (100 rxns)
-Luc-Pair Luciferase Assay Kits 2.0 (100rxns)
-All-in-One™ qPCR Mix (4000 qPCR reactions)
-Secrete-Pair Dual Luminescence Assay Kit (100 rxns)
-All-in-One™ qPCR Mix (200 qPCR reactions)
-SureScript™ First-Strand cDNA Synthesis Kit for gene qPCR array (60 RT reactions)
-Lenti-Pac HIV Expression Packaging Kit (40 reactions)
-Biotin Protein Ligase
-Luc-Pair™ Firefly Luciferase HS Assay Kits (1000rxns)
-All-in-One™ qPCR Mix (200 qPCR reactions)
-All-in-One™ qPCR Mix (4000 qPCR reactions)
-Luc-Pair Luciferase Assay Kits 2.0 (100rxns)
-Luc-Pair Duo-Luciferase HS Assay Kits (100rxns)
-EndoFectin™ Max transfection reagent (3ml)
-Lenti-Pac HIV Expression Packaging Kit (20 reactions)
-Lenti-Pac HIV Expression Packaging Kit (20 reactions)
-All-in-One™ qPCR Mix (1000 qPCR reactions)
-Luc-Pair Duo-Luciferase HS Assay Kits (100rxns)
-All-in-One™ qPCR Mix (200 qPCR reactions)
-Luc-Pair Duo-Luciferase HS Assay Kits (100rxns)
-All-in-One™ qPCR Mix (200 qPCR reactions)
-All-in-One™ qPCR Mix (600 qPCR reactions)
-Luc-Pair Duo-Luciferase HS Assay Kits (100rxns)
-All-in-One™ qPCR Mix (200 qPCR reactions)
-Luc-Pair Duo-Luciferase HS Assay Kits (100rxns)
-Luc-Pair Luciferase Assay Kits 2.0 (100rxns)
-Lenti-Pac HIV qRT-PCR Titration Kit (20 RT reactions, 50 PCR reactions)
-T7 endonuclease I assay kit, 50 rxns
-Luc-Pair Luciferase Assay Kits 2.0 (300rxns)
-All-in-One™ qPCR Mix (200 qPCR reactions)
-All-in-One™ qPCR Mix (200 qPCR reactions)
-Gaussia luciferase (Gluc) and secreted alkaline phosphatase (SEAP) reporter vector|Secrete-Pair Dual Luminescence Assay Kit (300 rxns)
-All-in-One™ miRNA Universal Adaptor PCR Primer (50 µM ; 20 µl)
-Secrete-Pair Dual Luminescence Assay Kit (100 rxns)
-EndoFectin™ Max transfection reagent (3ml)
-Luc-Pair™ Renilla Luciferase HS Assay Kits (1000rxns)
-All-in-One™ miRNA Universal Adaptor PCR Primer (50 µM ; 20 µl)
-Luc-Pair Luciferase Assay Kits 2.0 (300rxns)
-Secrete-Pair Dual Luminescence Assay Kit (1000 rxns)
-SureScript™ First-Strand cDNA Synthesis Kit for gene qPCR array (60 RT reactions)|BlazeTaq™ Probe qPCR Mix (without ROX) (600 rxn)
-SureScript™ First-Strand cDNA Synthesis Kit for gene qPCR array (60 RT reactions)|BlazeTaq™ Probe qPCR Mix (without ROX) (600 rxn)
-EndoFectin™ Lenti transfection reagent (3ml)|BlazeTaq™ One-Step SYBR Green RT-qPCR Kit (1000 rxn, w/o ROX)|Secrete-Pair Dual Luminescence Assay Kit (300 rxns)
-All-in-One™ qPCR Mix (4000 qPCR reactions)
-Secrete-Pair Dual Luminescence Assay Kit (100 rxns)
-All-in-One™ qPCR Mix (600 qPCR reactions)
-Secrete-Pair Dual Luminescence Assay Kit (100 rxns)
-Secrete-Pair Gaussia Luciferase Assay Kit (100 rxns)
-All-in-One™ qPCR Mix (200 qPCR reactions)
-All-in-One™ qPCR Mix (200 qPCR reactions)
-Lenti-Pac HIV Expression Packaging Kit (40 reactions)|Lenti-Pac™ Lentivirus Concentration Solution (50 ml)|Lenti-Pac HIV qRT-PCR Titration Kit (20 RT reactions, 50 PCR reactions)
-To detect miRNA, total RNA was reverse-transcribed using the All-in-One miRNA First-Strand cDNA Synthesis Kit (QP013, GeneCopoeia).
-"""
+    skus = [
+        "hcp349056-cg04-3-10",
+        "hcp349067-cg04-3-10",
+        "hcp349272-cg04-3-10",
+        "hcp349273-cg04-3-10",
+        "hcp349274-cg04-3-10",
+        "hcp351317-cg04-3-10",
+        "hcp351318-cg04-3-10",
+        "hcp367363-cg04-3-10",
+        "hcp320691-cg04-3-10",
+        "hcp200001-cg04-3-10",
+    ]
 
-    products = product_names.split("\n")
+    # print(get_redundant_strings_in_skus(skus))
 
-    for p in products:
-        print(f"Original:   {p}")
-        print(f"Normalized: {normalize_for_matching(p)}")
+    for s in skus:
+        print(f"{get_shortened_sku(s)}: {s}")
+    
+

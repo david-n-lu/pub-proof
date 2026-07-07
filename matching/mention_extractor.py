@@ -8,26 +8,135 @@ Matches words in a sentence to the words in a product name
 Utilizes Ollama AI model to find a product name in a sentence
 """
 
+from numpy import False_
+
 from matching.normalization import normalize_for_matching, shorten_product_name
+
+SUBSTITUTIONS = {
+    "rt qpcr": "qrt-pcr",
+    "rt-qpcr": "qrt-pcr",
+
+}
+EDITIONS = ["1.0", "2.0", "3.0","4.0", "5.0", "6.0", "7.0", "8.0", "9.0"]
+
+
+def get_word_variations(word):
+    """
+    Returns list of variations of a word for better matching
+
+    1. Original word
+    2. Singular form (if plural): kits --> kit
+    3. Trademark suffix removed (if present): BlazeTaqTM --> BlazeTaq
+    """
+
+    words = []
+    words.append(word)
+    
+    if len(word) >= 1 and word[-1] == "s":
+        words.append(word[:-1])
+    else:
+        words.append(word + "s")
+    
+    if len(word) >= 2 and word[-2:] == "tm":
+        words.append(word[:-2])
+    
+    return words
 
 
 def score_phrase(phrase: str, product_name: str):
-    short = shorten_product_name(product_name)
 
     phrase_words = set()
     phrase_words.update(phrase.split())
-    words = short.split()
+
+    substitutions = set()
+    for original, sub in SUBSTITUTIONS.items():
+        if phrase.find(original) != -1:
+            substitutions.add(sub)
+            substitutions.add(original)
+
+    short = shorten_product_name(product_name)
+
+    # product name starts with a number
+    # use full product name if short didn't work
+    if short == "":
+        short = product_name
+
+    product_words = short.split()
 
     count = 0
+    bonus = 0
 
-    # print(phrase_words)
-    # print(words)
-
-    for word in words:
+    for word in product_words:
         word = normalize_for_matching(word)
-        count += 1 if word in phrase_words else 0
+        
+        variations = get_word_variations(word)
+
+        found = False
+        for w in variations:
+            if w in phrase_words or w in substitutions:
+                count += 1
+
+                found = True
+                break
+        
+        if found:
+            continue
+        
+        # less penalty if edition wasn't found in phrase
+        if word in EDITIONS:
+            bonus += 0.01
     
-    return round(count / len(words), 2)
+    # return round(count / len(phrase_words), 2)
+    # return round(count / len(words), 2)
+
+    # rank by number of words shared between phrase in sentence and product_name
+    # tie breaker: ratio of shared words to total words in product_name
+    # - more "efficient" product_name's win
+    ratio = round(count / len(product_words), 2)
+    if ratio == 1.0:
+        ratio -= 0.01
+    return count + ratio + bonus
+
+
+
+def get_product_data_from_phrase(phrase, product_map, alias_map, n = 10):
+    """
+    Gets products with the highest score and their skus
+    - Reveals editions of the same general product
+    - Reveals bad phrases if multiple products with the same score
+    """
+    
+    skus = extract_best_product_mention(phrase, alias_map, n = n)
+
+    products = []
+    scores = []
+
+    for sku in skus:
+        product = product_map.get(sku,{}).get("product_name","")
+
+        score = score_phrase(phrase, product)
+
+        products.append(product)
+        scores.append(score)
+
+    best_skus = []
+    best_products = []
+    best_score = max(scores) if scores else 0
+    best_scores = []
+
+    group_by_short = {}
+
+    # get products with same score for phrase
+    # 1. get editions
+    # 2. see quality of phrase: multiple products --> result not good
+    for i in range(len(scores)):
+        if scores[i] == best_score:
+            best_skus.append(skus[i])
+            best_products.append(products[i])
+            best_scores.append(scores[i])
+
+    return best_skus, best_products, best_scores
+
 
 
 def extract_product_mention(phrase: str, alias_map):
@@ -61,16 +170,19 @@ def extract_product_mention(phrase: str, alias_map):
 
 def extract_best_product_mention(phrase: str, alias_map, n = 1):
     statistics = extract_product_mention(phrase, alias_map)
-    return list(statistics.keys())[:n]
+
+    if n:
+        return list(statistics.keys())[:n]
+    return list(statistics.keys())
 
 
-def get_phrases(sentence: str, alias_map):
+def get_phrases(sentence: str, alias_map, penalty=3.0):
     # gets indices of all relevant manufacturer words
     relevant_indexes = get_keyword_indexes(sentence, alias_map)
 
     # groups relevant words based on how close they are
     # returns list of list of indexes
-    clusters = dp_segmentation(relevant_indexes)
+    clusters = dp_segmentation(relevant_indexes, penalty=penalty)
 
     # takes cluster indexes and makes phrases
     phrases = {}
@@ -88,15 +200,17 @@ def get_phrases(sentence: str, alias_map):
 
     return phrases
 
-def get_best_phrases(sentence: str, alias_map, manufacturer: str = "GeneCopoeia"):
-    phrases_dict = get_phrases(sentence, alias_map)
+def get_best_phrases(sentence: str, alias_map, manufacturer: str = "GeneCopoeia", penalty=3.0, n = 10):
+    phrases_dict = get_phrases(sentence, alias_map, penalty=penalty)
+
+    # keep all phrases, in chronilogically order
+    if n == None:
+        return list(phrases_dict.keys())
 
     words = normalize_for_matching(sentence).split()
     manufacturer = normalize_for_matching(manufacturer)
     manufacturer_indexes = [i for i, x in enumerate(words) if manufacturer in x]
 
-    # n longest and n closest
-    best = set()
     closest = {}
 
     for phrase, indexes in phrases_dict.items():
@@ -116,10 +230,11 @@ def get_best_phrases(sentence: str, alias_map, manufacturer: str = "GeneCopoeia"
     closest = list(closest.keys())
     longest = sorted(phrases_dict.keys(), key=len, reverse=True)
 
-    n = 2
-
+    # n longest and n closest
+    best = set()
     best.update(longest[:n])
     best.update(closest[:n])
+    best = list(best)
 
     return best
 
@@ -129,6 +244,9 @@ def get_keyword_indexes(sentence: str, alias_map):
     if word is in alias map, add it to indexes
     """
 
+    if len(sentence) > 0 and sentence[-1] == ".":
+        sentence = sentence[:-1]
+
     words = normalize_for_matching(sentence).split()
 
     # 9: synthesis
@@ -137,13 +255,13 @@ def get_keyword_indexes(sentence: str, alias_map):
 
     for i, word in enumerate(words):
 
-        if word in alias_map:
-            indexes[i] = word
+        for w in get_word_variations(word):
+            if w in alias_map:
+                indexes[i] = w
+                break
+        
+        if i in indexes:
             continue
-
-        # vectors --> vector
-        if word[-1] == "s" and word[-1] in alias_map:
-            indexes[i] = word[-1]
         
         # works for LT001 and LT001-02
         # Endofectin-Max
@@ -151,7 +269,7 @@ def get_keyword_indexes(sentence: str, alias_map):
             # skus is a set or dictionary
             if w in alias_map:
                 if i in indexes:
-                    indexes[i] += " " + w
+                    indexes[i] += "-" + w
                 else:
                     indexes[i] = w
 

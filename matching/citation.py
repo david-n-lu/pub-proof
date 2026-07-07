@@ -12,6 +12,124 @@ Design goals:
 """
 
 import requests
+import re
+import html
+from matching.normalization import shorten_product_name
+
+
+# ============================================================
+# GeneCopoeia Citation Format given Europe PMC 
+# ============================================================
+"""
+Creates citations like:
+Liu, B., et al. (2026). Estrogen upregulates NR4A1 to counter TGF beta induced pulmonary fibrosis therapeutic insights for IPF. iScience DOI: \\
+10.1016/j.isci.2026.114756 [Lentifect™ Lentiviral particles expressing Mouse Nr4a1 and scrambled control, Cat. No. LPP-Mm03063-Lv201-100, \\
+LPP-MSH197809-LVRU6GP-500, LP146-100; RNAzol® RT RNA Isolation Reagent, Cat. No. QP020; SureScript™ First-Strand cDNA Synthesis Kit, Cat. \\
+No. QP056; BlazeTaq™ SYBR Green qPCR Mix 2.0 (with ROX), Cat. No. QP031]
+"""
+
+def get_citation_from_url(url, skus, products):
+    """
+    Creates a citation from url of publication
+
+    SLOW
+    """
+
+    pmcid = url.rstrip("/").split("/")[-1]
+
+    try:
+        record = requests.get(
+            f"https://www.ebi.ac.uk/europepmc/webservices/rest/article/PMC/PMC{pmcid}?resultType=core&format=json"
+        )
+
+        record.raise_for_status()
+
+        record = record.json().get("result", [])
+
+        truncated_record = {
+            "pmcid": record.get("pmcid"),
+            "doi": record.get("doi"),
+            "title": record.get("title"),
+            "journal_iso": record.get("journalInfo", {}).get("journal", {}).get("isoabbreviation"),
+            "authors": record.get("authorString"),
+            "year": (record.get("firstPublicationDate") or "")[:4],
+        }
+
+        # print(truncated_record)
+
+        return get_citation(truncated_record, skus, products)
+
+    except Exception as e:
+        print(e)
+
+
+def get_citation(record, skus, products):
+    return get_publication_citation(record) + " " + format_products(skus, products);
+
+
+def get_publication_citation(record: dict) -> str:
+    """
+    Format a Europe PMC metadata dictionary into a citation string.
+    """
+
+    # --- Authors ---
+    authors = record.get("authors", "")
+
+    # Optional: convert "A, B, C, D" → "A, et al." if long
+    if authors and "," in authors:
+        first_author = authors.split(",")[0].strip()
+        authors = f"{first_author}, et al."
+
+    # --- Core fields ---
+    title = record.get("title", "").strip()
+    title = clean_title(title)
+    journal = record.get("journal_iso")
+    year = record.get("year")
+
+    # --- DOI handling ---
+    doi = record.get("doi", "")
+    if isinstance(doi, list):
+        doi = doi[0] if doi else ""
+
+    # --- Build citation ---
+    citation = f"{authors} ({year}). {title}. {journal}"
+    citation = citation.replace("..", ".")
+
+    if doi:
+        citation += f" DOI: {doi}"
+
+    return citation
+
+
+def clean_title(title: str) -> str:
+    # convert escaped HTML like &lt;sup&gt;
+    title = html.unescape(title)
+
+    # remove actual HTML tags like <sup>, </i>, etc.
+    title = re.sub(r"<[^>]+>", "", title)
+
+    return title
+
+
+def format_products(skus, products):
+    """
+    Takes ordered SKUs and matching ordered product names and formats them into:
+
+    Product Name, Cat. No. SKU1, SKU2; Product Name, Cat. No. SKU3...
+
+    Assumes skus and products are aligned with each other
+    """
+
+    parts = []
+
+    for i in range(len(skus)):
+        product = products[i]
+        sku = skus[i]
+        processed_product = shorten_product_name(product)
+        parts.append(f"{processed_product}, Cat. No. {sku.upper()}")
+
+    return f"[{'; '.join(parts)}]"
+
 
 
 # ============================================================

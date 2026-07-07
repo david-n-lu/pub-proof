@@ -1,4 +1,4 @@
-from matching.normalization import normalize
+from matching.normalization import normalize, normalize_for_matching
 from matching.product_map import build_product_map, build_alias_index
 from matching.mention_extractor import get_keyword_indexes
 import json
@@ -103,13 +103,22 @@ if __name__ == "__main__":
 
     line_length = 170
     curr = ""
+    skus = []
+    aliases = []
     count = 0
 
     for s in special:
         s = s.replace("GeneCopoeia", "")
 
         if get_keyword_indexes(s, alias_map):
-            continue
+            s_norm = normalize_for_matching(s)
+            if s_norm in product_map:
+                skus.append(s)
+            
+            if s_norm in alias_map:
+                aliases.append(s)
+
+            # aliases.append(s)
 
         count += 1
 
@@ -121,6 +130,11 @@ if __name__ == "__main__":
         # curr += s + ", "
         curr += s + ", "
     
-    print(curr)
+    # print(curr)
+
+    print(f"{len(skus)} SKUs | {len(set(skus))} unique SKUs")
+    print(f"{len(aliases)} aliases | {len(set(aliases))} unique aliases")
+    print(aliases)
+    # print(skus)
 
     print(f"{count} special words NOT in product map")

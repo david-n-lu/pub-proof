@@ -68,6 +68,7 @@ data/cleaned_products/*
 data/europe_pmc/*
 data/evidence/*
 data/raw_products/*
+data/raw_products_OLD/*
 tests/data/*
 
 # Keep specific subfolders

@@ -1,6 +1,5 @@
 import csv
 import json
-from math import prod
 from matching.product_map import build_alias_index, build_product_map
 from matching.sku_matcher import find_sku
 from matching.mention_extractor import extract_product_mention, get_phrases, extract_best_product_mention, get_best_phrases, score_phrase
@@ -50,7 +49,7 @@ def run_pipeline(manufacturer: str, sentence_corpus_path: str, product_map_path:
         scores = []
         corresponding_phrases = []
         for phrase in phrases:
-            phrase_skus = extract_best_product_mention(phrase, alias_map, n = 2)
+            phrase_skus = extract_best_product_mention(phrase, alias_map, n = 10)
             skus.extend(phrase_skus)
 
             phrase_products = [product_map.get(sku,{}).get("product_name","") for sku in phrase_skus]
@@ -88,7 +87,7 @@ def run_pipeline(manufacturer: str, sentence_corpus_path: str, product_map_path:
             "manufacturer",
             "sku",
             "product_name",
-            "score"
+            "score",
             "phrase",
             "url",
             "sentence",
