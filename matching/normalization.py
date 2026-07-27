@@ -1,5 +1,6 @@
 # normalization.py
 
+from math import e
 import re
 
 UNICODE_NORMALIZATION = {
@@ -141,7 +142,9 @@ def shorten_product_name(product_name):
         except ValueError:
             return False
 
-    for w in product_name.split():
+    words = product_name.split()
+
+    for w in words:
         w_norm = w.lower()
         w_norm = re.sub(r"[()]", "", w_norm)
 
@@ -173,14 +176,25 @@ def shorten_product_name(product_name):
         # gets rid of (25 Ml X if product name poorly formatted
         if not w_original == w:
             break
+    
+
+    num_words = len(short)
+    ratio = num_words / len(words)
 
     short = " ".join(short)
 
     # print(product_name)
     # print(short)
 
+    min_num_words = 3
+    min_ratio = 0.5
+
     if short:
-        return short
+        if num_words >= min_num_words or ratio >= min_ratio:
+            return short
+        # else:
+        #     print(short)
+        #     print(product_name)
     
     return product_name
 

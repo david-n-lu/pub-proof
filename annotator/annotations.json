@@ -1,0 +1,3787 @@
+{
+  "0": [
+    {
+      "sku": "qp057",
+      "score": 0.99,
+      "type": "trademark",
+      "phrase": "rna surescript first-strand cdna synthesis kit",
+      "product_name": "SureScript\u2122 First-Strand cDNA Synthesis Kit for gene qPCR array (60 RT reactions)"
+    },
+    {
+      "sku": "qp056",
+      "score": 0.99,
+      "type": "trademark",
+      "phrase": "rna surescript first-strand cdna synthesis kit",
+      "product_name": "SureScript\u2122 First-Strand cDNA Synthesis Kit for gene qPCR array (20 RT reactions)"
+    }
+  ],
+  "1": [
+    {
+      "sku": "qp034",
+      "score": 0.99,
+      "type": "trademark",
+      "phrase": "blazetaq sybr green qpcr mix 2.0",
+      "product_name": "BlazeTaq\u2122 SYBR\u00ae Green qPCR mix 2.0 (1000 qPCR reactions)"
+    },
+    {
+      "sku": "qp032",
+      "score": 0.99,
+      "type": "trademark",
+      "phrase": "blazetaq sybr green qpcr mix 2.0",
+      "product_name": "BlazeTaq\u2122 SYBR\u00ae Green qPCR mix 2.0 (600 qPCR reactions)"
+    },
+    {
+      "sku": "qp031",
+      "score": 0.99,
+      "type": "trademark",
+      "phrase": "blazetaq sybr green qpcr mix 2.0",
+      "product_name": "BlazeTaq\u2122 SYBR\u00ae Green qPCR mix 2.0 (200 qPCR reactions)"
+    }
+  ],
+  "2": [],
+  "7": [
+    {
+      "sku": "hprm54815-pg04",
+      "product_name": "GLuc-ON\u2122 Promoter Reporter Clones: Promoter reporter clone for Human PDE6B(NM_000283)",
+      "score": 1.0,
+      "type": "manual"
+    },
+    {
+      "sku": "hprm30308-pg04",
+      "product_name": "GLuc-ON\u2122 Promoter Reporter Clones: Promoter reporter clone for Human RS1(NM_000330)",
+      "score": 1.0,
+      "type": "manual"
+    },
+    {
+      "sku": "hprm44605-pg04",
+      "product_name": "GLuc-ON\u2122 Promoter Reporter Clones: Promoter reporter clone for Human GRK1(NM_002929)",
+      "score": 1.0,
+      "type": "manual"
+    },
+    {
+      "sku": "hprm43732",
+      "sentence_sku": "hprm43732-pg02",
+      "original_sku": "hprm43732-pg04",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "GLuc-ON\u2122 Promoter Reporter Clones: Promoter reporter clone for Human GUCY2F(NM_001522)"
+    },
+    {
+      "sku": "hprm30328",
+      "sentence_sku": "hprm30328-pg02",
+      "original_sku": "hprm30328-pg04",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "GLuc-ON\u2122 Promoter Reporter Clones: Promoter reporter clone for Human ABCA4(NM_000350)"
+    },
+    {
+      "sku": "hprm44587",
+      "sentence_sku": "hprm44587-pg02",
+      "original_sku": "hprm44587-pg04",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "GLuc-ON\u2122 Promoter Reporter Clones: Promoter reporter clone for Human RBP3(NM_002900)"
+    },
+    {
+      "sku": "hprm30507",
+      "sentence_sku": "hprm30507-pg02",
+      "original_sku": "hprm30507-pg04",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "GLuc-ON\u2122 Promoter Reporter Clones: Promoter reporter clone for Human RHO(NM_000539)"
+    }
+  ],
+  "3": [],
+  "4": [],
+  "5": [],
+  "6": [],
+  "8": [],
+  "9": [],
+  "10": [],
+  "11": [],
+  "12": [],
+  "13": [],
+  "14": [],
+  "15": [],
+  "16": [],
+  "17": [],
+  "18": [],
+  "19": [
+    {
+      "sku": "lf004",
+      "sentence_sku": "lf004",
+      "original_sku": "lf004",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "Luc-Pair Duo-Luciferase HS Assay Kits (100rxns)"
+    }
+  ],
+  "20": [],
+  "21": [
+    {
+      "sku": "bi001",
+      "sentence_sku": "bi001",
+      "original_sku": "bi001",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "Biotin Protein Ligase"
+    },
+    {
+      "sku": "bi001",
+      "score": 0.99,
+      "type": "general",
+      "phrase": "biotin protein ligase bi001",
+      "product_name": "Biotin Protein Ligase"
+    }
+  ],
+  "22": [
+    {
+      "sku": "ef013",
+      "sentence_sku": "ef013",
+      "original_sku": "ef013",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "EndoFectin\u2122 Max transfection reagent (1ml)"
+    }
+  ],
+  "23": [
+    {
+      "sku": "qp116",
+      "product_name": "All-in-One\u2122 miRNA qRT-PCR Detection Kit 2.0* (60 RT and 600 qPCR reactions)(Old cat # QP016)",
+      "score": 1.0,
+      "type": "manual"
+    },
+    {
+      "sku": "qp115",
+      "product_name": "All-in-One\u2122 miRNA qRT-PCR Detection Kit 2.0* (20 RT and 200 qPCR reactions) (Old cat # QP015)",
+      "score": 1.0,
+      "type": "manual"
+    }
+  ],
+  "24": [
+    {
+      "sku": "qp116",
+      "product_name": "All-in-One\u2122 miRNA qRT-PCR Detection Kit 2.0* (60 RT and 600 qPCR reactions)(Old cat # QP016)",
+      "score": 1.0,
+      "type": "manual"
+    },
+    {
+      "sku": "qp115",
+      "product_name": "All-in-One\u2122 miRNA qRT-PCR Detection Kit 2.0* (20 RT and 200 qPCR reactions) (Old cat # QP015)",
+      "score": 1.0,
+      "type": "manual"
+    }
+  ],
+  "25": [],
+  "26": [],
+  "27": [
+    {
+      "sku": "hmit162768-mt05",
+      "sentence_sku": "hmit162768-mt05",
+      "original_sku": "hmit162768-mt05",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "miTarget\u2122 3\u2032 UTR miRNA Target Clones: miRNA 3\u00b4UTR target expression clone for Human VEGFA (NM_003376.6)"
+    },
+    {
+      "sku": "hmit159281-mt05",
+      "sentence_sku": "hmit159281-mt05",
+      "original_sku": "hmit159281-mt05",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "miTarget\u2122 3\u2032 UTR miRNA Target Clones: miRNA 3\u00b4UTR target expression clone for Human MAPK1 (NM_002745.5)"
+    },
+    {
+      "sku": "hmit148551-mt05",
+      "sentence_sku": "hmit148551-mt05",
+      "original_sku": "hmit148551-mt05",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "miTarget\u2122 3\u2032 UTR miRNA Target Clones: miRNA 3\u00b4UTR target expression clone for Human ELMO3 (NM_024712.5)"
+    },
+    {
+      "sku": "hmit167809-mt05",
+      "sentence_sku": "hmit167809-mt05",
+      "original_sku": "hmit167809-mt05",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "miTarget\u2122 3\u2032 UTR miRNA Target Clones: miRNA 3\u00b4UTR target expression clone for Human TRIB1 (NM_025195.4)"
+    }
+  ],
+  "28": [
+    {
+      "sku": "lf032",
+      "sentence_sku": "lf032",
+      "original_sku": "lf032",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "Secrete-Pair Dual Luminescence Assay Kit (300 rxns)"
+    }
+  ],
+  "29": [
+    {
+      "sku": "ef013",
+      "sentence_sku": "ef013-s",
+      "original_sku": "ef013",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "EndoFectin\u2122 Max transfection reagent (1ml)"
+    }
+  ],
+  "30": [],
+  "31": [
+    {
+      "sku": "qp056",
+      "sentence_sku": "qp056",
+      "original_sku": "qp056",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "SureScript\u2122 First-Strand cDNA Synthesis Kit for gene qPCR array (20 RT reactions)"
+    }
+  ],
+  "32": [],
+  "33": [
+    {
+      "sku": "qp004",
+      "score": 0.99,
+      "type": "general",
+      "phrase": "all-in-one qpcr mix",
+      "product_name": "All-in-One\u2122 qPCR Mix (1000 qPCR reactions)"
+    },
+    {
+      "sku": "qp005",
+      "score": 0.99,
+      "type": "general",
+      "phrase": "all-in-one qpcr mix",
+      "product_name": "All-in-One\u2122 qPCR Mix (4000 qPCR reactions)"
+    },
+    {
+      "sku": "qp001",
+      "score": 0.99,
+      "type": "general",
+      "phrase": "all-in-one qpcr mix",
+      "product_name": "All-in-One\u2122 qPCR Mix (200 qPCR reactions)"
+    },
+    {
+      "sku": "qp002",
+      "score": 0.99,
+      "type": "general",
+      "phrase": "all-in-one qpcr mix",
+      "product_name": "All-in-One\u2122 qPCR Mix (600 qPCR reactions)"
+    }
+  ],
+  "36": [
+    {
+      "sku": "mp004",
+      "sentence_sku": "mp004",
+      "original_sku": "mp004",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "Mycoplasma PCR detection kit (50 rxns)"
+    }
+  ],
+  "37": [
+    {
+      "sku": "ef014",
+      "score": 0.5,
+      "type": "trademark",
+      "phrase": "endofectin max",
+      "product_name": "EndoFectin\u2122 Max transfection reagent (3ml)"
+    },
+    {
+      "sku": "ef013",
+      "score": 0.5,
+      "type": "trademark",
+      "phrase": "endofectin max",
+      "product_name": "EndoFectin\u2122 Max transfection reagent (1ml)"
+    }
+  ],
+  "39": [],
+  "40": [
+    {
+      "sku": "lt008",
+      "sentence_sku": "lt008",
+      "original_sku": "lt008",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "Lenti-Pac 293Ta Cell Line (1.5 x 10^6\u00a0cells)"
+    }
+  ],
+  "41": [
+    {
+      "sku": "ex-m0768",
+      "sentence_sku": "ex-m0768-m01",
+      "original_sku": "ex-m0768-m35",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "OmicsLink\u2122 Expression-Ready ORF cDNA Clones: ORF expression clone for BECN1(NM_001313998.2)"
+    }
+  ],
+  "42": [],
+  "43": [
+    {
+      "sku": "lt016",
+      "sentence_sku": "lt016",
+      "original_sku": "lt016",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "Lenti-Pac\u2122 SARS-CoV-2 Full Length Spike protein-pseudotyped (D614G) Lentivirus Packaging Kit (40 reactions)"
+    }
+  ],
+  "47": [
+    {
+      "sku": "lf061",
+      "score": 0.99,
+      "type": "general",
+      "phrase": "secrete-pair gaussia luciferase assay kit",
+      "product_name": "Secrete-Pair\u00a0Gaussia\u00a0Luciferase Assay Kit (100 rxns)"
+    },
+    {
+      "sku": "lf062",
+      "score": 0.99,
+      "type": "general",
+      "phrase": "secrete-pair gaussia luciferase assay kit",
+      "product_name": "Secrete-Pair\u00a0Gaussia\u00a0Luciferase Assay Kit (1000 rxns)"
+    }
+  ],
+  "48": [],
+  "49": [
+    {
+      "sku": "ex-m0487",
+      "sentence_sku": "ex-m0487-lv105",
+      "original_sku": "ex-m0487-m35",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "OmicsLink\u2122 Expression-Ready ORF cDNA Clones: ORF expression clone for KEAP1(NM_012289.4)"
+    }
+  ],
+  "50": [
+    {
+      "sku": "lt002",
+      "score": 0.99,
+      "type": "trademark",
+      "phrase": "non-targeting control ins cells lenti-pac hiv expression packaging kit",
+      "product_name": "Lenti-Pac HIV Expression Packaging Kit (40 reactions)"
+    },
+    {
+      "sku": "lt001",
+      "score": 0.99,
+      "type": "trademark",
+      "phrase": "non-targeting control ins cells lenti-pac hiv expression packaging kit",
+      "product_name": "Lenti-Pac HIV Expression Packaging Kit (20 reactions)"
+    }
+  ],
+  "51": [
+    {
+      "sku": "qp125",
+      "score": 0.99,
+      "type": "trademark",
+      "phrase": "exoct first-strand cdna synthesis kit",
+      "product_name": "ExoCt\u2122 First-Strand cDNA Synthesis Kit"
+    },
+    {
+      "sku": "qp126",
+      "score": 0.99,
+      "type": "trademark",
+      "phrase": "exoct first-strand cdna synthesis kit",
+      "product_name": "ExoCt\u2122 First-Strand cDNA Synthesis Kit"
+    }
+  ],
+  "52": [],
+  "55": [
+    {
+      "sku": "hsh189961-lvru6gp",
+      "product_name": "OmicsLink\u2122 shRNA Clone: shRNA clone set against Human GPBAR1 (NM_170699.3)(Includes free control)",
+      "score": 1.0,
+      "type": "manual"
+    },
+    {
+      "sku": "hsh189960-lvru6gp",
+      "product_name": "OmicsLink\u2122 shRNA Clone: shRNA clone set against Human GPBAR1 (NM_001321950.2)(Includes free control)",
+      "score": 1.0,
+      "type": "manual"
+    },
+    {
+      "sku": "hsh189959-lvru6gp",
+      "product_name": "OmicsLink\u2122 shRNA Clone: shRNA clone set against Human GPBAR1 (NM_001077194.2)(Includes free control)",
+      "score": 1.0,
+      "type": "manual"
+    },
+    {
+      "sku": "hsh189958-lvru6gp",
+      "product_name": "OmicsLink\u2122 shRNA Clone: shRNA clone set against Human GPBAR1 (NM_001077191.2)(Includes free control)",
+      "score": 1.0,
+      "type": "manual"
+    }
+  ],
+  "56": [],
+  "57": [],
+  "58": [],
+  "59": [],
+  "60": [
+    {
+      "sku": "mp004",
+      "score": 0.99,
+      "type": "general",
+      "phrase": "mycoplasma pcr detection kit",
+      "product_name": "Mycoplasma PCR detection kit (50 rxns)"
+    }
+  ],
+  "62": [
+    {
+      "sku": "lt001",
+      "sentence_sku": "lt001",
+      "original_sku": "lt001",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "Lenti-Pac HIV Expression Packaging Kit (20 reactions)"
+    }
+  ],
+  "63": [
+    {
+      "sku": "hsh190102-lvru6gp",
+      "score": 0.29,
+      "type": "general",
+      "phrase": "nipal1 shrna",
+      "product_name": "OmicsLink\u2122 shRNA Clone: shRNA clone set against Human NIPAL1 (NM_207330.3)(Includes free control)"
+    },
+    {
+      "sku": "hsh094045-lvru6gp",
+      "score": 0.29,
+      "type": "general",
+      "phrase": "nipal1 shrna",
+      "product_name": "OmicsLink\u2122 shRNA Clone: shRNA clone set against Human NIPAL1 (NM_207330.2)(Includes free control)"
+    }
+  ],
+  "64": [],
+  "65": [],
+  "67": [
+    {
+      "sku": "lf032",
+      "score": 0.8,
+      "type": "general",
+      "phrase": "dual luminescence assay kit",
+      "product_name": "Secrete-Pair Dual Luminescence Assay Kit (300 rxns)"
+    },
+    {
+      "sku": "lf033",
+      "score": 0.8,
+      "type": "general",
+      "phrase": "dual luminescence assay kit",
+      "product_name": "Secrete-Pair Dual Luminescence Assay Kit (1000 rxns)"
+    },
+    {
+      "sku": "lf031",
+      "score": 0.8,
+      "type": "general",
+      "phrase": "dual luminescence assay kit",
+      "product_name": "Secrete-Pair Dual Luminescence Assay Kit (100 rxns)"
+    }
+  ],
+  "68": [
+    {
+      "sku": "lt001",
+      "sentence_sku": "lt001-01",
+      "original_sku": "lt001",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "Lenti-Pac HIV Expression Packaging Kit (20 reactions)"
+    }
+  ],
+  "69": [
+    {
+      "sku": "lt001",
+      "sentence_sku": "lt001-04",
+      "original_sku": "lt001",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "Lenti-Pac HIV Expression Packaging Kit (20 reactions)"
+    }
+  ],
+  "71": [
+    {
+      "sku": "lp464-025",
+      "sentence_sku": "lp464-025",
+      "original_sku": "lp464-025",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "HLUC-Lv201 Firefly luciferase +eGFP Lentifect\u2122 Purified Lentiviral Particles (25 \u00b5l x 1 vial)(Old cat # LPP-HLUC-Lv201-025-C)"
+    }
+  ],
+  "72": [
+    {
+      "sku": "lt007",
+      "score": 0.99,
+      "type": "trademark",
+      "phrase": "hs hs transfection lenti-pac lentivirus concentration solution",
+      "product_name": "Lenti-Pac\u2122 Lentivirus Concentration Solution (50 ml)"
+    }
+  ],
+  "76": [
+    {
+      "sku": "bi001",
+      "sentence_sku": "bi001",
+      "original_sku": "bi001",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "Biotin Protein Ligase"
+    }
+  ],
+  "77": [
+    {
+      "sku": "qp117",
+      "score": 0.99,
+      "type": "general",
+      "phrase": "all-in-one mirna first-strand cdna synthesis kit 2.0",
+      "product_name": "All-in-One\u2122 miRNA First-Strand cDNA Synthesis Kit 2.0 for miRNA qPCR Array(20 RT reactions)"
+    },
+    {
+      "sku": "qp118",
+      "score": 0.99,
+      "type": "general",
+      "phrase": "all-in-one mirna first-strand cdna synthesis kit 2.0",
+      "product_name": "All-in-One\u2122 miRNA First-Strand cDNA Synthesis Kit 2.0 for miRNA qPCR Array\u00a0(60 RT reactions)"
+    }
+  ],
+  "78": [],
+  "79": [],
+  "81": [
+    {
+      "sku": "ez039",
+      "score": 0.99,
+      "type": "special word",
+      "phrase": "lentiviral expression vector pez-lv195",
+      "product_name": "pEZ-Lv195 expression vector for LxR recombination cloning (lentiviral)"
+    }
+  ],
+  "82": [
+    {
+      "sku": "ez039",
+      "score": 0.67,
+      "type": "special word",
+      "phrase": "lentiviral vector pez-lv195",
+      "product_name": "pEZ-Lv195 expression vector for LxR recombination cloning (lentiviral)"
+    }
+  ],
+  "83": [
+    {
+      "sku": "lt002",
+      "score": 0.99,
+      "type": "trademark",
+      "phrase": "asc cells lenti-pac hiv expression packaging kit",
+      "product_name": "Lenti-Pac HIV Expression Packaging Kit (40 reactions)"
+    },
+    {
+      "sku": "lt001",
+      "score": 0.99,
+      "type": "trademark",
+      "phrase": "asc cells lenti-pac hiv expression packaging kit",
+      "product_name": "Lenti-Pac HIV Expression Packaging Kit (20 reactions)"
+    }
+  ],
+  "84": [
+    {
+      "sku": "qp117",
+      "score": 0.71,
+      "type": "general",
+      "phrase": "all-in-one mirna first strand synthesis kit 2.0 mirna",
+      "product_name": "All-in-One\u2122 miRNA First-Strand cDNA Synthesis Kit 2.0 for miRNA qPCR Array(20 RT reactions)"
+    },
+    {
+      "sku": "qp118",
+      "score": 0.71,
+      "type": "general",
+      "phrase": "all-in-one mirna first strand synthesis kit 2.0 mirna",
+      "product_name": "All-in-One\u2122 miRNA First-Strand cDNA Synthesis Kit 2.0 for miRNA qPCR Array\u00a0(60 RT reactions)"
+    }
+  ],
+  "86": [
+    {
+      "sku": "hprm75368-pg04",
+      "score": 0.25,
+      "type": "general",
+      "phrase": "mafa promoter",
+      "product_name": "GLuc-ON\u2122 Promoter Reporter Clones: Promoter reporter clone for Human MAFA(NM_201589)"
+    }
+  ],
+  "88": [
+    {
+      "sku": "hprm50462",
+      "sentence_sku": "clp-hprm50462",
+      "original_sku": "hprm50462-pg04",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "GLuc-ON\u2122 Promoter Reporter Clones: Promoter reporter clone for Human NEUROG2(NM_024019)"
+    }
+  ],
+  "90": [
+    {
+      "sku": "lf001",
+      "sentence_sku": "lf001",
+      "original_sku": "lf001",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "Luc-Pair Duo-Luciferase Assay Kits 2.0 (100rxns)"
+    }
+  ],
+  "92": [],
+  "93": [
+    {
+      "sku": "lf062",
+      "sentence_sku": "lf062",
+      "original_sku": "lf062",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "Secrete-Pair\u00a0Gaussia\u00a0Luciferase Assay Kit (1000 rxns)"
+    }
+  ],
+  "96": [
+    {
+      "sku": "hprm43808-pg04",
+      "score": 0.38,
+      "type": "special word",
+      "phrase": "dual luciferase assay human \u03b2 mlx expression plasmid human atf4 promoter plasmid co cells",
+      "product_name": "GLuc-ON\u2122 Promoter Reporter Clones: Promoter reporter clone for Human ATF4(NM_001675)"
+    },
+    {
+      "sku": "hprm75169-pg04",
+      "score": 0.38,
+      "type": "special word",
+      "phrase": "dual luciferase assay human \u03b2 mlx expression plasmid human atf4 promoter plasmid co cells",
+      "product_name": "GLuc-ON\u2122 Promoter Reporter Clones: Promoter reporter clone for Human ATF4(NM_182810)"
+    }
+  ],
+  "97": [],
+  "99": [
+    {
+      "sku": "qp057",
+      "score": 0.4,
+      "type": "trademark",
+      "phrase": "surescript kit",
+      "product_name": "SureScript\u2122 First-Strand cDNA Synthesis Kit for gene qPCR array (60 RT reactions)"
+    },
+    {
+      "sku": "qp056",
+      "score": 0.4,
+      "type": "trademark",
+      "phrase": "surescript kit",
+      "product_name": "SureScript\u2122 First-Strand cDNA Synthesis Kit for gene qPCR array (20 RT reactions)"
+    }
+  ],
+  "100": [],
+  "101": [
+    {
+      "sku": "lf032",
+      "sentence_sku": "gc-lf032",
+      "original_sku": "lf032",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "Secrete-Pair Dual Luminescence Assay Kit (300 rxns)"
+    }
+  ],
+  "102": [
+    {
+      "sku": "lf031",
+      "score": 0.99,
+      "type": "general",
+      "phrase": "secrete-pair dual luminescence assay kit",
+      "product_name": "Secrete-Pair Dual Luminescence Assay Kit (100 rxns)"
+    },
+    {
+      "sku": "lf033",
+      "score": 0.99,
+      "type": "general",
+      "phrase": "secrete-pair dual luminescence assay kit",
+      "product_name": "Secrete-Pair Dual Luminescence Assay Kit (1000 rxns)"
+    },
+    {
+      "sku": "lf032",
+      "score": 0.99,
+      "type": "general",
+      "phrase": "secrete-pair dual luminescence assay kit",
+      "product_name": "Secrete-Pair Dual Luminescence Assay Kit (300 rxns)"
+    }
+  ],
+  "103": [
+    {
+      "sku": "ex-t7446-m35",
+      "score": 0.38,
+      "type": "special word",
+      "phrase": "open reading frame orf cdna onecut1 ids",
+      "product_name": "OmicsLink\u2122 Expression-Ready ORF cDNA Clones: ORF expression clone for ONECUT1(NM_004498.4)"
+    }
+  ],
+  "104": [
+    {
+      "sku": "qp056",
+      "score": 0.99,
+      "type": "trademark",
+      "phrase": "surescript first-strand cdna synthesis kit",
+      "product_name": "SureScript\u2122 First-Strand cDNA Synthesis Kit for gene qPCR array (20 RT reactions)"
+    }
+  ],
+  "107": [
+    {
+      "sku": "pa001-v3",
+      "product_name": "Systemic Autoimmune-associated Antigen Array",
+      "score": 1.0,
+      "type": "manual"
+    },
+    {
+      "sku": "pa001-v2",
+      "product_name": "Systemic Autoimmune-associated Antigen Array",
+      "score": 1.0,
+      "type": "manual"
+    }
+  ],
+  "108": [],
+  "109": [
+    {
+      "sku": "ex-a3083",
+      "sentence_sku": "ex-a3083-m11",
+      "original_sku": "ex-a3083-m35",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "OmicsLink\u2122 Expression-Ready ORF cDNA Clones: ORF expression clone for ABCA7(NM_019112.4)"
+    }
+  ],
+  "110": [],
+  "112": [],
+  "113": [
+    {
+      "sku": "ef013",
+      "score": 0.5,
+      "type": "trademark",
+      "phrase": "endofectin max",
+      "product_name": "EndoFectin\u2122 Max transfection reagent (1ml)"
+    },
+    {
+      "sku": "ef014",
+      "score": 0.5,
+      "type": "trademark",
+      "phrase": "endofectin max",
+      "product_name": "EndoFectin\u2122 Max transfection reagent (3ml)"
+    }
+  ],
+  "114": [
+    {
+      "sku": "ex-w0697",
+      "sentence_sku": "ex-w0697-b0",
+      "original_sku": "ex-w0697-m35",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "OmicsLink\u2122 Expression-Ready ORF cDNA Clones: ORF expression clone for EIF2D(NM_006893.3)"
+    }
+  ],
+  "115": [
+    {
+      "sku": "ef013",
+      "score": 0.99,
+      "type": "trademark",
+      "phrase": "endofectin max transfection reagent",
+      "product_name": "EndoFectin\u2122 Max transfection reagent (1ml)"
+    },
+    {
+      "sku": "ef014",
+      "score": 0.99,
+      "type": "trademark",
+      "phrase": "endofectin max transfection reagent",
+      "product_name": "EndoFectin\u2122 Max transfection reagent (3ml)"
+    }
+  ],
+  "116": [
+    {
+      "sku": "bi001",
+      "product_name": "Biotin Protein Ligase",
+      "score": 1.0,
+      "type": "manual"
+    }
+  ],
+  "117": [
+    {
+      "sku": "bi001",
+      "product_name": "Biotin Protein Ligase",
+      "score": 1.0,
+      "type": "manual"
+    }
+  ],
+  "119": [
+    {
+      "sku": "ef002",
+      "sentence_sku": "ef002",
+      "original_sku": "ef002",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "EndoFectin\u2122 Lenti transfection reagent (3ml)"
+    }
+  ],
+  "124": [
+    {
+      "sku": "lt008",
+      "sentence_sku": "lt008",
+      "original_sku": "lt008",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "Lenti-Pac 293Ta Cell Line (1.5 x 10^6\u00a0cells)"
+    }
+  ],
+  "125": [
+    {
+      "sku": "hsh019581-lvru6gp",
+      "sentence_sku": "hsh019581-lvru6gp",
+      "original_sku": "hsh019581-lvru6gp",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "OmicsLink\u2122 shRNA Clone: shRNA clone set against Human HKDC1 (NM_025130.3)(Includes free control)"
+    }
+  ],
+  "126": [],
+  "127": [
+    {
+      "sku": "hmit119980-mt05",
+      "sentence_sku": "cs-hmit119980-mt05-01",
+      "original_sku": "hmit119980-mt05",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "miTarget\u2122 3\u2032 UTR miRNA Target Clones: miRNA 3\u00b4UTR target expression clone for Human ZNF24 (NM_001375815.1)"
+    }
+  ],
+  "128": [
+    {
+      "sku": "lf032",
+      "sentence_sku": "lf032",
+      "original_sku": "lf032",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "Secrete-Pair Dual Luminescence Assay Kit (300 rxns)"
+    }
+  ],
+  "130": [
+    {
+      "sku": "lp721-025",
+      "sentence_sku": "lp721-025",
+      "original_sku": "lp721-025",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "SV40 small T & large T antigen Purified Lentifect\u2122 Lentiviral Particles (25 \u00b5l x 1 vial) (old cat# LPP-SV40T-Lv105-025-C)"
+    }
+  ],
+  "131": [
+    {
+      "sku": "lp742-025",
+      "sentence_sku": "lp742-025",
+      "original_sku": "lp742-025",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "SV40 large T antigen Purified Lentifect\u2122 Lentiviral Particles (25 \u00b5l x 1 vial) (old cat# LPP-SV40LT-Lv105-025-C)"
+    }
+  ],
+  "133": [
+    {
+      "sku": "lpp-neg-lv105",
+      "sentence_sku": "lpp-neg-lv105",
+      "original_sku": "lpp-neg-lv105-200-c",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "Negative Control-Lv105 Lentifect\u2122 Purified Lentiviral Particles (25 \u00b5l x 8 vials)(Old cat # LPP-NEG-Lv105-200-C)"
+    }
+  ],
+  "134": [
+    {
+      "sku": "lpp-neg-lv105",
+      "sentence_sku": "lpp-neg-lv105",
+      "original_sku": "lpp-neg-lv105-200-c",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "Negative Control-Lv105 Lentifect\u2122 Purified Lentiviral Particles (25 \u00b5l x 8 vials)(Old cat # LPP-NEG-Lv105-200-C)"
+    }
+  ],
+  "135": [
+    {
+      "sku": "lpp-neg-lv105",
+      "sentence_sku": "lpp-neg-lv105",
+      "original_sku": "lpp-neg-lv105-200-c",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "Negative Control-Lv105 Lentifect\u2122 Purified Lentiviral Particles (25 \u00b5l x 8 vials)(Old cat # LPP-NEG-Lv105-200-C)"
+    }
+  ],
+  "136": [],
+  "137": [],
+  "138": [],
+  "139": [
+    {
+      "sku": "hmit102206",
+      "sentence_sku": "hmit102206-mt06",
+      "original_sku": "hmit102206-mt05",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "miTarget\u2122 3\u2032 UTR miRNA Target Clones: miRNA 3\u00b4UTR target expression clone for Human MDM2 (NM_002392.5)"
+    }
+  ],
+  "140": [
+    {
+      "sku": "lf005",
+      "score": 0.8,
+      "type": "trademark",
+      "phrase": "hs transfection reporter luc-pair duo-luciferase hs assay kit",
+      "product_name": "Luc-Pair Duo-Luciferase HS Assay Kits (300rxns)"
+    },
+    {
+      "sku": "lf004",
+      "score": 0.8,
+      "type": "trademark",
+      "phrase": "hs transfection reporter luc-pair duo-luciferase hs assay kit",
+      "product_name": "Luc-Pair Duo-Luciferase HS Assay Kits (100rxns)"
+    },
+    {
+      "sku": "lf006",
+      "score": 0.8,
+      "type": "trademark",
+      "phrase": "hs transfection reporter luc-pair duo-luciferase hs assay kit",
+      "product_name": "Luc-Pair Duo-Luciferase HS Assay Kits (1000rxns)"
+    }
+  ],
+  "141": [
+    {
+      "sku": "qp116",
+      "score": 0.67,
+      "type": "general",
+      "phrase": "all-in-one mirna qpcr detection kit",
+      "product_name": "All-in-One\u2122 miRNA qRT-PCR Detection Kit 2.0* (60 RT and 600 qPCR reactions)(Old cat # QP016)"
+    },
+    {
+      "sku": "qp115",
+      "score": 0.67,
+      "type": "general",
+      "phrase": "all-in-one mirna qpcr detection kit",
+      "product_name": "All-in-One\u2122 miRNA qRT-PCR Detection Kit 2.0* (20 RT and 200 qPCR reactions) (Old cat # QP015)"
+    }
+  ],
+  "142": [
+    {
+      "sku": "qp116",
+      "score": 0.67,
+      "type": "general",
+      "phrase": "all-in-one mirna qpcr detection kit",
+      "product_name": "All-in-One\u2122 miRNA qRT-PCR Detection Kit 2.0* (60 RT and 600 qPCR reactions)(Old cat # QP016)"
+    },
+    {
+      "sku": "qp115",
+      "score": 0.67,
+      "type": "general",
+      "phrase": "all-in-one mirna qpcr detection kit",
+      "product_name": "All-in-One\u2122 miRNA qRT-PCR Detection Kit 2.0* (20 RT and 200 qPCR reactions) (Old cat # QP015)"
+    }
+  ],
+  "143": [],
+  "145": [
+    {
+      "sku": "hsh018561",
+      "sentence_sku": "hsh018561-31-mh1",
+      "original_sku": "hsh018561-lvru6gp",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "OmicsLink\u2122 shRNA Clone: shRNA clone set against Human XPO1 (NM_003400.3)(Includes free control)"
+    },
+    {
+      "sku": "hsh018561",
+      "sentence_sku": "hsh018561-32-mh1",
+      "original_sku": "hsh018561-lvru6gp",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "OmicsLink\u2122 shRNA Clone: shRNA clone set against Human XPO1 (NM_003400.3)(Includes free control)"
+    },
+    {
+      "sku": "hsh018561",
+      "sentence_sku": "hsh018561-33-mh1",
+      "original_sku": "hsh018561-lvru6gp",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "OmicsLink\u2122 shRNA Clone: shRNA clone set against Human XPO1 (NM_003400.3)(Includes free control)"
+    }
+  ],
+  "146": [
+    {
+      "sku": "ez037",
+      "score": 0.67,
+      "type": "special word",
+      "phrase": "pez-lv151 pez-mcherry pez-eyfp vector",
+      "product_name": "pEZ-Lv151 expression vector for LxR recombination cloning (lentiviral)"
+    }
+  ],
+  "147": [
+    {
+      "sku": "qp057",
+      "score": 0.99,
+      "type": "trademark",
+      "phrase": "rna reverse cdna surescript first-strand cdna synthesis kit",
+      "product_name": "SureScript\u2122 First-Strand cDNA Synthesis Kit for gene qPCR array (60 RT reactions)"
+    },
+    {
+      "sku": "qp056",
+      "score": 0.99,
+      "type": "trademark",
+      "phrase": "rna reverse cdna surescript first-strand cdna synthesis kit",
+      "product_name": "SureScript\u2122 First-Strand cDNA Synthesis Kit for gene qPCR array (20 RT reactions)"
+    }
+  ],
+  "148": [
+    {
+      "sku": "hsh100211-lvru6gp",
+      "sentence_sku": "pp-hsh100211-lvru6gp",
+      "original_sku": "hsh100211-lvru6gp",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "OmicsLink\u2122 shRNA Clone: shRNA clone set against Human HLX (NM_021958.3)(Includes free control)"
+    },
+    {
+      "sku": "lp146-025",
+      "sentence_sku": "lp146-025",
+      "original_sku": "lp146-025",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "Negative Control-Lv201 Lentifect Purified Lentiviral Particles(25 \u00b5l x 1 vial)(Old cat # LPP-NEG-Lv201-025-C)"
+    }
+  ],
+  "149": [
+    {
+      "sku": "hprm72635-pg04",
+      "product_name": "GLuc-ON\u2122 Promoter Reporter Clones: Promoter reporter clone for Human UGT1A3(NM_019093)",
+      "score": 1.0,
+      "type": "manual"
+    },
+    {
+      "sku": "hprm30705-pg04",
+      "product_name": "GLuc-ON\u2122 Promoter Reporter Clones: Promoter reporter clone for Human CYP2C8(NM_000770)",
+      "score": 1.0,
+      "type": "manual"
+    }
+  ],
+  "150": [
+    {
+      "sku": "lf003",
+      "score": 0.8,
+      "type": "trademark",
+      "phrase": "luc-pair duo-luciferase assay kit 2.0",
+      "product_name": "Luc-Pair Duo-Luciferase Assay Kits 2.0 (1000rxns)"
+    },
+    {
+      "sku": "lf001",
+      "score": 0.8,
+      "type": "trademark",
+      "phrase": "luc-pair duo-luciferase assay kit 2.0",
+      "product_name": "Luc-Pair Duo-Luciferase Assay Kits 2.0 (100rxns)"
+    },
+    {
+      "sku": "lf002",
+      "score": 0.8,
+      "type": "trademark",
+      "phrase": "luc-pair duo-luciferase assay kit 2.0",
+      "product_name": "Luc-Pair Duo-Luciferase Assay Kits 2.0 (300rxns)"
+    }
+  ],
+  "153": [
+    {
+      "sku": "lf032",
+      "sentence_sku": "lf032",
+      "original_sku": "lf032",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "Secrete-Pair Dual Luminescence Assay Kit (300 rxns)"
+    }
+  ],
+  "155": [],
+  "156": [
+    {
+      "sku": "ex-t0588",
+      "sentence_sku": "ex-t0588-m56",
+      "original_sku": "ex-t0588-m35",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "OmicsLink\u2122 Expression-Ready ORF cDNA Clones: ORF expression clone for CDC42BPA(U59305.1)"
+    }
+  ],
+  "157": [
+    {
+      "sku": "ex-u0730-m35",
+      "product_name": "OmicsLink\u2122 Expression-Ready ORF cDNA Clones: ORF expression clone for SSX2IP(NM_001166417.2)",
+      "score": 1.0,
+      "type": "manual"
+    },
+    {
+      "sku": "ex-b5006-m35",
+      "product_name": "OmicsLink\u2122 Expression-Ready ORF cDNA Clones: ORF expression clone for SSX2IP(NM_001166295.2)",
+      "score": 1.0,
+      "type": "manual"
+    }
+  ],
+  "158": [
+    {
+      "sku": "qp001",
+      "sentence_sku": "qp001-01",
+      "original_sku": "qp001",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "All-in-One\u2122 qPCR Mix (200 qPCR reactions)"
+    }
+  ],
+  "159": [],
+  "160": [
+    {
+      "sku": "qp001",
+      "sentence_sku": "qp001",
+      "original_sku": "qp001",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "All-in-One\u2122 qPCR Mix (200 qPCR reactions)"
+    }
+  ],
+  "162": [
+    {
+      "sku": "ex-a8889",
+      "sentence_sku": "ex-a8889-lv201",
+      "original_sku": "ex-a8889-m35",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "OmicsLink\u2122 Expression-Ready ORF cDNA Clones: ORF expression clone for EPB41L4A(NM_022140.5)"
+    }
+  ],
+  "163": [],
+  "164": [
+    {
+      "sku": "qp057",
+      "score": 0.99,
+      "type": "trademark",
+      "phrase": "rna surescript first-strand cdna synthesis kit ins 20s reactions",
+      "product_name": "SureScript\u2122 First-Strand cDNA Synthesis Kit for gene qPCR array (60 RT reactions)"
+    },
+    {
+      "sku": "qp056",
+      "score": 0.99,
+      "type": "trademark",
+      "phrase": "rna surescript first-strand cdna synthesis kit ins 20s reactions",
+      "product_name": "SureScript\u2122 First-Strand cDNA Synthesis Kit for gene qPCR array (20 RT reactions)"
+    }
+  ],
+  "165": [
+    {
+      "sku": "qp118",
+      "product_name": "All-in-One\u2122 miRNA First-Strand cDNA Synthesis Kit 2.0 for miRNA qPCR Array\u00a0(60 RT reactions)",
+      "score": 1.0,
+      "type": "manual"
+    },
+    {
+      "sku": "qp117",
+      "product_name": "All-in-One\u2122 miRNA First-Strand cDNA Synthesis Kit 2.0 for miRNA qPCR Array(20 RT reactions)",
+      "score": 1.0,
+      "type": "manual"
+    }
+  ],
+  "166": [],
+  "167": [
+    {
+      "sku": "hsh156020-lvru6gp",
+      "score": 0.29,
+      "type": "special word",
+      "phrase": "kcnk3 lentiviral shrna vector",
+      "product_name": "OmicsLink\u2122 shRNA Clone: shRNA clone set against Human KCNK3 (NM_002246.3)(Includes free control)"
+    },
+    {
+      "sku": "hsh101393-lvru6gp",
+      "score": 0.29,
+      "type": "special word",
+      "phrase": "kcnk3 lentiviral shrna vector",
+      "product_name": "OmicsLink\u2122 shRNA Clone: shRNA clone set against Human KCNK3 (NM_002246.2)(Includes free control)"
+    }
+  ],
+  "168": [
+    {
+      "sku": "ex-e3659-m35",
+      "product_name": "OmicsLink\u2122 Expression-Ready ORF cDNA Clones: ORF expression clone for KDM5B(NM_001314042.2)",
+      "score": 1.0,
+      "type": "manual"
+    },
+    {
+      "sku": "ex-e2325-m35",
+      "product_name": "OmicsLink\u2122 Expression-Ready ORF cDNA Clones: ORF expression clone for AR(NM_000044.6)",
+      "score": 1.0,
+      "type": "manual"
+    }
+  ],
+  "170": [
+    {
+      "sku": "ez016",
+      "sentence_sku": "ez016",
+      "original_sku": "ez016",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "pEZ-Lv235 expression vector for LxR recombination cloning (lentiviral)"
+    }
+  ],
+  "171": [
+    {
+      "sku": "ef013",
+      "score": 0.99,
+      "type": "trademark",
+      "phrase": "cells endofectin max transfection reagent",
+      "product_name": "EndoFectin\u2122 Max transfection reagent (1ml)"
+    },
+    {
+      "sku": "ef014",
+      "score": 0.99,
+      "type": "trademark",
+      "phrase": "cells endofectin max transfection reagent",
+      "product_name": "EndoFectin\u2122 Max transfection reagent (3ml)"
+    }
+  ],
+  "172": [],
+  "174": [
+    {
+      "sku": "ef001",
+      "sentence_sku": "ef001",
+      "original_sku": "ef001",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "EndoFectin\u2122 Lenti transfection reagent (1ml)"
+    }
+  ],
+  "175": [
+    {
+      "sku": "lf033",
+      "product_name": "Secrete-Pair Dual Luminescence Assay Kit (1000 rxns)",
+      "score": 1.0,
+      "type": "manual"
+    }
+  ],
+  "176": [
+    {
+      "sku": "ex-a0079",
+      "sentence_sku": "ex-a0079-m12",
+      "original_sku": "ex-a0079-m35",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "OmicsLink\u2122 Expression-Ready ORF cDNA Clones: ORF expression clone for CXCR2(NM_001557.4)"
+    }
+  ],
+  "177": [
+    {
+      "sku": "lp502-100",
+      "product_name": "miRNA Scrambled Control-MR03 Lentiviral Particles(25 \u00b5l x 4 vials)(Old cat # LPP-CmiR0001-MR03-100-C)",
+      "score": 1.0,
+      "type": "manual"
+    },
+    {
+      "sku": "lp502-025",
+      "product_name": "miRNA Scrambled Control-MR03 Lentiviral Particles(25 \u00b5l x 1 vial)(Old cat # LPP-CmiR0001-MR03-025-C)",
+      "score": 1.0,
+      "type": "manual"
+    },
+    {
+      "sku": "hmir0720",
+      "sentence_sku": "hmir0720-mr03",
+      "original_sku": "hmir0720-mr03-10",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "MiExpress\u2122 Precursor miRNA Clone: Precursor miRNA expression clone for Human hsa-mir-2110"
+    },
+    {
+      "sku": "lt002",
+      "sentence_sku": "lt002",
+      "original_sku": "lt002",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "Lenti-Pac HIV Expression Packaging Kit (40 reactions)"
+    }
+  ],
+  "180": [
+    {
+      "sku": "lp146-100",
+      "sentence_sku": "lp146-100",
+      "original_sku": "lp146-100",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "Negative Control-Lv201 Lentifect Purified Lentiviral Particles (25 \u00b5l x 4 vials)(Old cat # LPP-NEG-Lv201-100-C)"
+    },
+    {
+      "sku": "qp020",
+      "sentence_sku": "qp020",
+      "original_sku": "qp020",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "RNAzol\u00ae RT RNA Isolation Reagent"
+    }
+  ],
+  "181": [
+    {
+      "sku": "qp056",
+      "sentence_sku": "qp056",
+      "original_sku": "qp056",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "SureScript\u2122 First-Strand cDNA Synthesis Kit for gene qPCR array (20 RT reactions)"
+    }
+  ],
+  "182": [
+    {
+      "sku": "qp031",
+      "sentence_sku": "qp031",
+      "original_sku": "qp031",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "BlazeTaq\u2122 SYBR\u00ae Green qPCR mix 2.0 (200 qPCR reactions)"
+    }
+  ],
+  "183": [
+    {
+      "sku": "lf006",
+      "score": 0.8,
+      "type": "trademark",
+      "phrase": "luc-pair duo-luciferase hs assay kit",
+      "product_name": "Luc-Pair Duo-Luciferase HS Assay Kits (1000rxns)"
+    },
+    {
+      "sku": "lf004",
+      "score": 0.8,
+      "type": "trademark",
+      "phrase": "luc-pair duo-luciferase hs assay kit",
+      "product_name": "Luc-Pair Duo-Luciferase HS Assay Kits (100rxns)"
+    },
+    {
+      "sku": "lf005",
+      "score": 0.8,
+      "type": "trademark",
+      "phrase": "luc-pair duo-luciferase hs assay kit",
+      "product_name": "Luc-Pair Duo-Luciferase HS Assay Kits (300rxns)"
+    }
+  ],
+  "184": [
+    {
+      "sku": "ic005",
+      "sentence_sku": "ic005",
+      "original_sku": "ic005",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "T7 endonuclease I assay kit, 50 rxns"
+    }
+  ],
+  "186": [
+    {
+      "sku": "lt002",
+      "score": 0.8,
+      "type": "trademark",
+      "phrase": "plasmid packaging plasmid lenti-pac lentivirus expression packaging kit",
+      "product_name": "Lenti-Pac HIV Expression Packaging Kit (40 reactions)"
+    },
+    {
+      "sku": "lt001",
+      "score": 0.8,
+      "type": "trademark",
+      "phrase": "plasmid packaging plasmid lenti-pac lentivirus expression packaging kit",
+      "product_name": "Lenti-Pac HIV Expression Packaging Kit (20 reactions)"
+    }
+  ],
+  "188": [
+    {
+      "sku": "ex-s0251-m35",
+      "product_name": "OmicsLink\u2122 Expression-Ready ORF cDNA Clones: ORF expression clone for SLC31A1(NM_001859.4)",
+      "score": 1.0,
+      "type": "manual"
+    },
+    {
+      "sku": "ex-y1899-m35",
+      "product_name": "OmicsLink\u2122 Expression-Ready ORF cDNA Clones: ORF expression clone for SLC31A1(BC061924.1)",
+      "score": 1.0,
+      "type": "manual"
+    }
+  ],
+  "191": [
+    {
+      "sku": "lf015",
+      "sentence_sku": "lf015",
+      "original_sku": "lf015",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "Luc-Pair Duo-Luciferase HT Assay Kits (100ml)"
+    },
+    {
+      "sku": "hcp288420",
+      "sentence_sku": "hcp288420-sg01-1-10",
+      "original_sku": "hcp288420-cg04-3-10",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "GeneHero\u2122 CRISPR-Cas9 sgRNA: sgRNA/Cas9 all-in-one expression clones targeting KRAS(NM_004985.4)"
+    }
+  ],
+  "193": [
+    {
+      "sku": "hprm69441-pg04",
+      "sentence_sku": "genecopoeia-hprm69441-pg04",
+      "original_sku": "hprm69441-pg04",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "GLuc-ON\u2122 Promoter Reporter Clones: Promoter reporter clone for Human ITGA5(NM_002205)"
+    },
+    {
+      "sku": "lf031",
+      "score": 0.99,
+      "type": "general",
+      "phrase": "secrete-pair dual luminescence assay kit",
+      "product_name": "Secrete-Pair Dual Luminescence Assay Kit (100 rxns)"
+    },
+    {
+      "sku": "lf033",
+      "score": 0.99,
+      "type": "general",
+      "phrase": "secrete-pair dual luminescence assay kit",
+      "product_name": "Secrete-Pair Dual Luminescence Assay Kit (1000 rxns)"
+    },
+    {
+      "sku": "lf032",
+      "score": 0.99,
+      "type": "general",
+      "phrase": "secrete-pair dual luminescence assay kit",
+      "product_name": "Secrete-Pair Dual Luminescence Assay Kit (300 rxns)"
+    }
+  ],
+  "199": [
+    {
+      "sku": "qp117",
+      "score": 0.86,
+      "type": "general",
+      "phrase": "all-in-one mirna first-strand cdna synthesis kit",
+      "product_name": "All-in-One\u2122 miRNA First-Strand cDNA Synthesis Kit 2.0 for miRNA qPCR Array(20 RT reactions)"
+    },
+    {
+      "sku": "qp118",
+      "score": 0.86,
+      "type": "general",
+      "phrase": "all-in-one mirna first-strand cdna synthesis kit",
+      "product_name": "All-in-One\u2122 miRNA First-Strand cDNA Synthesis Kit 2.0 for miRNA qPCR Array\u00a0(60 RT reactions)"
+    }
+  ],
+  "200": [
+    {
+      "sku": "qm046-b6",
+      "score": 0.71,
+      "type": "general",
+      "phrase": "pre human msc exosome mirna arrays",
+      "product_name": "miProfile\u2122 Human MSC exosome miRNA qPCR arrays(6 sets)"
+    },
+    {
+      "sku": "qm046-d6",
+      "score": 0.71,
+      "type": "general",
+      "phrase": "pre human msc exosome mirna arrays",
+      "product_name": "miProfile\u2122 Human MSC exosome miRNA qPCR arrays(6 sets)"
+    },
+    {
+      "sku": "qm046-c6",
+      "score": 0.71,
+      "type": "general",
+      "phrase": "pre human msc exosome mirna arrays",
+      "product_name": "miProfile\u2122 Human MSC exosome miRNA qPCR arrays(6 sets)"
+    },
+    {
+      "sku": "qm046-a6",
+      "score": 0.71,
+      "type": "general",
+      "phrase": "pre human msc exosome mirna arrays",
+      "product_name": "miProfile\u2122 Human MSC exosome miRNA qPCR arrays(6 sets)"
+    },
+    {
+      "sku": "qm046-e6",
+      "score": 0.71,
+      "type": "general",
+      "phrase": "pre human msc exosome mirna arrays",
+      "product_name": "miProfile\u2122 Human MSC exosome miRNA qPCR arrays(6 sets)"
+    }
+  ],
+  "201": [],
+  "202": [
+    {
+      "sku": "qp116",
+      "score": 0.67,
+      "type": "general",
+      "phrase": "all-in-one mirna rt-qpcr detection kit",
+      "product_name": "All-in-One\u2122 miRNA qRT-PCR Detection Kit 2.0* (60 RT and 600 qPCR reactions)(Old cat # QP016)"
+    },
+    {
+      "sku": "qp115",
+      "score": 0.67,
+      "type": "general",
+      "phrase": "all-in-one mirna rt-qpcr detection kit",
+      "product_name": "All-in-One\u2122 miRNA qRT-PCR Detection Kit 2.0* (20 RT and 200 qPCR reactions) (Old cat # QP015)"
+    }
+  ],
+  "203": [
+    {
+      "sku": "qp029",
+      "score": 0.67,
+      "type": "general",
+      "phrase": "mirna sequence universal adaptor reverse primer",
+      "product_name": "All-in-One\u2122 miRNA Universal Adaptor PCR Primer (50 \u00b5M ; 20 \u00b5l)"
+    }
+  ],
+  "204": [
+    {
+      "sku": "lt005",
+      "score": 0.8,
+      "type": "trademark",
+      "phrase": "lenti-pac hiv rt-qpcr titration kit",
+      "product_name": "Lenti-Pac HIV qRT-PCR Titration Kit (20 RT reactions, 50 PCR reactions)"
+    },
+    {
+      "sku": "lt006",
+      "score": 0.8,
+      "type": "trademark",
+      "phrase": "lenti-pac hiv rt-qpcr titration kit",
+      "product_name": "Lenti-Pac HIV qRT-PCR Titration Kit (40 RT reactions, 100 PCR reactions)"
+    }
+  ],
+  "205": [
+    {
+      "sku": "qp116",
+      "score": 0.67,
+      "type": "general",
+      "phrase": "control resistant hccs cell human hccs tissue non microarray expression cells qrt-pcr all-in-one mirna qrt-pcr kit control luciferase assay resistant control cells non tissue mir ins independent",
+      "product_name": "All-in-One\u2122 miRNA qRT-PCR Detection Kit 2.0* (60 RT and 600 qPCR reactions)(Old cat # QP016)"
+    },
+    {
+      "sku": "qp115",
+      "score": 0.67,
+      "type": "general",
+      "phrase": "control resistant hccs cell human hccs tissue non microarray expression cells qrt-pcr all-in-one mirna qrt-pcr kit control luciferase assay resistant control cells non tissue mir ins independent",
+      "product_name": "All-in-One\u2122 miRNA qRT-PCR Detection Kit 2.0* (20 RT and 200 qPCR reactions) (Old cat # QP015)"
+    }
+  ],
+  "206": [
+    {
+      "sku": "ex-h3307",
+      "sentence_sku": "ex-h3307-lv105",
+      "original_sku": "ex-h3307-m35",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "OmicsLink\u2122 Expression-Ready ORF cDNA Clones: ORF expression clone for BCL2(NM_000633.3)"
+    }
+  ],
+  "208": [
+    {
+      "sku": "qp117",
+      "score": 0.86,
+      "type": "general",
+      "phrase": "mirna all-in-one mirna first-strand cdna synthesis kit",
+      "product_name": "All-in-One\u2122 miRNA First-Strand cDNA Synthesis Kit 2.0 for miRNA qPCR Array(20 RT reactions)"
+    },
+    {
+      "sku": "qp118",
+      "score": 0.86,
+      "type": "general",
+      "phrase": "mirna all-in-one mirna first-strand cdna synthesis kit",
+      "product_name": "All-in-One\u2122 miRNA First-Strand cDNA Synthesis Kit 2.0 for miRNA qPCR Array\u00a0(60 RT reactions)"
+    }
+  ],
+  "209": [
+    {
+      "sku": "qm050",
+      "sentence_sku": "qm050",
+      "original_sku": "qm050-e1",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "miProfile\u2122 Human cancer exosome miRNA qPCR array(1 set)"
+    }
+  ],
+  "210": [],
+  "211": [],
+  "213": [
+    {
+      "sku": "ef013",
+      "score": 0.5,
+      "type": "trademark",
+      "phrase": "endofectin max",
+      "product_name": "EndoFectin\u2122 Max transfection reagent (1ml)"
+    },
+    {
+      "sku": "ef014",
+      "score": 0.5,
+      "type": "trademark",
+      "phrase": "endofectin max",
+      "product_name": "EndoFectin\u2122 Max transfection reagent (3ml)"
+    }
+  ],
+  "214": [
+    {
+      "sku": "lf031",
+      "score": 0.8,
+      "type": "general",
+      "phrase": "dual-secreted luciferase reporter system secrete-pair dual luminescence assay",
+      "product_name": "Secrete-Pair Dual Luminescence Assay Kit (100 rxns)"
+    },
+    {
+      "sku": "lf033",
+      "score": 0.8,
+      "type": "general",
+      "phrase": "dual-secreted luciferase reporter system secrete-pair dual luminescence assay",
+      "product_name": "Secrete-Pair Dual Luminescence Assay Kit (1000 rxns)"
+    },
+    {
+      "sku": "lf032",
+      "score": 0.8,
+      "type": "general",
+      "phrase": "dual-secreted luciferase reporter system secrete-pair dual luminescence assay",
+      "product_name": "Secrete-Pair Dual Luminescence Assay Kit (300 rxns)"
+    }
+  ],
+  "215": [],
+  "218": [
+    {
+      "sku": "lf031",
+      "score": 0.99,
+      "type": "general",
+      "phrase": "secrete-pair dual luminescence assay kit",
+      "product_name": "Secrete-Pair Dual Luminescence Assay Kit (100 rxns)"
+    },
+    {
+      "sku": "lf033",
+      "score": 0.99,
+      "type": "general",
+      "phrase": "secrete-pair dual luminescence assay kit",
+      "product_name": "Secrete-Pair Dual Luminescence Assay Kit (1000 rxns)"
+    },
+    {
+      "sku": "lf032",
+      "score": 0.99,
+      "type": "general",
+      "phrase": "secrete-pair dual luminescence assay kit",
+      "product_name": "Secrete-Pair Dual Luminescence Assay Kit (300 rxns)"
+    }
+  ],
+  "219": [],
+  "221": [
+    {
+      "sku": "lf001",
+      "sentence_sku": "lf001",
+      "original_sku": "lf001",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "Luc-Pair Duo-Luciferase Assay Kits 2.0 (100rxns)"
+    }
+  ],
+  "223": [
+    {
+      "sku": "lf031",
+      "score": 0.99,
+      "type": "general",
+      "phrase": "secrete-pair dual luminescence assay kit",
+      "product_name": "Secrete-Pair Dual Luminescence Assay Kit (100 rxns)"
+    },
+    {
+      "sku": "lf033",
+      "score": 0.99,
+      "type": "general",
+      "phrase": "secrete-pair dual luminescence assay kit",
+      "product_name": "Secrete-Pair Dual Luminescence Assay Kit (1000 rxns)"
+    },
+    {
+      "sku": "lf032",
+      "score": 0.99,
+      "type": "general",
+      "phrase": "secrete-pair dual luminescence assay kit",
+      "product_name": "Secrete-Pair Dual Luminescence Assay Kit (300 rxns)"
+    }
+  ],
+  "224": [
+    {
+      "sku": "ex-e3909-m35",
+      "product_name": "OmicsLink\u2122 Expression-Ready ORF cDNA Clones: ORF expression clone for ADAMTS18(NM_199355.4)",
+      "score": 1.0,
+      "type": "manual"
+    }
+  ],
+  "225": [],
+  "228": [
+    {
+      "sku": "ex-a1755",
+      "sentence_sku": "ex-a1755-m39",
+      "original_sku": "ex-a1755-m35",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "OmicsLink\u2122 Expression-Ready ORF cDNA Clones: ORF expression clone for MLXIP(NM_014938.6)"
+    },
+    {
+      "sku": "ex-m0226",
+      "sentence_sku": "ex-m0226-m39",
+      "original_sku": "ex-m0226-m35",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "OmicsLink\u2122 Expression-Ready ORF cDNA Clones: ORF expression clone for TXNIP(NM_006472.6)"
+    }
+  ],
+  "229": [
+    {
+      "sku": "qp056",
+      "sentence_sku": "qp056",
+      "original_sku": "qp056",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "SureScript\u2122 First-Strand cDNA Synthesis Kit for gene qPCR array (20 RT reactions)"
+    }
+  ],
+  "230": [
+    {
+      "sku": "qp031",
+      "sentence_sku": "qp031",
+      "original_sku": "qp031",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "BlazeTaq\u2122 SYBR\u00ae Green qPCR mix 2.0 (200 qPCR reactions)"
+    }
+  ],
+  "234": [
+    {
+      "sku": "hprm44457",
+      "sentence_sku": "hprm44457-lvpg04",
+      "original_sku": "hprm44457-pg04",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "GLuc-ON\u2122 Promoter Reporter Clones: Promoter reporter clone for Human PML(NM_002675)"
+    }
+  ],
+  "235": [
+    {
+      "sku": "lf031",
+      "sentence_sku": "lf031",
+      "original_sku": "lf031",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "Secrete-Pair Dual Luminescence Assay Kit (100 rxns)"
+    }
+  ],
+  "237": [],
+  "238": [],
+  "240": [
+    {
+      "sku": "hsh088534",
+      "sentence_sku": "hsh088534",
+      "original_sku": "hsh088534-lvru6gp",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "OmicsLink\u2122 shRNA Clone: shRNA clone set against Human MYC (NM_002467.5)(Includes free control)"
+    }
+  ],
+  "241": [],
+  "242": [],
+  "243": [
+    {
+      "sku": "qp005",
+      "score": 0.99,
+      "type": "general",
+      "phrase": "ins all-in-one qpcr mix",
+      "product_name": "All-in-One\u2122 qPCR Mix (4000 qPCR reactions)"
+    },
+    {
+      "sku": "qp002",
+      "score": 0.99,
+      "type": "general",
+      "phrase": "ins all-in-one qpcr mix",
+      "product_name": "All-in-One\u2122 qPCR Mix (600 qPCR reactions)"
+    },
+    {
+      "sku": "qp004",
+      "score": 0.99,
+      "type": "general",
+      "phrase": "ins all-in-one qpcr mix",
+      "product_name": "All-in-One\u2122 qPCR Mix (1000 qPCR reactions)"
+    },
+    {
+      "sku": "qp001",
+      "score": 0.99,
+      "type": "general",
+      "phrase": "ins all-in-one qpcr mix",
+      "product_name": "All-in-One\u2122 qPCR Mix (200 qPCR reactions)"
+    }
+  ],
+  "244": [
+    {
+      "sku": "ex-b0072",
+      "sentence_sku": "ex-b0072-m39",
+      "original_sku": "ex-b0072-m35",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "OmicsLink\u2122 Expression-Ready ORF cDNA Clones: ORF expression clone for HMGB1(NM_001313893.1)"
+    }
+  ],
+  "245": [
+    {
+      "sku": "qp057",
+      "score": 0.8,
+      "type": "general",
+      "phrase": "cdna synthesis first-strand cdna synthesis kit",
+      "product_name": "SureScript\u2122 First-Strand cDNA Synthesis Kit for gene qPCR array (60 RT reactions)"
+    },
+    {
+      "sku": "qp056",
+      "score": 0.8,
+      "type": "general",
+      "phrase": "cdna synthesis first-strand cdna synthesis kit",
+      "product_name": "SureScript\u2122 First-Strand cDNA Synthesis Kit for gene qPCR array (20 RT reactions)"
+    }
+  ],
+  "246": [
+    {
+      "sku": "qp116",
+      "score": 0.83,
+      "type": "general",
+      "phrase": "rna reverse amplified all-in-one mirna qrt-pcr detection kit",
+      "product_name": "All-in-One\u2122 miRNA qRT-PCR Detection Kit 2.0* (60 RT and 600 qPCR reactions)(Old cat # QP016)"
+    },
+    {
+      "sku": "qp115",
+      "score": 0.83,
+      "type": "general",
+      "phrase": "rna reverse amplified all-in-one mirna qrt-pcr detection kit",
+      "product_name": "All-in-One\u2122 miRNA qRT-PCR Detection Kit 2.0* (20 RT and 200 qPCR reactions) (Old cat # QP015)"
+    }
+  ],
+  "247": [
+    {
+      "sku": "lf005",
+      "score": 0.8,
+      "type": "trademark",
+      "phrase": "lysis buffer ins luc-pair duo-luciferase hs assay kit dual luciferase assay",
+      "product_name": "Luc-Pair Duo-Luciferase HS Assay Kits (300rxns)"
+    },
+    {
+      "sku": "lf006",
+      "score": 0.8,
+      "type": "trademark",
+      "phrase": "lysis buffer ins luc-pair duo-luciferase hs assay kit dual luciferase assay",
+      "product_name": "Luc-Pair Duo-Luciferase HS Assay Kits (1000rxns)"
+    },
+    {
+      "sku": "lf004",
+      "score": 0.8,
+      "type": "trademark",
+      "phrase": "lysis buffer ins luc-pair duo-luciferase hs assay kit dual luciferase assay",
+      "product_name": "Luc-Pair Duo-Luciferase HS Assay Kits (100rxns)"
+    }
+  ],
+  "248": [],
+  "249": [
+    {
+      "sku": "ef002",
+      "score": 0.75,
+      "type": "trademark",
+      "phrase": "endofectin lenti reagent",
+      "product_name": "EndoFectin\u2122 Lenti transfection reagent (3ml)"
+    },
+    {
+      "sku": "ef001",
+      "score": 0.75,
+      "type": "trademark",
+      "phrase": "endofectin lenti reagent",
+      "product_name": "EndoFectin\u2122 Lenti transfection reagent (1ml)"
+    }
+  ],
+  "250": [
+    {
+      "sku": "ex-t3417",
+      "sentence_sku": "ex-t3417-m06",
+      "original_sku": "ex-t3417-m35",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "OmicsLink\u2122 Expression-Ready ORF cDNA Clones: ORF expression clone for MRGPRX2(NM_001303615.2)"
+    }
+  ],
+  "251": [
+    {
+      "sku": "ex-a2408-m35",
+      "product_name": "OmicsLink\u2122 Expression-Ready ORF cDNA Clones: ORF expression clone for SPP1(NM_001251830.2)",
+      "score": 1.0,
+      "type": "manual"
+    },
+    {
+      "sku": "ex-z3021-m35",
+      "product_name": "OmicsLink\u2122 Expression-Ready ORF cDNA Clones: ORF expression clone for CD44(NM_000610.4)",
+      "score": 1.0,
+      "type": "manual"
+    },
+    {
+      "sku": "ex-z4808-m35",
+      "product_name": "OmicsLink\u2122 Expression-Ready ORF cDNA Clones: ORF expression clone for RELA(NM_021975.4)",
+      "score": 1.0,
+      "type": "manual"
+    }
+  ],
+  "252": [],
+  "253": [
+    {
+      "sku": "qp116",
+      "score": 0.99,
+      "type": "general",
+      "phrase": "all-in-one mirna qrt-pcr detection kit 2.0",
+      "product_name": "All-in-One\u2122 miRNA qRT-PCR Detection Kit 2.0* (60 RT and 600 qPCR reactions)(Old cat # QP016)"
+    },
+    {
+      "sku": "qp115",
+      "score": 0.99,
+      "type": "general",
+      "phrase": "all-in-one mirna qrt-pcr detection kit 2.0",
+      "product_name": "All-in-One\u2122 miRNA qRT-PCR Detection Kit 2.0* (20 RT and 200 qPCR reactions) (Old cat # QP015)"
+    }
+  ],
+  "255": [
+    {
+      "sku": "hmit149101-mt05",
+      "product_name": "miTarget\u2122 3\u2032 UTR miRNA Target Clones: miRNA 3\u00b4UTR target expression clone for Human ABL2 (NM_005158.5)",
+      "score": 1.0,
+      "type": "manual"
+    }
+  ],
+  "256": [
+    {
+      "sku": "qp057",
+      "product_name": "SureScript\u2122 First-Strand cDNA Synthesis Kit for gene qPCR array (60 RT reactions)",
+      "score": 1.0,
+      "type": "manual"
+    },
+    {
+      "sku": "qp056",
+      "product_name": "SureScript\u2122 First-Strand cDNA Synthesis Kit for gene qPCR array (20 RT reactions)",
+      "score": 1.0,
+      "type": "manual"
+    }
+  ],
+  "257": [
+    {
+      "sku": "qp044",
+      "product_name": "BlazeTaq\u2122 SYBR\u00ae Green qPCR mix 2.0 (without ROX) (1000 qPCR reactions)",
+      "score": 1.0,
+      "type": "manual"
+    },
+    {
+      "sku": "qp042",
+      "product_name": "BlazeTaq\u2122 SYBR\u00ae Green qPCR mix 2.0 (without ROX) (600 qPCR reactions)",
+      "score": 1.0,
+      "type": "manual"
+    },
+    {
+      "sku": "qp041",
+      "product_name": "BlazeTaq\u2122 SYBR\u00ae Green qPCR mix 2.0 (without ROX) (200 qPCR reactions)",
+      "score": 1.0,
+      "type": "manual"
+    },
+    {
+      "sku": "qp034",
+      "product_name": "BlazeTaq\u2122 SYBR\u00ae Green qPCR mix 2.0 (1000 qPCR reactions)",
+      "score": 1.0,
+      "type": "manual"
+    },
+    {
+      "sku": "qp032",
+      "product_name": "BlazeTaq\u2122 SYBR\u00ae Green qPCR mix 2.0 (600 qPCR reactions)",
+      "score": 1.0,
+      "type": "manual"
+    },
+    {
+      "sku": "qp031",
+      "product_name": "BlazeTaq\u2122 SYBR\u00ae Green qPCR mix 2.0 (200 qPCR reactions)",
+      "score": 1.0,
+      "type": "manual"
+    }
+  ],
+  "261": [
+    {
+      "sku": "qp118",
+      "product_name": "All-in-One\u2122 miRNA First-Strand cDNA Synthesis Kit 2.0 for miRNA qPCR Array\u00a0(60 RT reactions)",
+      "score": 1.0,
+      "type": "manual"
+    },
+    {
+      "sku": "qp117",
+      "product_name": "All-in-One\u2122 miRNA First-Strand cDNA Synthesis Kit 2.0 for miRNA qPCR Array(20 RT reactions)",
+      "score": 1.0,
+      "type": "manual"
+    }
+  ],
+  "262": [],
+  "263": [
+    {
+      "sku": "ex-v0006",
+      "sentence_sku": "ex-v0006-m14",
+      "original_sku": "ex-v0006-m35",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "OmicsLink\u2122 Expression-Ready ORF cDNA Clones: ORF expression clone for RNF26(NM_032015.5)"
+    }
+  ],
+  "265": [
+    {
+      "sku": "ez006",
+      "score": 0.67,
+      "type": "special word",
+      "phrase": "plasmid vector pez-lv201 lentiviral transfection",
+      "product_name": "pEZ-Lv201 expression vector for L x R recombination cloning (lentiviral)"
+    }
+  ],
+  "266": [
+    {
+      "sku": "hmit130575",
+      "sentence_sku": "hmit130575-mt06",
+      "original_sku": "hmit130575-mt05",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "miTarget\u2122 3\u2032 UTR miRNA Target Clones: miRNA 3\u00b4UTR target expression clone for Human MYB (NM_001130173.2)"
+    }
+  ],
+  "267": [
+    {
+      "sku": "ex-h5214-m35",
+      "product_name": "OmicsLink\u2122 Expression-Ready ORF cDNA Clones: ORF expression clone for RUNX2(NM_001024630.4)",
+      "score": 1.0,
+      "type": "manual"
+    }
+  ],
+  "268": [],
+  "270": [
+    {
+      "sku": "zx003",
+      "product_name": "Fireflyer luciferase (hLuc) and Renillar luciferase (Rluc) reporter vector ",
+      "score": 1.0,
+      "type": "manual"
+    }
+  ],
+  "271": [
+    {
+      "sku": "lf004",
+      "sentence_sku": "lf004",
+      "original_sku": "lf004",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "Luc-Pair Duo-Luciferase HS Assay Kits (100rxns)"
+    }
+  ],
+  "272": [
+    {
+      "sku": "ex-y4308",
+      "sentence_sku": "ex-y4308-lv137",
+      "original_sku": "ex-y4308-m35",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "OmicsLink\u2122 Expression-Ready ORF cDNA Clones: ORF expression clone for OSBPL10(NM_017784.5)"
+    }
+  ],
+  "273": [
+    {
+      "sku": "ex-g0543",
+      "sentence_sku": "ex-g0543-m29",
+      "original_sku": "ex-g0543-m35",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "OmicsLink\u2122 Expression-Ready ORF cDNA Clones: ORF expression clone for SNCA(NM_001146055.2)"
+    }
+  ],
+  "274": [
+    {
+      "sku": "ef014",
+      "product_name": "EndoFectin\u2122 Max transfection reagent (3ml)",
+      "score": 1.0,
+      "type": "manual"
+    },
+    {
+      "sku": "ef013",
+      "product_name": "EndoFectin\u2122 Max transfection reagent (1ml)",
+      "score": 1.0,
+      "type": "manual"
+    }
+  ],
+  "275": [],
+  "276": [
+    {
+      "sku": "ef013",
+      "score": 0.5,
+      "type": "trademark",
+      "phrase": "endofectin max",
+      "product_name": "EndoFectin\u2122 Max transfection reagent (1ml)"
+    },
+    {
+      "sku": "ef014",
+      "score": 0.5,
+      "type": "trademark",
+      "phrase": "endofectin max",
+      "product_name": "EndoFectin\u2122 Max transfection reagent (3ml)"
+    }
+  ],
+  "277": [],
+  "280": [
+    {
+      "sku": "hprm53326-pg04",
+      "sentence_sku": "hprm53326-pg04",
+      "original_sku": "hprm53326-pg04",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "GLuc-ON\u2122 Promoter Reporter Clones: Promoter reporter clone for Human RFX6(NM_173560)"
+    },
+    {
+      "sku": "hprm69533-pg04",
+      "sentence_sku": "hprm69533-pg04",
+      "original_sku": "hprm69533-pg04",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "GLuc-ON\u2122 Promoter Reporter Clones: Promoter reporter clone for Human NEUROD1(NM_002500)"
+    },
+    {
+      "sku": "hprm30189-pg04",
+      "sentence_sku": "hprm30189-pg04",
+      "original_sku": "hprm30189-pg04",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "GLuc-ON\u2122 Promoter Reporter Clones: Promoter reporter clone for Human INS(NM_000207)"
+    }
+  ],
+  "281": [
+    {
+      "sku": "lf031",
+      "score": 0.99,
+      "type": "general",
+      "phrase": "secrete-pair dual luminescence assay kit",
+      "product_name": "Secrete-Pair Dual Luminescence Assay Kit (100 rxns)"
+    },
+    {
+      "sku": "lf033",
+      "score": 0.99,
+      "type": "general",
+      "phrase": "secrete-pair dual luminescence assay kit",
+      "product_name": "Secrete-Pair Dual Luminescence Assay Kit (1000 rxns)"
+    },
+    {
+      "sku": "lf032",
+      "score": 0.99,
+      "type": "general",
+      "phrase": "secrete-pair dual luminescence assay kit",
+      "product_name": "Secrete-Pair Dual Luminescence Assay Kit (300 rxns)"
+    }
+  ],
+  "282": [
+    {
+      "sku": "lp743-025",
+      "product_name": "SV40 large T antigen Purified Lentifect\u2122 Lentiviral Particles with puromycin marker (25 \u00b5l x 1 vial) (old cat# LPP-SV40LT-Lv156-025-C)",
+      "score": 1.0,
+      "type": "manual"
+    },
+    {
+      "sku": "lp743-100",
+      "product_name": "SV40 large T antigen Purified Lentifect\u2122 Lentiviral Particles with puromycin marker (25 \u00b5l x 4 vial) (old cat# LPP-SV40LT-Lv156-100-C)",
+      "score": 1.0,
+      "type": "manual"
+    }
+  ],
+  "284": [
+    {
+      "sku": "qp057",
+      "product_name": "SureScript\u2122 First-Strand cDNA Synthesis Kit for gene qPCR array (60 RT reactions)",
+      "score": 1.0,
+      "type": "manual"
+    },
+    {
+      "sku": "qp056",
+      "product_name": "SureScript\u2122 First-Strand cDNA Synthesis Kit for gene qPCR array (20 RT reactions)",
+      "score": 1.0,
+      "type": "manual"
+    }
+  ],
+  "285": [
+    {
+      "sku": "qp044",
+      "product_name": "BlazeTaq\u2122 SYBR\u00ae Green qPCR mix 2.0 (without ROX) (1000 qPCR reactions)",
+      "score": 1.0,
+      "type": "manual"
+    },
+    {
+      "sku": "qp042",
+      "product_name": "BlazeTaq\u2122 SYBR\u00ae Green qPCR mix 2.0 (without ROX) (600 qPCR reactions)",
+      "score": 1.0,
+      "type": "manual"
+    },
+    {
+      "sku": "qp041",
+      "product_name": "BlazeTaq\u2122 SYBR\u00ae Green qPCR mix 2.0 (without ROX) (200 qPCR reactions)",
+      "score": 1.0,
+      "type": "manual"
+    },
+    {
+      "sku": "qp034",
+      "product_name": "BlazeTaq\u2122 SYBR\u00ae Green qPCR mix 2.0 (1000 qPCR reactions)",
+      "score": 1.0,
+      "type": "manual"
+    },
+    {
+      "sku": "qp032",
+      "product_name": "BlazeTaq\u2122 SYBR\u00ae Green qPCR mix 2.0 (600 qPCR reactions)",
+      "score": 1.0,
+      "type": "manual"
+    },
+    {
+      "sku": "qp031",
+      "product_name": "BlazeTaq\u2122 SYBR\u00ae Green qPCR mix 2.0 (200 qPCR reactions)",
+      "score": 1.0,
+      "type": "manual"
+    }
+  ],
+  "286": [
+    {
+      "sku": "ex-q0192-m35",
+      "product_name": "OmicsLink\u2122 Expression-Ready ORF cDNA Clones: ORF expression clone for UPP1(NM_003364.4)",
+      "score": 1.0,
+      "type": "manual"
+    },
+    {
+      "sku": "hsh162659-lvru6gp",
+      "product_name": "OmicsLink\u2122 shRNA Clone: shRNA clone set against Human UPP1 (NM_003364.4)(Includes free control)",
+      "score": 1.0,
+      "type": "manual"
+    }
+  ],
+  "287": [
+    {
+      "sku": "qp118",
+      "product_name": "All-in-One\u2122 miRNA First-Strand cDNA Synthesis Kit 2.0 for miRNA qPCR Array\u00a0(60 RT reactions)",
+      "score": 1.0,
+      "type": "manual"
+    },
+    {
+      "sku": "qp117",
+      "product_name": "All-in-One\u2122 miRNA First-Strand cDNA Synthesis Kit 2.0 for miRNA qPCR Array(20 RT reactions)",
+      "score": 1.0,
+      "type": "manual"
+    },
+    {
+      "sku": "qp116",
+      "score": 0.83,
+      "type": "general",
+      "phrase": "all-in-one mirna qrt-pcr detection kit",
+      "product_name": "All-in-One\u2122 miRNA qRT-PCR Detection Kit 2.0* (60 RT and 600 qPCR reactions)(Old cat # QP016)"
+    },
+    {
+      "sku": "qp115",
+      "score": 0.83,
+      "type": "general",
+      "phrase": "all-in-one mirna qrt-pcr detection kit",
+      "product_name": "All-in-One\u2122 miRNA qRT-PCR Detection Kit 2.0* (20 RT and 200 qPCR reactions) (Old cat # QP015)"
+    }
+  ],
+  "288": [],
+  "289": [
+    {
+      "sku": "qp057",
+      "score": 0.99,
+      "type": "trademark",
+      "phrase": "rna reverse cdna surescript first-strand cdna synthesis kit",
+      "product_name": "SureScript\u2122 First-Strand cDNA Synthesis Kit for gene qPCR array (60 RT reactions)"
+    },
+    {
+      "sku": "qp056",
+      "score": 0.99,
+      "type": "trademark",
+      "phrase": "rna reverse cdna surescript first-strand cdna synthesis kit",
+      "product_name": "SureScript\u2122 First-Strand cDNA Synthesis Kit for gene qPCR array (20 RT reactions)"
+    }
+  ],
+  "290": [
+    {
+      "sku": "qp020",
+      "score": 0.99,
+      "type": "trademark",
+      "phrase": "rnazol rt rna isolation reagent",
+      "product_name": "RNAzol\u00ae RT RNA Isolation Reagent"
+    }
+  ],
+  "291": [
+    {
+      "sku": "qp117",
+      "score": 0.86,
+      "type": "general",
+      "phrase": "cdna all-in-one mirna first-strand cdna synthesis kit",
+      "product_name": "All-in-One\u2122 miRNA First-Strand cDNA Synthesis Kit 2.0 for miRNA qPCR Array(20 RT reactions)"
+    },
+    {
+      "sku": "qp118",
+      "score": 0.86,
+      "type": "general",
+      "phrase": "cdna all-in-one mirna first-strand cdna synthesis kit",
+      "product_name": "All-in-One\u2122 miRNA First-Strand cDNA Synthesis Kit 2.0 for miRNA qPCR Array\u00a0(60 RT reactions)"
+    }
+  ],
+  "292": [
+    {
+      "sku": "qp116",
+      "product_name": "All-in-One\u2122 miRNA qRT-PCR Detection Kit 2.0* (60 RT and 600 qPCR reactions)(Old cat # QP016)",
+      "score": 1.0,
+      "type": "manual"
+    },
+    {
+      "sku": "qp115",
+      "product_name": "All-in-One\u2122 miRNA qRT-PCR Detection Kit 2.0* (20 RT and 200 qPCR reactions) (Old cat # QP015)",
+      "score": 1.0,
+      "type": "manual"
+    }
+  ],
+  "293": [
+    {
+      "sku": "qp020",
+      "score": 0.6,
+      "type": "trademark",
+      "phrase": "rnazol rt reagent",
+      "product_name": "RNAzol\u00ae RT RNA Isolation Reagent"
+    }
+  ],
+  "294": [
+    {
+      "sku": "ef002",
+      "score": 0.99,
+      "type": "trademark",
+      "phrase": "cells endofectin lenti transfection reagent ins",
+      "product_name": "EndoFectin\u2122 Lenti transfection reagent (3ml)"
+    },
+    {
+      "sku": "ef001",
+      "score": 0.99,
+      "type": "trademark",
+      "phrase": "cells endofectin lenti transfection reagent ins",
+      "product_name": "EndoFectin\u2122 Lenti transfection reagent (1ml)"
+    }
+  ],
+  "295": [
+    {
+      "sku": "qp117",
+      "score": 0.86,
+      "type": "general",
+      "phrase": "all-in-one mirna first-strand cdna synthesis kit mirna qpcr kit",
+      "product_name": "All-in-One\u2122 miRNA First-Strand cDNA Synthesis Kit 2.0 for miRNA qPCR Array(20 RT reactions)"
+    },
+    {
+      "sku": "qp118",
+      "score": 0.86,
+      "type": "general",
+      "phrase": "all-in-one mirna first-strand cdna synthesis kit mirna qpcr kit",
+      "product_name": "All-in-One\u2122 miRNA First-Strand cDNA Synthesis Kit 2.0 for miRNA qPCR Array\u00a0(60 RT reactions)"
+    }
+  ],
+  "296": [
+    {
+      "sku": "qp005",
+      "score": 0.99,
+      "type": "general",
+      "phrase": "all-in-one qpcr mix",
+      "product_name": "All-in-One\u2122 qPCR Mix (4000 qPCR reactions)"
+    },
+    {
+      "sku": "qp002",
+      "score": 0.99,
+      "type": "general",
+      "phrase": "all-in-one qpcr mix",
+      "product_name": "All-in-One\u2122 qPCR Mix (600 qPCR reactions)"
+    },
+    {
+      "sku": "qp004",
+      "score": 0.99,
+      "type": "general",
+      "phrase": "all-in-one qpcr mix",
+      "product_name": "All-in-One\u2122 qPCR Mix (1000 qPCR reactions)"
+    },
+    {
+      "sku": "qp001",
+      "score": 0.99,
+      "type": "general",
+      "phrase": "all-in-one qpcr mix",
+      "product_name": "All-in-One\u2122 qPCR Mix (200 qPCR reactions)"
+    }
+  ],
+  "297": [
+    {
+      "sku": "hprm54430",
+      "sentence_sku": "hprm54430-lvpg04",
+      "original_sku": "hprm54430-pg04",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "GLuc-ON\u2122 Promoter Reporter Clones: Promoter reporter clone for Human KEAP1(NM_203500)"
+    }
+  ],
+  "298": [
+    {
+      "sku": "lf032",
+      "sentence_sku": "lf032",
+      "original_sku": "lf032",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "Secrete-Pair Dual Luminescence Assay Kit (300 rxns)"
+    }
+  ],
+  "299": [
+    {
+      "sku": "qp057",
+      "score": 0.99,
+      "type": "trademark",
+      "phrase": "surescript first-strand cdna synthesis kit",
+      "product_name": "SureScript\u2122 First-Strand cDNA Synthesis Kit for gene qPCR array (60 RT reactions)"
+    },
+    {
+      "sku": "qp056",
+      "score": 0.99,
+      "type": "trademark",
+      "phrase": "surescript first-strand cdna synthesis kit",
+      "product_name": "SureScript\u2122 First-Strand cDNA Synthesis Kit for gene qPCR array (20 RT reactions)"
+    }
+  ],
+  "300": [
+    {
+      "sku": "qp031",
+      "score": 0.83,
+      "type": "trademark",
+      "phrase": "ca blazetaq sybr green qpcr mix",
+      "product_name": "BlazeTaq\u2122 SYBR\u00ae Green qPCR mix 2.0 (200 qPCR reactions)"
+    },
+    {
+      "sku": "qp032",
+      "score": 0.83,
+      "type": "trademark",
+      "phrase": "ca blazetaq sybr green qpcr mix",
+      "product_name": "BlazeTaq\u2122 SYBR\u00ae Green qPCR mix 2.0 (600 qPCR reactions)"
+    },
+    {
+      "sku": "qp034",
+      "score": 0.83,
+      "type": "trademark",
+      "phrase": "ca blazetaq sybr green qpcr mix",
+      "product_name": "BlazeTaq\u2122 SYBR\u00ae Green qPCR mix 2.0 (1000 qPCR reactions)"
+    }
+  ],
+  "301": [
+    {
+      "sku": "ef001",
+      "sentence_sku": "ef001",
+      "original_sku": "ef001",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "EndoFectin\u2122 Lenti transfection reagent (1ml)"
+    }
+  ],
+  "302": [
+    {
+      "sku": "lp772-025",
+      "sentence_sku": "lp772-025",
+      "original_sku": "lp772-025",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "CD63 Lentifect\u2122 Purified Lentiviral Particles (25 \u00b5l x 1 vial)"
+    }
+  ],
+  "303": [
+    {
+      "sku": "ef014",
+      "sentence_sku": "ef014",
+      "original_sku": "ef014",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "EndoFectin\u2122 Max transfection reagent (3ml)"
+    }
+  ],
+  "304": [],
+  "306": [],
+  "307": [],
+  "308": [],
+  "310": [],
+  "312": [
+    {
+      "sku": "ef013",
+      "score": 0.99,
+      "type": "trademark",
+      "phrase": "endofectin max transfection reagent",
+      "product_name": "EndoFectin\u2122 Max transfection reagent (1ml)"
+    },
+    {
+      "sku": "ef014",
+      "score": 0.99,
+      "type": "trademark",
+      "phrase": "endofectin max transfection reagent",
+      "product_name": "EndoFectin\u2122 Max transfection reagent (3ml)"
+    }
+  ],
+  "314": [
+    {
+      "sku": "qp015",
+      "sentence_sku": "qp015",
+      "original_sku": "qp015",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "All-in-One\u2122 miRNA qRT-PCR Detection Kit 2.0* (20 RT and 200 qPCR reactions) (Old cat # QP015)"
+    }
+  ],
+  "315": [
+    {
+      "sku": "hsh061472-lvru6gp",
+      "score": 0.43,
+      "type": "special word",
+      "phrase": "human lentiviral shrna targeting fbxo11 ins mcherry vector",
+      "product_name": "OmicsLink\u2122 shRNA Clone: shRNA clone set against Human FBXO11 (NM_001190274.1)(Includes free control)"
+    },
+    {
+      "sku": "hsh183498-lvru6gp",
+      "score": 0.43,
+      "type": "special word",
+      "phrase": "human lentiviral shrna targeting fbxo11 ins mcherry vector",
+      "product_name": "OmicsLink\u2122 shRNA Clone: shRNA clone set against Human FBXO11 (NM_001190274.2)(Includes free control)"
+    },
+    {
+      "sku": "hsh123265-lvru6gp",
+      "score": 0.43,
+      "type": "special word",
+      "phrase": "human lentiviral shrna targeting fbxo11 ins mcherry vector",
+      "product_name": "OmicsLink\u2122 shRNA Clone: shRNA clone set against Human FBXO11 (NM_001374325.1)(Includes free control)"
+    },
+    {
+      "sku": "hsh112747-lvru6gp",
+      "score": 0.43,
+      "type": "special word",
+      "phrase": "human lentiviral shrna targeting fbxo11 ins mcherry vector",
+      "product_name": "OmicsLink\u2122 shRNA Clone: shRNA clone set against Human FBXO11 (NM_025133.4)(Includes free control)"
+    },
+    {
+      "sku": "hsh019584-lvru6gp",
+      "score": 0.43,
+      "type": "special word",
+      "phrase": "human lentiviral shrna targeting fbxo11 ins mcherry vector",
+      "product_name": "OmicsLink\u2122 shRNA Clone: shRNA clone set against Human FBXO11 (NM_025133.3)(Includes free control)"
+    }
+  ],
+  "317": [],
+  "318": [
+    {
+      "sku": "ex-v0006",
+      "sentence_sku": "ex-v0006-m14",
+      "original_sku": "ex-v0006-m35",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "OmicsLink\u2122 Expression-Ready ORF cDNA Clones: ORF expression clone for RNF26(NM_032015.5)"
+    }
+  ],
+  "319": [
+    {
+      "sku": "ef002",
+      "score": 0.99,
+      "type": "trademark",
+      "phrase": "endofectin lenti transfection reagent",
+      "product_name": "EndoFectin\u2122 Lenti transfection reagent (3ml)"
+    },
+    {
+      "sku": "ef001",
+      "score": 0.99,
+      "type": "trademark",
+      "phrase": "endofectin lenti transfection reagent",
+      "product_name": "EndoFectin\u2122 Lenti transfection reagent (1ml)"
+    }
+  ],
+  "320": [],
+  "321": [
+    {
+      "sku": "qp116",
+      "score": 0.83,
+      "type": "general",
+      "phrase": "mirna qrt-pcr detection kit all-in-one",
+      "product_name": "All-in-One\u2122 miRNA qRT-PCR Detection Kit 2.0* (60 RT and 600 qPCR reactions)(Old cat # QP016)"
+    },
+    {
+      "sku": "qp115",
+      "score": 0.83,
+      "type": "general",
+      "phrase": "mirna qrt-pcr detection kit all-in-one",
+      "product_name": "All-in-One\u2122 miRNA qRT-PCR Detection Kit 2.0* (20 RT and 200 qPCR reactions) (Old cat # QP015)"
+    }
+  ],
+  "322": [
+    {
+      "sku": "qp118",
+      "product_name": "All-in-One\u2122 miRNA First-Strand cDNA Synthesis Kit 2.0 for miRNA qPCR Array\u00a0(60 RT reactions)",
+      "score": 1.0,
+      "type": "manual"
+    },
+    {
+      "sku": "qp117",
+      "product_name": "All-in-One\u2122 miRNA First-Strand cDNA Synthesis Kit 2.0 for miRNA qPCR Array(20 RT reactions)",
+      "score": 1.0,
+      "type": "manual"
+    }
+  ],
+  "323": [
+    {
+      "sku": "qp115",
+      "score": 0.83,
+      "type": "general",
+      "phrase": "all-in-one mirna qrt-pcr detection kit",
+      "product_name": "All-in-One\u2122 miRNA qRT-PCR Detection Kit 2.0* (20 RT and 200 qPCR reactions) (Old cat # QP015)"
+    },
+    {
+      "sku": "qp116",
+      "score": 0.83,
+      "type": "general",
+      "phrase": "all-in-one mirna qrt-pcr detection kit",
+      "product_name": "All-in-One\u2122 miRNA qRT-PCR Detection Kit 2.0* (60 RT and 600 qPCR reactions)(Old cat # QP016)"
+    }
+  ],
+  "324": [
+    {
+      "sku": "ef014",
+      "sentence_sku": "ef014",
+      "original_sku": "ef014",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "EndoFectin\u2122 Max transfection reagent (3ml)"
+    }
+  ],
+  "325": [
+    {
+      "sku": "ex-v1435-m35",
+      "product_name": "OmicsLink\u2122 Expression-Ready ORF cDNA Clones: ORF expression clone for LIN28A(NM_024674.6)",
+      "score": 1.0,
+      "type": "manual"
+    }
+  ],
+  "326": [
+    {
+      "sku": "qp057",
+      "score": 0.99,
+      "type": "trademark",
+      "phrase": "surescript first-strand cdna synthesis kit ca",
+      "product_name": "SureScript\u2122 First-Strand cDNA Synthesis Kit for gene qPCR array (60 RT reactions)"
+    },
+    {
+      "sku": "qp056",
+      "score": 0.99,
+      "type": "trademark",
+      "phrase": "surescript first-strand cdna synthesis kit ca",
+      "product_name": "SureScript\u2122 First-Strand cDNA Synthesis Kit for gene qPCR array (20 RT reactions)"
+    }
+  ],
+  "327": [
+    {
+      "sku": "qp116",
+      "score": 0.83,
+      "type": "general",
+      "phrase": "all-in-one mirna qrt-pcr detection system 2.0",
+      "product_name": "All-in-One\u2122 miRNA qRT-PCR Detection Kit 2.0* (60 RT and 600 qPCR reactions)(Old cat # QP016)"
+    },
+    {
+      "sku": "qp115",
+      "score": 0.83,
+      "type": "general",
+      "phrase": "all-in-one mirna qrt-pcr detection system 2.0",
+      "product_name": "All-in-One\u2122 miRNA qRT-PCR Detection Kit 2.0* (20 RT and 200 qPCR reactions) (Old cat # QP015)"
+    }
+  ],
+  "329": [
+    {
+      "sku": "hmir0002",
+      "sentence_sku": "hmir0002",
+      "original_sku": "hmir0002-mr03-10",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "MiExpress\u2122 Precursor miRNA Clone: Precursor miRNA expression clone for Human hsa-mir-200a"
+    },
+    {
+      "sku": "ef013",
+      "score": 0.99,
+      "type": "trademark",
+      "phrase": "one ids hmir0002 precursor sequence endofectin max transfection reagent",
+      "product_name": "EndoFectin\u2122 Max transfection reagent (1ml)"
+    },
+    {
+      "sku": "ef014",
+      "score": 0.99,
+      "type": "trademark",
+      "phrase": "one ids hmir0002 precursor sequence endofectin max transfection reagent",
+      "product_name": "EndoFectin\u2122 Max transfection reagent (3ml)"
+    }
+  ],
+  "331": [
+    {
+      "sku": "qp041",
+      "sentence_sku": "qp041",
+      "original_sku": "qp041",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "BlazeTaq\u2122 SYBR\u00ae Green qPCR mix 2.0 (without ROX) (200 qPCR reactions)"
+    }
+  ],
+  "332": [
+    {
+      "sku": "ex-f0232",
+      "sentence_sku": "ex-f0232-m07",
+      "original_sku": "ex-f0232-m35",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "OmicsLink\u2122 Expression-Ready ORF cDNA Clones: ORF expression clone for DDX5(NM_004396.5)"
+    }
+  ],
+  "333": [
+    {
+      "sku": "hsh173688",
+      "sentence_sku": "hsh173688",
+      "original_sku": "hsh173688-lvru6gp",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "OmicsLink\u2122 shRNA Clone: shRNA clone set against Human APOBEC3C (NM_014508.3)(Includes free control)"
+    },
+    {
+      "sku": "hsh152471",
+      "sentence_sku": "hsh152471",
+      "original_sku": "hsh152471-lvru6gp",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "OmicsLink\u2122 shRNA Clone: shRNA clone set against Human DDX5 (NM_004396.5)(Includes free control)"
+    }
+  ],
+  "334": [
+    {
+      "sku": "qp057",
+      "score": 0.99,
+      "type": "trademark",
+      "phrase": "surescript first-strand cdna synthesis kit",
+      "product_name": "SureScript\u2122 First-Strand cDNA Synthesis Kit for gene qPCR array (60 RT reactions)"
+    },
+    {
+      "sku": "qp056",
+      "score": 0.99,
+      "type": "trademark",
+      "phrase": "surescript first-strand cdna synthesis kit",
+      "product_name": "SureScript\u2122 First-Strand cDNA Synthesis Kit for gene qPCR array (20 RT reactions)"
+    }
+  ],
+  "335": [
+    {
+      "sku": "ex-y5225",
+      "sentence_sku": "ex-y5225-lv201",
+      "original_sku": "ex-y5225-m35",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "OmicsLink\u2122 Expression-Ready ORF cDNA Clones: ORF expression clone for FOXQ1(NM_033260.4)"
+    }
+  ],
+  "337": [
+    {
+      "sku": "hprm50381",
+      "sentence_sku": "hprm50381-lvpl01",
+      "original_sku": "hprm50381-pg04",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "GLuc-ON\u2122 Promoter Reporter Clones: Promoter reporter clone for Human PER2(NM_022817)"
+    }
+  ],
+  "338": [
+    {
+      "sku": "ex-y5452-m35",
+      "product_name": "OmicsLink\u2122 Expression-Ready ORF cDNA Clones: ORF expression clone for LIPE(NM_005357.4)",
+      "score": 1.0,
+      "type": "manual"
+    },
+    {
+      "sku": "ex-t4373-m35",
+      "product_name": "OmicsLink\u2122 Expression-Ready ORF cDNA Clones: ORF expression clone for PNPLA2(NM_020376.4)",
+      "score": 1.0,
+      "type": "manual"
+    }
+  ],
+  "339": [
+    {
+      "sku": "ex-g0457-m35",
+      "product_name": "OmicsLink\u2122 Expression-Ready ORF cDNA Clones: ORF expression clone for TACSTD2(NM_002353.3)",
+      "score": 1.0,
+      "type": "manual"
+    },
+    {
+      "sku": "hsh156478-lvru6gp",
+      "product_name": "OmicsLink\u2122 shRNA Clone: shRNA clone set against Human TACSTD2 (NM_002353.3)(Includes free control)",
+      "score": 1.0,
+      "type": "manual"
+    }
+  ],
+  "340": [
+    {
+      "sku": "qp057",
+      "score": 0.99,
+      "type": "trademark",
+      "phrase": "mrna surescript first-strand cdna synthesis kit",
+      "product_name": "SureScript\u2122 First-Strand cDNA Synthesis Kit for gene qPCR array (60 RT reactions)"
+    },
+    {
+      "sku": "qp056",
+      "score": 0.99,
+      "type": "trademark",
+      "phrase": "mrna surescript first-strand cdna synthesis kit",
+      "product_name": "SureScript\u2122 First-Strand cDNA Synthesis Kit for gene qPCR array (20 RT reactions)"
+    }
+  ],
+  "341": [
+    {
+      "sku": "qp031",
+      "score": 0.83,
+      "type": "trademark",
+      "phrase": "blazetaq sybr green qpcr mix",
+      "product_name": "BlazeTaq\u2122 SYBR\u00ae Green qPCR mix 2.0 (200 qPCR reactions)"
+    },
+    {
+      "sku": "qp032",
+      "score": 0.83,
+      "type": "trademark",
+      "phrase": "blazetaq sybr green qpcr mix",
+      "product_name": "BlazeTaq\u2122 SYBR\u00ae Green qPCR mix 2.0 (600 qPCR reactions)"
+    },
+    {
+      "sku": "qp034",
+      "score": 0.83,
+      "type": "trademark",
+      "phrase": "blazetaq sybr green qpcr mix",
+      "product_name": "BlazeTaq\u2122 SYBR\u00ae Green qPCR mix 2.0 (1000 qPCR reactions)"
+    }
+  ],
+  "342": [
+    {
+      "sku": "lt005",
+      "sentence_sku": "lt005",
+      "original_sku": "lt005",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "Lenti-Pac HIV qRT-PCR Titration Kit (20 RT reactions, 50 PCR reactions)"
+    }
+  ],
+  "350": [
+    {
+      "sku": "ef002",
+      "score": 0.99,
+      "type": "trademark",
+      "phrase": "cell line endofectin lenti transfection reagent",
+      "product_name": "EndoFectin\u2122 Lenti transfection reagent (3ml)"
+    },
+    {
+      "sku": "ef001",
+      "score": 0.99,
+      "type": "trademark",
+      "phrase": "cell line endofectin lenti transfection reagent",
+      "product_name": "EndoFectin\u2122 Lenti transfection reagent (1ml)"
+    }
+  ],
+  "352": [
+    {
+      "sku": "qp116",
+      "score": 0.67,
+      "type": "general",
+      "phrase": "mirna dnase rna reverse cdna all-in-one mirna rt-qpcr detection kit",
+      "product_name": "All-in-One\u2122 miRNA qRT-PCR Detection Kit 2.0* (60 RT and 600 qPCR reactions)(Old cat # QP016)"
+    },
+    {
+      "sku": "qp115",
+      "score": 0.67,
+      "type": "general",
+      "phrase": "mirna dnase rna reverse cdna all-in-one mirna rt-qpcr detection kit",
+      "product_name": "All-in-One\u2122 miRNA qRT-PCR Detection Kit 2.0* (20 RT and 200 qPCR reactions) (Old cat # QP015)"
+    }
+  ],
+  "353": [
+    {
+      "sku": "hsh061736",
+      "sentence_sku": "hsh061736",
+      "original_sku": "hsh061736-lvru6gp",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "OmicsLink\u2122 shRNA Clone: shRNA clone set against Human VDR (NM_001017535.1)(Includes free control)"
+    }
+  ],
+  "354": [],
+  "356": [
+    {
+      "sku": "ex-z5872-m35",
+      "product_name": "OmicsLink\u2122 Expression-Ready ORF cDNA Clones: ORF expression clone for TSHR(NM_000369.5)",
+      "score": 1.0,
+      "type": "manual"
+    }
+  ],
+  "357": [],
+  "359": [
+    {
+      "sku": "lf033",
+      "score": 0.8,
+      "type": "general",
+      "phrase": "secrete-pair dual luminescence assay",
+      "product_name": "Secrete-Pair Dual Luminescence Assay Kit (1000 rxns)"
+    },
+    {
+      "sku": "lf031",
+      "score": 0.8,
+      "type": "general",
+      "phrase": "secrete-pair dual luminescence assay",
+      "product_name": "Secrete-Pair Dual Luminescence Assay Kit (100 rxns)"
+    },
+    {
+      "sku": "lf032",
+      "score": 0.8,
+      "type": "general",
+      "phrase": "secrete-pair dual luminescence assay",
+      "product_name": "Secrete-Pair Dual Luminescence Assay Kit (300 rxns)"
+    }
+  ],
+  "360": [
+    {
+      "sku": "ef013",
+      "sentence_sku": "ef013",
+      "original_sku": "ef013",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "EndoFectin\u2122 Max transfection reagent (1ml)"
+    }
+  ],
+  "361": [
+    {
+      "sku": "lt002",
+      "score": 0.8,
+      "type": "trademark",
+      "phrase": "gene transfection lenti-pac hiv expression packaging system",
+      "product_name": "Lenti-Pac HIV Expression Packaging Kit (40 reactions)"
+    },
+    {
+      "sku": "lt001",
+      "score": 0.8,
+      "type": "trademark",
+      "phrase": "gene transfection lenti-pac hiv expression packaging system",
+      "product_name": "Lenti-Pac HIV Expression Packaging Kit (20 reactions)"
+    }
+  ],
+  "362": [
+    {
+      "sku": "hprm47730-pg04",
+      "product_name": "GLuc-ON\u2122 Promoter Reporter Clones: Promoter reporter clone for Human SLC7A11(NM_014331)",
+      "score": 1.0,
+      "type": "manual"
+    }
+  ],
+  "363": [
+    {
+      "sku": "lf031",
+      "score": 0.99,
+      "type": "general",
+      "phrase": "secrete-pair dual luminescence assay kit",
+      "product_name": "Secrete-Pair Dual Luminescence Assay Kit (100 rxns)"
+    },
+    {
+      "sku": "lf033",
+      "score": 0.99,
+      "type": "general",
+      "phrase": "secrete-pair dual luminescence assay kit",
+      "product_name": "Secrete-Pair Dual Luminescence Assay Kit (1000 rxns)"
+    },
+    {
+      "sku": "lf032",
+      "score": 0.99,
+      "type": "general",
+      "phrase": "secrete-pair dual luminescence assay kit",
+      "product_name": "Secrete-Pair Dual Luminescence Assay Kit (300 rxns)"
+    }
+  ],
+  "365": [
+    {
+      "sku": "ex-e2325",
+      "sentence_sku": "ex-e2325-lv211",
+      "original_sku": "ex-e2325-m35",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "OmicsLink\u2122 Expression-Ready ORF cDNA Clones: ORF expression clone for AR(NM_000044.6)"
+    }
+  ],
+  "366": [
+    {
+      "sku": "qp116",
+      "score": 0.5,
+      "type": "general",
+      "phrase": "all-in-one mir rt-qpcr detection kit",
+      "product_name": "All-in-One\u2122 miRNA qRT-PCR Detection Kit 2.0* (60 RT and 600 qPCR reactions)(Old cat # QP016)"
+    },
+    {
+      "sku": "qp115",
+      "score": 0.5,
+      "type": "general",
+      "phrase": "all-in-one mir rt-qpcr detection kit",
+      "product_name": "All-in-One\u2122 miRNA qRT-PCR Detection Kit 2.0* (20 RT and 200 qPCR reactions) (Old cat # QP015)"
+    }
+  ],
+  "367": [
+    {
+      "sku": "ex-b0078-m35",
+      "sentence_sku": "ex-b0078-m35",
+      "original_sku": "ex-b0078-m35",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "OmicsLink\u2122 Expression-Ready ORF cDNA Clones: ORF expression clone for CCND1(NM_053056.3)"
+    }
+  ],
+  "369": [
+    {
+      "sku": "ex-z2835",
+      "sentence_sku": "ex-z2835-m02",
+      "original_sku": "ex-z2835-m35",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "OmicsLink\u2122 Expression-Ready ORF cDNA Clones: ORF expression clone for STAT3(NM_139276.3)"
+    }
+  ],
+  "370": [
+    {
+      "sku": "lf004",
+      "sentence_sku": "lf004",
+      "original_sku": "lf004",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "Luc-Pair Duo-Luciferase HS Assay Kits (100rxns)"
+    }
+  ],
+  "371": [
+    {
+      "sku": "qp005",
+      "score": 0.99,
+      "type": "general",
+      "phrase": "all-in-one qpcr mix",
+      "product_name": "All-in-One\u2122 qPCR Mix (4000 qPCR reactions)"
+    },
+    {
+      "sku": "qp002",
+      "score": 0.99,
+      "type": "general",
+      "phrase": "all-in-one qpcr mix",
+      "product_name": "All-in-One\u2122 qPCR Mix (600 qPCR reactions)"
+    },
+    {
+      "sku": "qp004",
+      "score": 0.99,
+      "type": "general",
+      "phrase": "all-in-one qpcr mix",
+      "product_name": "All-in-One\u2122 qPCR Mix (1000 qPCR reactions)"
+    },
+    {
+      "sku": "qp001",
+      "score": 0.99,
+      "type": "general",
+      "phrase": "all-in-one qpcr mix",
+      "product_name": "All-in-One\u2122 qPCR Mix (200 qPCR reactions)"
+    }
+  ],
+  "372": [
+    {
+      "sku": "qp116",
+      "score": 0.83,
+      "type": "general",
+      "phrase": "mirna all-all mirna qrt-pcr detection kit 2.0",
+      "product_name": "All-in-One\u2122 miRNA qRT-PCR Detection Kit 2.0* (60 RT and 600 qPCR reactions)(Old cat # QP016)"
+    },
+    {
+      "sku": "qp115",
+      "score": 0.83,
+      "type": "general",
+      "phrase": "mirna all-all mirna qrt-pcr detection kit 2.0",
+      "product_name": "All-in-One\u2122 miRNA qRT-PCR Detection Kit 2.0* (20 RT and 200 qPCR reactions) (Old cat # QP015)"
+    }
+  ],
+  "373": [
+    {
+      "sku": "hprm44468-pg04",
+      "product_name": "GLuc-ON\u2122 Promoter Reporter Clones: Promoter reporter clone for Human POU5F1(NM_002701)",
+      "score": 1.0,
+      "type": "manual"
+    }
+  ],
+  "374": [
+    {
+      "sku": "qp056",
+      "sentence_sku": "qp056",
+      "original_sku": "qp056",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "SureScript\u2122 First-Strand cDNA Synthesis Kit for gene qPCR array (20 RT reactions)"
+    }
+  ],
+  "375": [
+    {
+      "sku": "ex-h3671-m35",
+      "product_name": "OmicsLink\u2122 Expression-Ready ORF cDNA Clones: ORF expression clone for MPV17L(NM_001128423.2)",
+      "score": 1.0,
+      "type": "manual"
+    }
+  ],
+  "376": [
+    {
+      "sku": "ex-v0144-m35",
+      "product_name": "OmicsLink\u2122 Expression-Ready ORF cDNA Clones: ORF expression clone for SMOX(NM_175840.3)",
+      "score": 1.0,
+      "type": "manual"
+    }
+  ],
+  "377": [
+    {
+      "sku": "qp117",
+      "score": 0.86,
+      "type": "general",
+      "phrase": "all-in-one mirna first-strand cdna synthesis kit",
+      "product_name": "All-in-One\u2122 miRNA First-Strand cDNA Synthesis Kit 2.0 for miRNA qPCR Array(20 RT reactions)"
+    },
+    {
+      "sku": "qp118",
+      "score": 0.86,
+      "type": "general",
+      "phrase": "all-in-one mirna first-strand cdna synthesis kit",
+      "product_name": "All-in-One\u2122 miRNA First-Strand cDNA Synthesis Kit 2.0 for miRNA qPCR Array\u00a0(60 RT reactions)"
+    }
+  ],
+  "378": [],
+  "379": [
+    {
+      "sku": "ex-z4556",
+      "sentence_sku": "ex-z4556-m68",
+      "original_sku": "ex-z4556-m35",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "OmicsLink\u2122 Expression-Ready ORF cDNA Clones: ORF expression clone for PHLDA1(NM_007350.3)"
+    }
+  ],
+  "380": [
+    {
+      "sku": "hprm58581-pg04",
+      "sentence_sku": "hprm58581-pg04",
+      "original_sku": "hprm58581-pg04",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "GLuc-ON\u2122 Promoter Reporter Clones: Promoter reporter clone for Human HNRNPLL(NM_001142650)"
+    }
+  ],
+  "381": [
+    {
+      "sku": "lf032",
+      "sentence_sku": "lf032",
+      "original_sku": "lf032",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "Secrete-Pair Dual Luminescence Assay Kit (300 rxns)"
+    }
+  ],
+  "382": [
+    {
+      "sku": "hsh161737-lvru6gp",
+      "product_name": "OmicsLink\u2122 shRNA Clone: shRNA clone set against Human TCF3 (NM_003200.5)(Includes free control)",
+      "score": 1.0,
+      "type": "manual"
+    },
+    {
+      "sku": "hsh181410-lvru6gp",
+      "product_name": "OmicsLink\u2122 shRNA Clone: shRNA clone set against Human EBF2 (NM_022659.4)(Includes free control)",
+      "score": 1.0,
+      "type": "manual"
+    }
+  ],
+  "383": [
+    {
+      "sku": "lt007",
+      "product_name": "Lenti-Pac\u2122 Lentivirus Concentration Solution (50 ml)",
+      "score": 1.0,
+      "type": "manual"
+    }
+  ],
+  "384": [
+    {
+      "sku": "qp056",
+      "sentence_sku": "qp056",
+      "original_sku": "qp056",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "SureScript\u2122 First-Strand cDNA Synthesis Kit for gene qPCR array (20 RT reactions)"
+    }
+  ],
+  "385": [
+    {
+      "sku": "hsh168742-lvru6gp",
+      "product_name": "OmicsLink\u2122 shRNA Clone: shRNA clone set against Human KHDRBS3 (NM_006558.3)(Includes free control)",
+      "score": 1.0,
+      "type": "manual"
+    },
+    {
+      "sku": "ex-p0058-m35",
+      "product_name": "OmicsLink\u2122 Expression-Ready ORF cDNA Clones: ORF expression clone for KHDRBS3(NM_006558.3)",
+      "score": 1.0,
+      "type": "manual"
+    },
+    {
+      "sku": "hsh191185-lvru6gp",
+      "product_name": "OmicsLink\u2122 shRNA Clone: shRNA clone set against Human KHDRBS2 (NM_152688.4)(Includes free control)",
+      "score": 1.0,
+      "type": "manual"
+    },
+    {
+      "sku": "ex-h4865-m35",
+      "product_name": "OmicsLink\u2122 Expression-Ready ORF cDNA Clones: ORF expression clone for KHDRBS2(NM_152688.4)",
+      "score": 1.0,
+      "type": "manual"
+    }
+  ],
+  "386": [],
+  "387": [
+    {
+      "sku": "ef013",
+      "score": 0.5,
+      "type": "trademark",
+      "phrase": "pez-lv201- plin2 type plasmid pez-lv201-plin2 plasmid endofectin max",
+      "product_name": "EndoFectin\u2122 Max transfection reagent (1ml)"
+    },
+    {
+      "sku": "ef014",
+      "score": 0.5,
+      "type": "trademark",
+      "phrase": "pez-lv201- plin2 type plasmid pez-lv201-plin2 plasmid endofectin max",
+      "product_name": "EndoFectin\u2122 Max transfection reagent (3ml)"
+    }
+  ],
+  "388": [
+    {
+      "sku": "lp510-100",
+      "product_name": "Promoter Negative Control-LvPG02 Lentifect\u2122 Purified Lentiviral Particles (25 \u00b5l x 4 vials) (Old cat # LPP-NEG-LvPG02-100-C)",
+      "score": 1.0,
+      "type": "manual"
+    },
+    {
+      "sku": "lp510-025",
+      "product_name": "Promoter Negative Control-LvPG02 Lentifect\u2122 Purified Lentiviral Particles (25 \u00b5l x 1 vial) (Old cat # LPP-NEG-LvPG02-025-C)",
+      "score": 1.0,
+      "type": "manual"
+    },
+    {
+      "sku": "hprm47713",
+      "sentence_sku": "hprm47713-lvpg02",
+      "original_sku": "hprm47713-pg04",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "GLuc-ON\u2122 Promoter Reporter Clones: Promoter reporter clone for Human BRD4(NM_014299)"
+    }
+  ],
+  "389": [
+    {
+      "sku": "lf062",
+      "sentence_sku": "lf062",
+      "original_sku": "lf062",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "Secrete-Pair\u00a0Gaussia\u00a0Luciferase Assay Kit (1000 rxns)"
+    }
+  ],
+  "390": [
+    {
+      "sku": "lpp-hluc-lv105-100-c",
+      "score": 0.86,
+      "type": "general",
+      "phrase": "core firefly luciferase lentifect purified lentiviral particles lpp-fluc-lv105 mouse cs",
+      "product_name": "HLUC-Lv105 Firefly Luciferase Lentifect\u2122 Purified Lentiviral Particles (25 \u00b5l x 4 vials)(Old cat # LPP-HLUC-Lv105-100-C)"
+    },
+    {
+      "sku": "lp461-100",
+      "score": 0.86,
+      "type": "general",
+      "phrase": "core firefly luciferase lentifect purified lentiviral particles lpp-fluc-lv105 mouse cs",
+      "product_name": "HLUC-Lv105 Firefly Luciferase Lentifect\u2122 Purified Lentiviral Particles (25 \u00b5l x 4 vials)(Old cat # LPP-HLUC-Lv105-100-C)"
+    }
+  ],
+  "391": [
+    {
+      "sku": "qp057",
+      "score": 0.8,
+      "type": "trademark",
+      "phrase": "surescript first-strand cdna kit",
+      "product_name": "SureScript\u2122 First-Strand cDNA Synthesis Kit for gene qPCR array (60 RT reactions)"
+    },
+    {
+      "sku": "qp056",
+      "score": 0.8,
+      "type": "trademark",
+      "phrase": "surescript first-strand cdna kit",
+      "product_name": "SureScript\u2122 First-Strand cDNA Synthesis Kit for gene qPCR array (20 RT reactions)"
+    }
+  ],
+  "392": [
+    {
+      "sku": "qp031",
+      "score": 0.99,
+      "type": "trademark",
+      "phrase": "system blazetaq sybr green qpcr mix 2.0",
+      "product_name": "BlazeTaq\u2122 SYBR\u00ae Green qPCR mix 2.0 (200 qPCR reactions)"
+    },
+    {
+      "sku": "qp032",
+      "score": 0.99,
+      "type": "trademark",
+      "phrase": "system blazetaq sybr green qpcr mix 2.0",
+      "product_name": "BlazeTaq\u2122 SYBR\u00ae Green qPCR mix 2.0 (600 qPCR reactions)"
+    },
+    {
+      "sku": "qp034",
+      "score": 0.99,
+      "type": "trademark",
+      "phrase": "system blazetaq sybr green qpcr mix 2.0",
+      "product_name": "BlazeTaq\u2122 SYBR\u00ae Green qPCR mix 2.0 (1000 qPCR reactions)"
+    }
+  ],
+  "393": [
+    {
+      "sku": "qp116",
+      "score": 0.99,
+      "type": "general",
+      "phrase": "all-in-one mirna qrt-pcr detection kit 2.0",
+      "product_name": "All-in-One\u2122 miRNA qRT-PCR Detection Kit 2.0* (60 RT and 600 qPCR reactions)(Old cat # QP016)"
+    },
+    {
+      "sku": "qp115",
+      "score": 0.99,
+      "type": "general",
+      "phrase": "all-in-one mirna qrt-pcr detection kit 2.0",
+      "product_name": "All-in-One\u2122 miRNA qRT-PCR Detection Kit 2.0* (20 RT and 200 qPCR reactions) (Old cat # QP015)"
+    }
+  ],
+  "394": [],
+  "395": [
+    {
+      "sku": "qp001",
+      "sentence_sku": "qp001",
+      "original_sku": "qp001",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "All-in-One\u2122 qPCR Mix (200 qPCR reactions)"
+    }
+  ],
+  "396": [
+    {
+      "sku": "qp057",
+      "score": 0.99,
+      "type": "trademark",
+      "phrase": "reverse transcription surescript first-strand cdna synthesis kit",
+      "product_name": "SureScript\u2122 First-Strand cDNA Synthesis Kit for gene qPCR array (60 RT reactions)"
+    },
+    {
+      "sku": "qp056",
+      "score": 0.99,
+      "type": "trademark",
+      "phrase": "reverse transcription surescript first-strand cdna synthesis kit",
+      "product_name": "SureScript\u2122 First-Strand cDNA Synthesis Kit for gene qPCR array (20 RT reactions)"
+    }
+  ],
+  "397": [
+    {
+      "sku": "lf061",
+      "sentence_sku": "lf061",
+      "original_sku": "lf061",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "Secrete-Pair\u00a0Gaussia\u00a0Luciferase Assay Kit (100 rxns)"
+    }
+  ],
+  "398": [
+    {
+      "sku": "lf061",
+      "sentence_sku": "lf061",
+      "original_sku": "lf061",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "Secrete-Pair\u00a0Gaussia\u00a0Luciferase Assay Kit (100 rxns)"
+    }
+  ],
+  "399": [],
+  "400": [],
+  "401": [
+    {
+      "sku": "hmit164131-mt05",
+      "product_name": "miTarget\u2122 3\u2032 UTR miRNA Target Clones: miRNA 3\u00b4UTR target expression clone for Human PPFIA2 (NM_003625.5)",
+      "score": 1.0,
+      "type": "manual"
+    }
+  ],
+  "402": [
+    {
+      "sku": "hprm36170-pg04",
+      "product_name": "GLuc-ON\u2122 Promoter Reporter Clones: Promoter reporter clone for Human NFE2L2(NM_001145412)",
+      "score": 1.0,
+      "type": "manual"
+    }
+  ],
+  "403": [
+    {
+      "sku": "lf031",
+      "sentence_sku": "lf031",
+      "original_sku": "lf031",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "Secrete-Pair Dual Luminescence Assay Kit (100 rxns)"
+    }
+  ],
+  "404": [],
+  "405": [
+    {
+      "sku": "lt001",
+      "sentence_sku": "lt001",
+      "original_sku": "lt001",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "Lenti-Pac HIV Expression Packaging Kit (20 reactions)"
+    },
+    {
+      "sku": "ex-a0751",
+      "sentence_sku": "ex-a0751-lv241",
+      "original_sku": "ex-a0751-m35",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "OmicsLink\u2122 Expression-Ready ORF cDNA Clones: ORF expression clone for BLK(NM_001715.3)"
+    },
+    {
+      "sku": "ex-g0034",
+      "sentence_sku": "ex-g0034-lv241",
+      "original_sku": "ex-g0034-m35",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "OmicsLink\u2122 Expression-Ready ORF cDNA Clones: ORF expression clone for CD79A(NM_001783.4)"
+    }
+  ],
+  "406": [
+    {
+      "sku": "ex-t0262-m35",
+      "product_name": "OmicsLink\u2122 Expression-Ready ORF cDNA Clones: ORF expression clone for ABCC4(NM_005845.5)",
+      "score": 1.0,
+      "type": "manual"
+    }
+  ],
+  "407": [
+    {
+      "sku": "qp118",
+      "product_name": "All-in-One\u2122 miRNA First-Strand cDNA Synthesis Kit 2.0 for miRNA qPCR Array\u00a0(60 RT reactions)",
+      "score": 1.0,
+      "type": "manual"
+    },
+    {
+      "sku": "qp117",
+      "product_name": "All-in-One\u2122 miRNA First-Strand cDNA Synthesis Kit 2.0 for miRNA qPCR Array(20 RT reactions)",
+      "score": 1.0,
+      "type": "manual"
+    }
+  ],
+  "409": [
+    {
+      "sku": "qp117",
+      "score": 0.86,
+      "type": "general",
+      "phrase": "dna cdna all-in-one mirna first-strand cdna synthesis kit",
+      "product_name": "All-in-One\u2122 miRNA First-Strand cDNA Synthesis Kit 2.0 for miRNA qPCR Array(20 RT reactions)"
+    },
+    {
+      "sku": "qp118",
+      "score": 0.86,
+      "type": "general",
+      "phrase": "dna cdna all-in-one mirna first-strand cdna synthesis kit",
+      "product_name": "All-in-One\u2122 miRNA First-Strand cDNA Synthesis Kit 2.0 for miRNA qPCR Array\u00a0(60 RT reactions)"
+    }
+  ],
+  "410": [
+    {
+      "sku": "qp005",
+      "score": 0.99,
+      "type": "general",
+      "phrase": "all-in-one qpcr mix kit",
+      "product_name": "All-in-One\u2122 qPCR Mix (4000 qPCR reactions)"
+    },
+    {
+      "sku": "qp002",
+      "score": 0.99,
+      "type": "general",
+      "phrase": "all-in-one qpcr mix kit",
+      "product_name": "All-in-One\u2122 qPCR Mix (600 qPCR reactions)"
+    },
+    {
+      "sku": "qp004",
+      "score": 0.99,
+      "type": "general",
+      "phrase": "all-in-one qpcr mix kit",
+      "product_name": "All-in-One\u2122 qPCR Mix (1000 qPCR reactions)"
+    },
+    {
+      "sku": "qp001",
+      "score": 0.99,
+      "type": "general",
+      "phrase": "all-in-one qpcr mix kit",
+      "product_name": "All-in-One\u2122 qPCR Mix (200 qPCR reactions)"
+    }
+  ],
+  "414": [
+    {
+      "sku": "lf004",
+      "sentence_sku": "lf004",
+      "original_sku": "lf004",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "Luc-Pair Duo-Luciferase HS Assay Kits (100rxns)"
+    }
+  ],
+  "417": [
+    {
+      "sku": "lf061",
+      "score": 0.99,
+      "type": "general",
+      "phrase": "hs transfection secrete-pair gaussia luciferase assay kit",
+      "product_name": "Secrete-Pair\u00a0Gaussia\u00a0Luciferase Assay Kit (100 rxns)"
+    },
+    {
+      "sku": "lf062",
+      "score": 0.99,
+      "type": "general",
+      "phrase": "hs transfection secrete-pair gaussia luciferase assay kit",
+      "product_name": "Secrete-Pair\u00a0Gaussia\u00a0Luciferase Assay Kit (1000 rxns)"
+    }
+  ],
+  "420": [
+    {
+      "sku": "hsh189318-lvru6gp",
+      "product_name": "OmicsLink\u2122 shRNA Clone: shRNA clone set against Human MUC15 (NM_145650.4)(Includes free control)",
+      "score": 1.0,
+      "type": "manual"
+    },
+    {
+      "sku": "hsh093387-lvru6gp",
+      "product_name": "OmicsLink\u2122 shRNA Clone: shRNA clone set against Human MUC15 (NM_145650.3)(Includes free control)",
+      "score": 1.0,
+      "type": "manual"
+    },
+    {
+      "sku": "hsh189317-lvru6gp",
+      "product_name": "OmicsLink\u2122 shRNA Clone: shRNA clone set against Human MUC15 (NM_001135092.2)(Includes free control)",
+      "score": 1.0,
+      "type": "manual"
+    },
+    {
+      "sku": "hsh059339-lvru6gp",
+      "product_name": "OmicsLink\u2122 shRNA Clone: shRNA clone set against Human MUC15 (NM_001135092.1)(Includes free control)",
+      "score": 1.0,
+      "type": "manual"
+    },
+    {
+      "sku": "hsh117874-lvru6gp",
+      "product_name": "OmicsLink\u2122 shRNA Clone: shRNA clone set against Human MUC15 (NM_001135091.2)(Includes free control)",
+      "score": 1.0,
+      "type": "manual"
+    },
+    {
+      "sku": "hsh059338-lvru6gp",
+      "product_name": "OmicsLink\u2122 shRNA Clone: shRNA clone set against Human MUC15 (NM_001135091.1)(Includes free control)",
+      "score": 1.0,
+      "type": "manual"
+    }
+  ],
+  "421": [
+    {
+      "sku": "ex-e2664",
+      "sentence_sku": "ex-e2664-lv201",
+      "original_sku": "ex-e2664-m35",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "OmicsLink\u2122 Expression-Ready ORF cDNA Clones: ORF expression clone for MUC15(NM_001135091.2)"
+    }
+  ],
+  "422": [],
+  "423": [
+    {
+      "sku": "aa272",
+      "sentence_sku": "aa272",
+      "original_sku": "aa272",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "Luc-AV01 AAVPrime\u2122 Purified AAV Particles, serotype AAV-DJ, 100 \u00b5l(Old Cat # AA272)"
+    }
+  ],
+  "424": [],
+  "425": [
+    {
+      "sku": "ex-z6618-m35",
+      "score": 0.25,
+      "type": "special word",
+      "phrase": "plasmid cdna tpra1",
+      "product_name": "OmicsLink\u2122 Expression-Ready ORF cDNA Clones: ORF expression clone for TPRA1(NM_001136053.4)"
+    }
+  ],
+  "426": [
+    {
+      "sku": "ex-z5803",
+      "sentence_sku": "ex-z5803-m02-10",
+      "original_sku": "ex-z5803-m35",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "OmicsLink\u2122 Expression-Ready ORF cDNA Clones: ORF expression clone for HLA-A(AY365426.1)"
+    }
+  ],
+  "427": [
+    {
+      "sku": "qp031",
+      "sentence_sku": "qp031",
+      "original_sku": "qp031",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "BlazeTaq\u2122 SYBR\u00ae Green qPCR mix 2.0 (200 qPCR reactions)"
+    }
+  ],
+  "428": [
+    {
+      "sku": "lp519-100",
+      "product_name": "shRNA Scrambled Control-LVRU6GP Lentiviral Particles (25 \u00b5l x 4 vials) (Old cat # LPP-CSHCTR001-LVRU6GP-100-C)",
+      "score": 1.0,
+      "type": "manual"
+    },
+    {
+      "sku": "lp519-025",
+      "product_name": "shRNA Scrambled Control-LVRU6GP Lentiviral Particles (25 \u00b5l x 1 vial) (Old cat # LPP-CSHCTR001-LVRU6GP-025-C)",
+      "score": 1.0,
+      "type": "manual"
+    }
+  ],
+  "429": [
+    {
+      "sku": "ex-a0211-m35",
+      "product_name": "OmicsLink\u2122 Expression-Ready ORF cDNA Clones: ORF expression clone for PRKCD(NM_006254.4)",
+      "score": 1.0,
+      "type": "manual"
+    }
+  ],
+  "430": [
+    {
+      "sku": "qp020",
+      "score": 0.99,
+      "type": "trademark",
+      "phrase": "tissue rnazol rt rna isolation reagent",
+      "product_name": "RNAzol\u00ae RT RNA Isolation Reagent"
+    }
+  ],
+  "431": [
+    {
+      "sku": "qp032",
+      "sentence_sku": "qp032",
+      "original_sku": "qp032",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "BlazeTaq\u2122 SYBR\u00ae Green qPCR mix 2.0 (600 qPCR reactions)"
+    }
+  ],
+  "432": [
+    {
+      "sku": "ex-m0714",
+      "sentence_sku": "ex-m0714-m92",
+      "original_sku": "ex-m0714-m35",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "OmicsLink\u2122 Expression-Ready ORF cDNA Clones: ORF expression clone for GCLM(NM_002061.4)"
+    }
+  ],
+  "433": [
+    {
+      "sku": "ex-m0714",
+      "sentence_sku": "ex-m0714-m92",
+      "original_sku": "ex-m0714-m35",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "OmicsLink\u2122 Expression-Ready ORF cDNA Clones: ORF expression clone for GCLM(NM_002061.4)"
+    }
+  ],
+  "436": [
+    {
+      "sku": "hsh175297-lvru6gp",
+      "product_name": "OmicsLink\u2122 shRNA Clone: shRNA clone set against Human YTHDF2 (NM_016258.3)(Includes free control)",
+      "score": 1.0,
+      "type": "manual"
+    },
+    {
+      "sku": "hsh012742-lvru6gp",
+      "product_name": "OmicsLink\u2122 shRNA Clone: shRNA clone set against Human YTHDF2 (NM_016258.2)(Includes free control)",
+      "score": 1.0,
+      "type": "manual"
+    },
+    {
+      "sku": "hsh175296-lvru6gp",
+      "product_name": "OmicsLink\u2122 shRNA Clone: shRNA clone set against Human YTHDF2 (NM_001173128.2)(Includes free control)",
+      "score": 1.0,
+      "type": "manual"
+    },
+    {
+      "sku": "hsh058742-lvru6gp",
+      "product_name": "OmicsLink\u2122 shRNA Clone: shRNA clone set against Human YTHDF2 (NM_001173128.1)(Includes free control)",
+      "score": 1.0,
+      "type": "manual"
+    },
+    {
+      "sku": "hsh175295-lvru6gp",
+      "product_name": "OmicsLink\u2122 shRNA Clone: shRNA clone set against Human YTHDF2 (NM_001172828.2)(Includes free control)",
+      "score": 1.0,
+      "type": "manual"
+    },
+    {
+      "sku": "hsh057660-lvru6gp",
+      "product_name": "OmicsLink\u2122 shRNA Clone: shRNA clone set against Human YTHDF2 (NM_001172828.1)(Includes free control)",
+      "score": 1.0,
+      "type": "manual"
+    }
+  ],
+  "437": [
+    {
+      "sku": "ex-z2611",
+      "sentence_sku": "ex-z2611-lv157",
+      "original_sku": "ex-z2611-m35",
+      "score": 1.0,
+      "type": "sku",
+      "product_name": "OmicsLink\u2122 Expression-Ready ORF cDNA Clones: ORF expression clone for PCK2(NM_004563.4)"
+    }
+  ],
+  "438": [
+    {
+      "sku": "qp118",
+      "product_name": "All-in-One\u2122 miRNA First-Strand cDNA Synthesis Kit 2.0 for miRNA qPCR Array\u00a0(60 RT reactions)",
+      "score": 1.0,
+      "type": "manual"
+    },
+    {
+      "sku": "qp117",
+      "product_name": "All-in-One\u2122 miRNA First-Strand cDNA Synthesis Kit 2.0 for miRNA qPCR Array(20 RT reactions)",
+      "score": 1.0,
+      "type": "manual"
+    }
+  ],
+  "439": [
+    {
+      "sku": "qp001",
+      "score": 0.67,
+      "type": "general",
+      "phrase": "mrna qpcr mix",
+      "product_name": "All-in-One\u2122 qPCR Mix (200 qPCR reactions)"
+    },
+    {
+      "sku": "qp004",
+      "score": 0.67,
+      "type": "general",
+      "phrase": "mrna qpcr mix",
+      "product_name": "All-in-One\u2122 qPCR Mix (1000 qPCR reactions)"
+    },
+    {
+      "sku": "qp002",
+      "score": 0.67,
+      "type": "general",
+      "phrase": "mrna qpcr mix",
+      "product_name": "All-in-One\u2122 qPCR Mix (600 qPCR reactions)"
+    },
+    {
+      "sku": "qp005",
+      "score": 0.67,
+      "type": "general",
+      "phrase": "mrna qpcr mix",
+      "product_name": "All-in-One\u2122 qPCR Mix (4000 qPCR reactions)"
+    }
+  ]
+}

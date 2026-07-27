@@ -1,9 +1,9 @@
 import csv
 import json
 from math import prod
-from matching.product_map import build_alias_map, build_product_map, build_shortened_sku_map
+from product_building.product_map import build_alias_map, build_product_map, build_shortened_sku_map
 from matching.sku_matcher import find_sku
-from matching.mention_extractor import extract_product_mention, get_keyword_indexes, get_phrases, extract_best_product_mention, get_best_phrases, score_phrase
+from matching.legacy.mention_extractor import extract_product_mention, get_keyword_indexes, get_phrases, extract_best_product_mention, get_best_phrases, score_phrase
 from matching.normalization import normalize_for_matching
 
 

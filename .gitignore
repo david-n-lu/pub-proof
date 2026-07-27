@@ -68,15 +68,9 @@ data/cleaned_products/*
 data/europe_pmc/*
 data/evidence/*
 data/raw_products/*
-data/raw_products_OLD/*
 tests/data/*
+tests/cache/*
 
 # Keep specific subfolders
 
-!data/genecopoeia_pipeline_test_evidence
-!data/genecopoeia_pipeline_test_evidence/**
-
-!data/genecopoeia_pipeline_test_raw_products
-!data/genecopoeia_pipeline_test_raw_products/**
-
-!tests/data/genecopoeia_sentences.jsonl
+!data/genecopoeia_test.csv

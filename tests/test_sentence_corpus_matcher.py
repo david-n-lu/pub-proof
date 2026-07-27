@@ -1,9 +1,9 @@
 import csv
 import json
 
-from matching.sentence_corpus_matcher import match_corpus, match_sentence
-from matching.citation import cite_from_europe_pmc
-from matching.product_map import build_product_map, build_alias_index
+from matching.legacy.sentence_corpus_matcher import match_corpus, match_sentence
+from citation_generator.citation import cite_from_europe_pmc
+from product_building.product_map import build_product_map, build_alias_index
 
 def test_matcher(
     manufacturer: str = "GeneCopoeia",

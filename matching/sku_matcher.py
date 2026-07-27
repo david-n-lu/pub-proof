@@ -46,7 +46,7 @@ def find_sku(sentence, skus, manufacturer = "GeneCopoeia"):
                 matches.append({
                     "sku": w,
                     "sentence_sku": word,
-                    "distance": min([abs(i-index) for index in manufacturer_indices])
+                    # "distance": min([abs(i-index) for index in manufacturer_indices]) if manufacturer_indices else -1
                 })
 
                 # print(w)

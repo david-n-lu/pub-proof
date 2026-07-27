@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
 from matching.normalization import normalize_for_matching
-from export_sku_results import shorten_product_name
+from legacy.export_sku_results import shorten_product_name
 
 
 # from tests.trademark_mention import run_pipeline

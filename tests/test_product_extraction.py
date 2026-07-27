@@ -4,9 +4,9 @@ Test for finding products using sku_matcher.py and mention_extractor.py
 
 import csv
 import json
-from matching.product_map import build_product_map
+from product_building.product_map import build_product_map
 from matching.sku_matcher import find_sku
-from matching.mention_extractor import extract_ollama_batch, extract_product_mention, extract_ollama
+from matching.legacy.mention_extractor import extract_ollama_batch, extract_product_mention, extract_ollama
 from matching.normalization import normalize_for_matching
 
 

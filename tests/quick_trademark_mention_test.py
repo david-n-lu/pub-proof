@@ -1,5 +1,5 @@
-from matching.mention_extractor import get_best_phrases, extract_best_product_mention, score_phrase
-from matching.product_map import build_alias_index, build_product_map
+from matching.legacy.mention_extractor import get_best_phrases, extract_best_product_mention, score_phrase
+from product_building.product_map import build_alias_index, build_product_map
 
 
 product_map_path = "data/raw_products"

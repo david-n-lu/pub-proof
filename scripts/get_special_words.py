@@ -1,6 +1,6 @@
 from matching.normalization import normalize, normalize_for_matching
-from matching.product_map import build_product_map, build_alias_index
-from matching.mention_extractor import get_keyword_indexes
+from product_building.product_map import build_product_map, build_alias_index
+from matching.legacy.mention_extractor import get_keyword_indexes
 import json
 import re
 

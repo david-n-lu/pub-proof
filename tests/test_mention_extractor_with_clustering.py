@@ -1,8 +1,8 @@
 import csv
 import json
-from matching.product_map import build_alias_index, build_product_map
+from product_building.product_map import build_alias_index, build_product_map
 from matching.sku_matcher import find_sku
-from matching.mention_extractor import extract_product_mention, get_phrases, extract_best_product_mention, get_best_phrases, score_phrase
+from matching.legacy.mention_extractor import extract_product_mention, get_phrases, extract_best_product_mention, get_best_phrases, score_phrase
 
 
 def format_list_csv(list, delimiter = "|"):
