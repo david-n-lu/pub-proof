@@ -5,6 +5,7 @@ PySide6 frontend for product annotator.
 """
 
 from PySide6.QtCore import (
+    QTimer,
     Qt,
     QThread,
     Signal,
@@ -31,6 +32,7 @@ from PySide6.QtWidgets import (
 )
 
 from PySide6.QtGui import QFont, QShortcut, QKeySequence
+from click import edit
 
 from annotator.annotator_backend import AnnotatorBackend
 from annotator.highlighter import highlight_sentence
@@ -38,6 +40,7 @@ from annotator.matcher_worker import MatcherWorker
 
 from annotator.loading_window import LoadingWindow
 from annotator.loading_worker import LoadingWorker
+from matching.normalization import normalize_for_matching
 
 
 class AnnotatorWindow(QWidget):
@@ -52,6 +55,8 @@ class AnnotatorWindow(QWidget):
         sentence_path,
         annotation_path,
         auto_match_path,
+        config_path = None,
+        genes_path = None,
     ):
         super().__init__()
 
@@ -63,6 +68,8 @@ class AnnotatorWindow(QWidget):
             sentence_path=sentence_path,
             annotation_path=annotation_path,
             auto_match_path=auto_match_path,
+            config_path=config_path,
+            genes_path=genes_path,
         )
     
 
@@ -143,6 +150,8 @@ class AnnotatorWindow(QWidget):
 
 
         self.build_ui()
+
+        self.show()
 
     
     def _loading_error(self, message):
@@ -993,6 +1002,9 @@ class AnnotatorWindow(QWidget):
         dialog.go_button.clicked.connect(
             lambda: self.goto_sentence(dialog)
         )
+        dialog.sentence_edit.returnPressed.connect(
+            lambda: self.goto_sentence(dialog)
+        )
 
         dialog.exec()
 
@@ -1038,10 +1050,6 @@ class AnnotatorWindow(QWidget):
             )
 
 
-    RED_HIGHLIGHT = '<span style="background-color: red; color: black;">{}</span>'
-    ORANGE_HIGHLIGHT = '<span style="background-color: orange; color: black;">{}</span>'
-    YELLOW_HIGHLIGHT = '<span style="background-color: yellow; color: black;">{}</span>'
-    GREEN_HIGHLIGHT = '<span style="background-color: lime; color: black;">{}</span>'
     def create_match_checkbox(self, match, checked=False):
         """
         Creates a checkbox with a highlightable HTML label.
@@ -1058,70 +1066,7 @@ class AnnotatorWindow(QWidget):
 
         checkbox = QCheckBox()
         
-        product = match["product_name"]
-        phrase = match.get("phrase")
-
-        if phrase:
-            product = highlight_sentence(
-                match["product_name"],
-                self.backend.manufacturer,
-                phrase.split(),
-                {},
-            )
-
-        # sku = self.YELLOW_HIGHLIGHT.format(match["sku"])
-        sku = match["sku"].upper()
-
-        match_method = match["type"]
-
-        if match_method == "sku":
-            match_method = match_method.upper()
-        else:
-            match_method = match_method.capitalize()
-
-        # if match_method == "sku":
-        #     match_method = self.GREEN_HIGHLIGHT.format(match_method)
-        # elif match_method == "trademark":
-        #     match_method = self.YELLOW_HIGHLIGHT.format(match_method)
-        # elif match_method == "special word":
-        #     match_method = self.YELLOW_HIGHLIGHT.format(match_method)
         
-        great_score = 0.8
-        good_score = 0.6
-        ok_score = 0.4
-
-        score = match["score"]
-        if score > great_score:
-            score = "<b>" + self.GREEN_HIGHLIGHT.format(f"Score: {score:.2f}") + "</b>"
-        elif score > good_score:
-            score = "<b>" + self.YELLOW_HIGHLIGHT.format(f"Score: {score:.2f}") + "</b>"
-        elif score > ok_score:
-            score = "<b>" + self.ORANGE_HIGHLIGHT.format(f"Score: {score:.2f}") + "</b>"
-        else:
-            score = "<b>" + self.RED_HIGHLIGHT.format(f"Score: {score:.2f}") + "</b>"
-
-        separator = '<br>'
-
-        label = QLabel(
-            # f'Score: {score}'
-            # f'{score}'
-            # + separator + 
-            f'{product}'
-            + separator +
-            f'{score}'
-            + separator + 
-            f'SKU: {sku}'
-            + separator + 
-            f'Matcher Method: {match_method}'
-        )
-
-        # allow HTML highlighting
-        label.setTextFormat(Qt.RichText)
-
-        label.setTextInteractionFlags(
-            Qt.TextSelectableByMouse |
-            Qt.TextSelectableByKeyboard
-        )
 
         checkbox.product = match
         checkbox.setChecked(checked)
@@ -1131,9 +1076,125 @@ class AnnotatorWindow(QWidget):
         )
 
         layout.addWidget(checkbox, alignment=Qt.AlignTop)
-        layout.addWidget(label, 1)
+        layout.addLayout(self.create_label_layout(match), 1)
 
         return container, checkbox
+
+
+    RED_HIGHLIGHT = '<span style="background-color: red; color: black;">{}</span>'
+    ORANGE_HIGHLIGHT = '<span style="background-color: orange; color: black;">{}</span>'
+    YELLOW_HIGHLIGHT = '<span style="background-color: yellow; color: black;">{}</span>'
+    GREEN_HIGHLIGHT = '<span style="background-color: lime; color: black;">{}</span>'
+
+    def create_label_layout(self, match):
+        info_layout = QVBoxLayout()
+
+        info_layout.setSpacing(0)
+        info_layout.setContentsMargins(0, 0, 0, 0)
+
+        product = match["product_name"]
+        phrase = match.get("phrase")
+        sku = match["sku"].upper()
+        match_method = match["type"]
+        score = match["score"]
+
+        if phrase:
+            product = highlight_sentence(match["product_name"], self.backend.manufacturer, phrase.split(), {},)        
+
+        if match_method == "sku":
+            match_method = match_method.upper()
+        else:
+            match_method = match_method.capitalize()
+        
+        great_score = 0.8
+        good_score = 0.6
+        ok_score = 0.4
+
+        highlight = self.GREEN_HIGHLIGHT if score >= great_score \
+            else self.YELLOW_HIGHLIGHT if score >= good_score \
+            else self.ORANGE_HIGHLIGHT if score >= ok_score \
+        else self.RED_HIGHLIGHT
+
+        score = "<b>" + highlight.format(f"Score: {score:.2f}") + "</b>"
+
+        product_label = QLabel(f"{product}")
+        score_label = QLabel(f"{score}")
+
+        sku_row = QHBoxLayout()
+        sku_row.addWidget(QLabel("SKU: "))
+
+        if match_method == "Gene" or match_method == "Manual":
+            sku_line_edit = self.create_sku_line_edit(sku, match)
+            sku_row.addWidget(sku_line_edit)
+
+            edit_sku_button = QPushButton("Edit SKU")
+            edit_sku_button.clicked.connect(sku_line_edit.setFocus)
+            edit_sku_button.setStyleSheet("""
+                QPushButton {
+                    padding: 3.5px;
+                    margin-left: 5px;
+                }
+            """)
+            sku_row.addWidget(edit_sku_button)
+
+            sku_row.addStretch()
+        else:
+            sku_label = QLabel(f"{sku}")
+            sku_row.addWidget(sku_label, 1)
+        
+
+        match_method_label = QLabel(f"Matcher Method: {match_method}")
+
+        for label in [product_label, score_label, match_method_label]:
+            # allow HTML highlighting
+            label.setTextFormat(Qt.RichText)
+
+            label.setTextInteractionFlags(
+                Qt.TextSelectableByMouse |
+                Qt.TextSelectableByKeyboard
+            )
+
+        info_layout.addWidget(product_label)
+        info_layout.addWidget(score_label)
+        info_layout.addLayout(sku_row)
+        info_layout.addWidget(match_method_label)
+
+        return info_layout
+
+
+    def create_sku_line_edit(self, sku, product):
+        sku_line_edit = QLineEdit(f"{sku}")
+        sku_line_edit.setFrame(False)
+
+        sku_line_edit.product = product
+
+        sku_line_edit.returnPressed.connect(sku_line_edit.clearFocus)
+
+        sku_line_edit.editingFinished.connect(self.update_sku)
+
+        def resize_sku(line_edit):
+            width = line_edit.fontMetrics().horizontalAdvance(line_edit.text()) + 12
+            line_edit.setFixedWidth(width)
+
+        sku_line_edit.textChanged.connect(
+            lambda _: resize_sku(sku_line_edit)
+        )
+
+        QTimer.singleShot(0, lambda: resize_sku(sku_line_edit))
+        # sku_line_edit.textChanged.connect(
+        #     lambda text: sku_line_edit.setFixedWidth(
+        #         sku_line_edit.fontMetrics().horizontalAdvance(text) + padding
+        #     )
+        # )
+
+        return sku_line_edit
+
+
+    def update_sku(self):
+        sku_line_edit = self.sender()
+
+        sku_line_edit.product["sku"] = normalize_for_matching(sku_line_edit.text())
+    
 
     # ============================================================
     # MANUAL SEARCH
@@ -1531,7 +1592,7 @@ class GoToSentenceDialog(QDialog):
         self.last_annotated_button = QPushButton("Last Annotated")
         
         self.cancel_button.clicked.connect(self.reject)
-        self.sentence_edit.returnPressed.connect(self.accept)
+        # self.sentence_edit.returnPressed.connect(self.accept)
 
         layout = QVBoxLayout(self)
 

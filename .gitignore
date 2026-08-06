@@ -70,7 +70,10 @@ data/evidence/*
 data/raw_products/*
 tests/data/*
 tests/cache/*
+dist/
+build/
 
 # Keep specific subfolders
 
 !data/genecopoeia_test.csv
+!data/genes.csv

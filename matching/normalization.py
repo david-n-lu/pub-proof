@@ -1,6 +1,5 @@
 # normalization.py
 
-from math import e
 import re
 
 UNICODE_NORMALIZATION = {

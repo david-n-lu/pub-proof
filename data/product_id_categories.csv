@@ -1,0 +1,98 @@
+﻿Suffix,Promoter,Reporter,Tag,Tag / Reporter,Marker,Marker / Reporter,Content,Meaning,Viral
+M01,,,,N-His,,,,,
+M02,,,,none,,,,,
+M03,,,,C-eGFP,,,,,
+M04,,,,N-GST/EK protease,,,,,
+M05,,,,N-Avi,,,,,
+M06,,,,N-3×HA,,,,,
+M07,,,,C-3×HA,,,,,
+M08,,,,C-3×HA-His,,,,,
+M09,,,,C-Myc,,,,,
+M10,,,,C-Myc-His,,,,,
+M11,,,,N-Flag,,,,,
+M12,,,,N-3×Flag,,,,,
+M13,,,,C-Flag,,,,,
+M14,,,,C-3×Flag,,,,,
+M15,,,,N-eYFP,,,,,
+M16,,,,C-eYFP,,,,,
+M17,,,,C-Avi,,,,,
+M29,,,,N-eGFP,,,,,
+M32,,,,N-eCFP,,,,,
+M33,,,,C-eCFP,,,,,
+M43,,,,N-Myc,,,,,
+M45,,,,C-3×HA-IRES-eGFP,,,,,
+M46,,,,C-Flag-IRES-eGFP,,,,,
+M48,,,,N-Avi-IRES-Biotin ligase,,,,,
+M49,,,,N-Halo/Tev protease,,,,,
+M50,,,,C-Halo/Tev protease,,,,,
+M51,,,,C-His-IRES-eGFP,,,,,
+M55,,,,N-mCherry,,,,,
+M56,,,,C-mCherry,,,,,
+M61,,,,IRES2-eGFP,,,,,
+M72,,,,C-Myc-IRES2-eGFP,,,,,
+M77,,,,C-His,,,,,
+M98,,,,C-eGFP (monomeric),,,,,
+Lv102,,,,N-Flag,Puro,,,,
+Lv103,,,,N-eGFP,Puro,,,,
+Lv104,,,,N-eYFP,Puro,,,,
+Lv105,,,,none,Puro,,,,
+Lv108,,,,N-Avi,Puro,,,,
+Lv109,,,,N-eCFP,Puro,,,,
+Lv110,,,,N-Halo,Puro,,,,
+Lv111,,,,N-mCherry,Puro,,,,
+Lv120,,,,C-3×HA,Puro,,,,
+Lv121,,,,C-Flag,Puro,,,,
+Lv123,,,,C-eYFP,Puro,,,,
+Lv125,,,,C-Myc,Puro,,,,
+Lv126,,,,C-Myc-His,Puro,,,,
+Lv127,,,,C-eCFP,Puro,,,,
+Lv128,,,,C-His,Puro,,,,
+Lv129,,,,C-Halo,Puro,,,,
+Lv130,,,,C-mCherry,Puro,,,,
+Lv151,,,,none,Puro,,,,
+Lv152,,,,none,Hygro,,,,
+Lv201,,,,SV40-eGFP,IRES-Puro,,,,
+Lv202,,,,C-Myc-SV40-eGFP,IRES-Puro,,,,
+Lv203,,,,C-Flag-SV40-eGFP,IRES-Puro,,,,
+Lv204,,,,C-Myc-SV40-mCherry,IRES-Puro,,,,
+Lv205,,,,IRES2-eGFP,IRES-Puro,,,,
+Lv206,,,,SV40-mCherry,IRES-Puro,,,,
+Lv207,,,,SV40-eGFP,IRES-Hygro,,,,
+Lv211,,,,C-Halo,IRES-Hygro,,,,
+Lv213,,,,IRES2-mCherry,IRES-Puro,,,,
+Lv216,,,,C-Flag-SV40-mCherry,Puro,,,,
+Lv217,,,,SV40-hLUC,IRES-Puro,,,,
+Lv242,,,,C-Avi-Flag,Puro,,,,
+psi-H1,H1,eGFP,,,Puro,,,,non-viral
+psi-U6,U6,eGFP,,,Puro,,,,non-viral
+psi-mH1,H1,mCherry,,,Puro,,,,non-viral
+psi-mU6,U6,mCherry,,,Puro,,,,non-viral
+psi-nH1,H1,none,,,Puro,,,,non-viral
+psi-nU6,U6,none,,,Puro,,,,non-viral
+psi-LVRH1GP,H1,eGFP,,,Puro,,,,lentiviral
+psi-LVRU6GP,U6,eGFP,,,Puro,,,,lentiviral
+psi-LVRH1MP,H1,mCherry,,,Puro,,,,lentiviral
+psi-LVRU6MP,U6,mCherry,,,Puro,,,,lentiviral
+psi-LVRH1P,H1,none,,,Puro,,,,lentiviral
+psi-LVRU6P,U6,none,,,Puro,,,,lentiviral
+psi-LVRU6GH,U6,eGFP,,,Hygro,,,,lentiviral
+psi-LVRH1GH,H1,eGFP,,,Hygro,,,,lentiviral
+psi-LVRU6MH,U6,mCherry,,,Hygro,,,,lentiviral
+psi-LVRH1MH,H1,mCherry,,,Hygro,,,,lentiviral
+psi-LVRU6H,U6,none,,,Hygro,,,,lentiviral
+psi-LVRH1H,H1,none,,,Hygro,,,,lentiviral
+MR03,,,,,,,,"miExpress precursor miRNA vector, lentiviral (FIV/HIV) packaging",
+MR04,,,,,,,,"miExpress precursor miRNA vector, non-viral transfection",
+AM03,,,,,,,,miArrest miRNA inhibitor vector,
+MT05,,,,,,,,miTarget 3'UTR target vector — GLuc reporter + CMV-SEAP control,
+MT06,,,,,,,,miTarget 3'UTR target vector — Firefly/Renilla Duo-Luciferase reporter,
+PG02,,,,,,,,GLuc-ON promoter-reporter vector (Gaussia luciferase),
+PG04,,,,,,,,,
+SG01,U6,,,,,Hygro,sgRNA only,,
+LvSG03,U6,,,,,Puro/mCherry,"sgRNA only, lentiviral",,
+CG01,U6+CMV,,,,,Neo/mCherry,"sgRNA + Cas9 (WT), all-in-one",,
+CG02,U6+CBh,,,,,none,"sgRNA + Cas9 (WT), all-in-one",,
+CG04,U6+CMV,,,,,Neo/copGFP,"sgRNA + Cas9 (WT), all-in-one",,
+CG07,U6+CBh,,,,,GFP,"sgRNA + Cas9 (WT), all-in-one",,
+CG08,U6+CBh,,,,,mCherry,"sgRNA + Cas9 (WT), all-in-one",,
+D01–D14,EFa1/CMV/PGK (varies),,,,,"Puro/Neo/Hygro, varies",HDR donor backbone,,

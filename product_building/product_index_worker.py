@@ -15,6 +15,7 @@ class ProductIndexWorker(QObject):
         sku_column,
         product_name_column,
         description_column,
+        config_path = None,
     ):
         super().__init__()
 
@@ -23,6 +24,7 @@ class ProductIndexWorker(QObject):
         self.sku_column = sku_column
         self.product_name_column = product_name_column
         self.description_column = description_column
+        self.config_path = config_path
 
     def run(self):
         try:
@@ -33,6 +35,7 @@ class ProductIndexWorker(QObject):
                 product_name_column=self.product_name_column,
                 description_column=self.description_column,
                 progress_callback=self.progress.emit,
+                config_path=self.config_path,
             )
 
             self.finished.emit()

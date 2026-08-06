@@ -38,8 +38,11 @@ def highlight_sentence(
     """
     Highlights Manufacturer, SKU, and other product map tokens in sentence
     """
-    
-    words = sentence.split()
+
+    if sentence.endswith("."):
+        words = sentence[:-1].split()
+    else:
+        words = sentence.split()
     
     highlighted_words = []
 
@@ -75,7 +78,11 @@ def highlight_sentence(
                         word = highlight_word(word, k, YELLOW_HIGHLIGHT)
             
         highlighted_words.append(word)
-    
+
+
+    if sentence.endswith("."):
+        return " ".join(highlighted_words) + "."
+
     return " ".join(highlighted_words)
     
 

@@ -35,6 +35,43 @@ def get_phrases_from_sentence(sentence: str, alias_map, max_gap: int = 2):
 
 
 # -----------------------------
+# Get matched indexes from sentence
+# -----------------------------
+
+
+def get_keyword_indexes(sentence: str, alias_map):
+    """
+    Return token indexes whose words match entries in alias_map.
+    """
+
+    if sentence.endswith("."):
+        sentence = sentence[:-1]
+
+    words = normalize_for_matching(sentence).split()
+
+    indexes = {}
+
+    for i, word in enumerate(words):
+        # Try normalized word variations first
+        for variation in get_word_variations(word):
+            if variation in alias_map:
+                indexes[i] = variation
+                break
+
+        if i in indexes:
+            continue
+
+        # Handle hyphenated terms (e.g. LT001-02, Endofectin-Max)
+        parts = word.split("-")
+        matches = [part for part in parts if part in alias_map]
+
+        if matches:
+            indexes[i] = "-".join(matches)
+
+    return indexes
+
+
+# -----------------------------
 # Get phrases from matched indexes
 # -----------------------------
 
@@ -76,6 +113,7 @@ def group_matches(
     ]
 
 
+
 def calculate_gap(index_a: int, index_b: int) -> int:
     """Return number of words between two token indexes."""
 
@@ -93,9 +131,7 @@ def extract_phrases(grouped_matches):
     ]
 
 
-# -----------------------------
-# Get matched indexes from sentence
-# -----------------------------
+
 
 SUBSTITUTIONS = {
     "rt qpcr": "qrt-pcr",
@@ -126,43 +162,82 @@ def get_word_variations(word: str):
     # Singular/plural variants
     if word.endswith("s") and len(word) > 1:
         variations.append(word[:-1])
-    else:
+    elif word not in not_plural:
         variations.append(word + "s")
 
     # Remove duplicates while preserving order
     return list(dict.fromkeys(variations))
 
 
-def get_keyword_indexes(sentence: str, alias_map):
-    """
-    Return token indexes whose words match entries in alias_map.
-    """
 
-    if sentence.endswith("."):
-        sentence = sentence[:-1]
+not_plural = {
+    # Articles
+    "a",
+    "an",
+    "the",
 
-    words = normalize_for_matching(sentence).split()
+    # Coordinating conjunctions
+    "and",
+    "or",
+    "but",
+    "nor",
+    "for",
+    "so",
+    "yet",
 
-    indexes = {}
+    # Prepositions (<4 chars)
+    "as",
+    "at",
+    "by",
+    "in",
+    "of",
+    "off",
+    "out",
+    "up",
+    "to",
+    "via",
 
-    for i, word in enumerate(words):
-        # Try normalized word variations first
-        for variation in get_word_variations(word):
-            if variation in alias_map:
-                indexes[i] = variation
-                break
+    # Subordinating conjunctions (<4 chars)
+    "as",
+    "if",
+    "so",
+    "than",
+    "that",
 
-        if i in indexes:
-            continue
+    # Auxiliary verbs (<4 chars)
+    "am",
+    "is",
+    "are",
+    "was",
+    "be",
+    "do",
+    "did",
+    "has",
+    "had",
+    "can",
+    "may",
 
-        # Handle hyphenated terms (e.g. LT001-02, Endofectin-Max)
-        parts = word.split("-")
-        matches = [part for part in parts if part in alias_map]
+    # Other common words (<4 chars)
+    "all",
+    "any",
+    "few",
+    "many",
+    "more",
+    "most",
+    "much",
+    "not",
+    "no",
+    "none",
+    "only",
+    "own",
+    "same",
+    "too",
+    "very",
 
-        if matches:
-            indexes[i] = "-".join(matches)
+    # Miscellaneous
+    "id",
+}
 
-    return indexes
 
 
 

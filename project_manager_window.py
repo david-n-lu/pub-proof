@@ -66,6 +66,7 @@ class ProjectManagerWindow(QWidget):
         self.annotation_citations_path = f"{project_dir}/citations/{safe_manufacturer_name}_annotation_citations.csv"
 
         self.product_index_cache_path = f"{project_dir}/cache/product_index.msgpack"
+        self.genes_path = f"data/genes.csv"
         
 
         self.setWindowTitle(
@@ -397,13 +398,15 @@ class ProjectManagerWindow(QWidget):
             self.sentences_path,
             self.annotations_path,
             self.auto_results_path,
+            str(self.project_dir / "project.json"),
+            self.genes_path,
         )
 
         self.annotator_window.closed.connect(
             self.show_manager
         )
 
-        self.annotator_window.show()
+        # self.annotator_window.show()
 
         self.hide()
 

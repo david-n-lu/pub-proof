@@ -30,7 +30,7 @@ class ProductIndexProgressDialog(QDialog):
 
         self.progress = QProgressBar()
 
-        self.progress.setRange(0, 4)
+        self.progress.setRange(0, 5)
 
         layout.addWidget(self.progress)
 

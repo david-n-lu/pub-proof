@@ -19,11 +19,10 @@ import os
 import json
 import pandas as pd
 from math import ceil
-
-from pathlib import Path
+from resources import resource_path
 
 from matching.normalization import normalize_for_matching
-from product_building.product_import import load_product_index_cache
+from product_building.product_import import load_product_index_cache, load_trademark_names
 from annotator.manual_search import (
     create_df,
     search,
@@ -44,6 +43,8 @@ class AnnotatorBackend:
         sentence_path,
         annotation_path,
         auto_match_path,
+        config_path,
+        genes_path,
     ):
         """
         Store paths and initialize empty state.
@@ -55,11 +56,15 @@ class AnnotatorBackend:
         self.sentence_path = sentence_path
         self.annotation_path = annotation_path
         self.auto_match_path = auto_match_path
+        self.config_path = config_path
+        self.genes_path = genes_path
 
         # Product data
         self.product_map = {}
         self.alias_map = {}
         self.shortened_sku_map = {}
+        self.trademark_names = []
+        self.genes = set()
 
         # Search dataframe
         self.product_df = None
@@ -121,6 +126,8 @@ class AnnotatorBackend:
         Replace with your existing product_map builder.
         """
 
+        self.trademark_names = load_trademark_names(self.config_path)
+
         print("Loading products...")
 
         cache = load_product_index_cache(self.product_index_path)
@@ -131,6 +138,29 @@ class AnnotatorBackend:
 
         self.product_df = create_df(self.product_map_path)
 
+
+
+    def load_genes(self):
+
+        print("Loading genes...")
+
+        genes_path = resource_path(self.genes_path)
+
+        df = pd.read_csv(genes_path, encoding="utf-8-sig", dtype = str)
+
+        df = df.dropna(how="all").dropna(how="all", axis=1)
+
+        genes = set()
+
+        for col in df.columns:
+
+            rows_norm = df[col].str.lower()
+            
+            genes.update(rows_norm)
+
+        self.genes = genes
+
+    
 
     # ============================================================
     # SENTENCES
@@ -335,6 +365,8 @@ class AnnotatorBackend:
             product_map = self.product_map,
             alias_map = self.alias_map,
             shortened_sku_map = self.shortened_sku_map,
+            trademark_names = self.trademark_names,
+            genes = self.genes,
         )
 
         self.auto_results = {

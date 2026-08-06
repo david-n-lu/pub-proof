@@ -42,6 +42,10 @@ class LoadingWorker(QObject):
             self.progress.emit("Loading products indexes...")
             self.backend.load_products()
 
+            
+            self.progress.emit("Loading genes database...")
+            self.backend.load_genes()
+
 
             self.progress.emit("Loading sentences...")
             self.backend.load_sentences()

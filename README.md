@@ -108,7 +108,40 @@ pip install -r requirements.txt
 
 python main.py
 
-### Creating a Project
+
+## Building the Executable
+
+BioEvidence Finder can be packaged into a standalone Windows executable using PyInstaller and the provided `launcher.spec` file.
+
+### Install PyInstaller
+
+Make sure your virtual environment is activated, then install PyInstaller: ```pip install pyinstaller```
+
+The `.spec` file defines the application entry point, included resources, hidden imports, and executable settings.
+
+The provided spec file also includes the required PySide6 dependencies and application resources needed for the packaged application.
+
+### Output
+
+After the build completes, PyInstaller creates:
+```
+dist/
+└── BioEvidenceFinder/
+└── BioEvidenceFinder.exe
+```
+
+The entire folder generated in `dist/` should be kept together when distributing the application. The executable depends on the bundled libraries and resources included alongside it.
+
+The executable can be launched directly without requiring a Python installation, as long as all required resources are included in the build.
+
+### Updating the executable
+
+Whenever source code changes are made, rebuild the executable by running: ```pyinstaller launcher.spec --clean```
+
+The `--clean` flag removes cached build files to ensure the latest source files are included.
+
+
+## Creating a Project
 Launch BioEvidence Finder.
 Choose a workspace directory.
 Enter the manufacturer name.
@@ -141,7 +174,7 @@ Future versions aim to provide a generalized workflow that supports multiple man
 - Having code processing dashes "-" for string matching <br>
 <br>
 
-Most of this logic is placed in ```matching/normalization.py``` and ```product_building/product_map.py```
+Most of this logic is placed in ```matching/normalization.py```, ```product_building/product_map.py```, and ```citation_generator/citation.py```
 <br>
 </strong>
 

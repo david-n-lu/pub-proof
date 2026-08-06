@@ -41,7 +41,7 @@ def protect_abbreviations(text: str):
 def restore_abbreviations(text: str):
     return text.replace("<DOT>", ".")
 
-def get_sentences_with_manufacturer(full_text: str, manufacturer: str, window: int = 200):
+def get_sentences_with_manufacturer(full_text: str, manufacturer: str, window: int = 1000):
     """
     Extract sentences from full text that contain a manufacturer mention.
 
@@ -85,7 +85,14 @@ def get_sentences_with_manufacturer(full_text: str, manufacturer: str, window: i
 
         snippet = s[start:end].strip()
 
+        if start != 0 or end != len(s):
+            print(f"Original Sentence: {s}")
+            print(f"Shortened Sentence: {snippet}")
+            print("")
+
         results.append(snippet)
+
+        # results.append(s)
 
     results = [restore_abbreviations(s) for s in results]
     return results

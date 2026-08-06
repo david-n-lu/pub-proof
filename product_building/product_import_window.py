@@ -17,7 +17,8 @@ from PySide6.QtWidgets import (
 from PySide6.QtCore import Qt, Signal, QThread
 
 from product_building.product_import import (
-    get_column_counts
+    get_column_counts,
+    save_trademark_names
 )
 
 from product_building.product_index_window import ProductIndexProgressDialog
@@ -128,7 +129,7 @@ class ProductImportWindow(QWidget):
             f"Imported {copied} CSV file(s)."
         )
 
-        self.close()
+        # self.close()
 
 
     def open_column_window(self):
@@ -316,27 +317,6 @@ class ProductColumnWindow(QWidget):
 
         return config["product_columns"]
 
-        # dialog = QDialog(self)
-        # dialog.setWindowTitle("Saved")
-
-        # layout = QVBoxLayout(dialog)
-
-        # label = QLabel("Product columns saved.")
-        # label.setAlignment(Qt.AlignmentFlag.AlignCenter)
-
-        # button = QPushButton("OK")
-        # button.setFixedSize(100, 35)
-        # button.clicked.connect(dialog.accept)
-
-        # layout.addWidget(label)
-        # layout.addWidget(button, alignment=Qt.AlignmentFlag.AlignCenter)
-
-        # dialog.exec()
-
-        
-        # self.close()
-
-
 
     def create_product_index(self):
         config = self.save_columns()
@@ -351,6 +331,7 @@ class ProductColumnWindow(QWidget):
             config["sku"],
             config["product_name"],
             config["description"],
+            self.project_dir / "project.json",
         )
 
         self.worker.moveToThread(self.thread)

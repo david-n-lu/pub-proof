@@ -1,8 +1,17 @@
 from collections import Counter
 from pathlib import Path
 
+from numpy import save
 import pandas as pd
 import msgpack
+import json
+import re
+
+from matching.normalization import normalize_for_matching
+
+
+from annotator.manual_search import create_df
+
 
 from product_building.product_map import (
     build_product_map,
@@ -122,7 +131,13 @@ def create_product_index_cache(
     product_name_column,
     description_column,
     progress_callback=None,
+    config_path = None,
 ):
+
+    if config_path:
+        progress_callback("Retrieving trademark names...", 0)
+
+        save_trademark_names(products_dir, config_path)
 
     cache_path = Path(cache_path)
 
@@ -133,7 +148,7 @@ def create_product_index_cache(
     )
 
     if progress_callback:
-        progress_callback("Building product map...", 0)
+        progress_callback("Building product map...", 1)
 
     product_map = build_product_map(
         products_dir,
@@ -143,21 +158,21 @@ def create_product_index_cache(
     )
 
     if progress_callback:
-        progress_callback("Building alias map...", 1)
+        progress_callback("Building alias map...", 2)
 
     alias_map = build_alias_map(
         product_map
     )
 
     if progress_callback:
-        progress_callback("Building shortened SKU map...", 2)
+        progress_callback("Building shortened SKU map...", 3)
 
     shortened_sku_map = build_shortened_sku_map(
         product_map
     )
 
     if progress_callback:
-        progress_callback("Saving cache...", 3)
+        progress_callback("Saving cache...", 4)
 
     cache = {
         "product_map": product_map,
@@ -173,7 +188,7 @@ def create_product_index_cache(
         )
 
     if progress_callback:
-        progress_callback("Done!", 4)
+        progress_callback("Done!", 5)
 
 
 def load_product_index_cache(cache_path):
@@ -190,6 +205,77 @@ def load_product_index_cache(cache_path):
         )
 
     return cache
+
+
+
+trademark_symbols = ["™", "®"]
+excluded_trademarks = ["SYBR®"]
+
+def save_trademark_names(products_dir, config_path):
+    """
+    Adds trademark names data structrure to config .json
+
+    Assumes config exists
+    """
+
+    with open(
+        config_path,
+        "r",
+        encoding="utf-8"
+    ) as f:
+        config = json.load(f)
+
+
+    product_col = config["product_columns"]["product_name"]
+
+    df = create_df(products_dir)
+    
+    pattern = rf"(\S+(?:{'|'.join(map(re.escape, trademark_symbols))}))"
+
+    trademarks = df[product_col].str.extract(pattern, expand=False)
+
+    trademarks = set(trademarks.dropna())
+
+    filtered_trademarks = []
+
+    for trademark in trademarks:
+        for exclude in excluded_trademarks:
+            if normalize_for_matching(trademark) != normalize_for_matching(exclude):
+                filtered_trademarks.append(trademark)
+
+    print(f"{len(filtered_trademarks)} trademarks: {filtered_trademarks}")
+
+    config["trademark_names"] = filtered_trademarks
+
+    print(filtered_trademarks)
+
+    with open(
+        config_path,
+        "w",
+        encoding="utf-8"
+    ) as f:
+        json.dump(
+            config,
+            f,
+            indent=4
+        )
+
+
+def load_trademark_names(config_path):
+
+    with open(
+            config_path,
+            "r",
+            encoding="utf-8"
+        ) as f:
+            config = json.load(f)
+
+    trademark_names = config.get("trademark_names", [])
+
+    print(trademark_names)
+
+    return trademark_names
+
 
 
 
