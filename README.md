@@ -4,11 +4,16 @@ BioEvidence Finder is a desktop application for discovering and validating biote
 
 The application combines literature retrieval, sentence extraction, product matching, manual annotation, and citation generation into a single PySide6 interface, making it easier to build evidence for biotechnology products.
 
+<p>
 <img src="screenshots/launcher.png" height="250">
 <img src="screenshots/project_manager.png" height="250">
+</p>
 
+<p>
 <img src="screenshots/publications.png" height="400">
 <img src="screenshots/sentences.png" height="400">
+</p>
+
 <img src="screenshots/annotator.png" height="550">
 
 ## Features
