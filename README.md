@@ -186,7 +186,7 @@ Future versions aim to provide a generalized workflow that supports multiple man
 - Having code processing dashes "-" for string matching <br>
 <br>
 
-Most of this logic is placed in ```matching/normalization.py```, ```product_building/product_map.py```, and ```citation_generator/citation.py```
+Most of this logic is placed in ```matching/normalization.py```, ```product_building/product_map.py```, ```citation_generator/citation.py```, and ```matching/product_matcher.py```
 <br>
 </strong>
 
