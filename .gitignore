@@ -64,10 +64,7 @@ Thumbs.db
 
 # =========================
 
-data/cleaned_products/*
-data/europe_pmc/*
-data/evidence/*
-data/raw_products/*
+data/
 tests/data/*
 tests/cache/*
 dist/
