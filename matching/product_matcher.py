@@ -23,6 +23,7 @@ def get_product_candidates(
     alias_map: dict,
     trademark_names = None,
     genes: set = None,
+    gene_product_map: dict = None,
 ):
     """
     Gets best product candidates for a phrase
@@ -148,6 +149,7 @@ def get_product_candidates(
         skus = skus,
         product_map= product_map,
         type = type,
+        gene_product_map = gene_product_map if gene_product_map else GENECOPOEIA_GENE_PRODUCTS_MAP
     )
 
 
@@ -191,6 +193,7 @@ def rank_products(
     skus: list,
     product_map: dict,
     type: str,
+    gene_product_map: dict,
 ):
     """
     Finds best matching product given 
@@ -209,7 +212,7 @@ def rank_products(
     """
 
     if type == "gene":
-        gene_phrase_tokens = get_gene_phrases(phrase_tokens)
+        gene_phrase_tokens = get_gene_phrases(phrase_tokens, gene_product_map)
 
     scores = {}
 
@@ -286,9 +289,12 @@ def get_gene_match_score(product, gene_phrase_tokens):
     return 0
 
 
-def get_gene_phrases(phrase_tokens: List[str]) -> List[List[str]]:
+def get_gene_phrases(
+        phrase_tokens: List[str],
+        gene_product_map: dict,
+    ) -> List[List[str]]:
     """
-    Transforms ambiguous phrase tokens into more specific gene product phrases based on GENECOPOEIA_GENE_PRODUCTS_MAP
+    Transforms ambiguous phrase tokens into more specific gene product phrases based on gene_product_map
     """
 
     phrase_tokens = [sub_token for token in phrase_tokens for sub_token in token.split("-")]
@@ -296,8 +302,8 @@ def get_gene_phrases(phrase_tokens: List[str]) -> List[List[str]]:
     product_counts = {}
 
     for token in phrase_tokens:
-        if token in GENECOPOEIA_GENE_PRODUCTS_MAP:
-            for general_product in GENECOPOEIA_GENE_PRODUCTS_MAP[token]:
+        if token in gene_product_map:
+            for general_product in gene_product_map[token]:
                 product_counts[general_product] = product_counts.get(general_product, 0) + 1
 
     max_count = max(product_counts.values()) if product_counts else 0

@@ -26,6 +26,7 @@ def run_pipeline(
     shortened_sku_map,
     trademark_names = None,
     genes = None,
+    gene_product_map = None,
 ):
     """
     Runs the auto matcher pipeline.
@@ -50,6 +51,7 @@ def run_pipeline(
         shortened_sku_map,
         trademark_names = trademark_names,
         genes = genes,
+        gene_product_map = gene_product_map,
     )
 
     return results
@@ -63,6 +65,7 @@ def auto_match_sentences(
     shortened_sku_map,
     trademark_names = None,
     genes = None,
+    gene_product_map = None,
 ):
     results = []
 
@@ -78,6 +81,7 @@ def auto_match_sentences(
             shortened_sku_map,
             trademark_names = trademark_names,
             genes = genes,
+            gene_product_map = gene_product_map,
         )
 
         for m in matches:

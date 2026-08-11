@@ -11,8 +11,9 @@ def match(
     shortened_sku_map: dict,
     trademark_names = None,
     genes: set = None,
+    gene_product_map: dict = None,
     threshold: float = 0.0,
-    max_candidates: int = 20,
+    max_candidates: int = 30,
 ):
     """
     Gets best product results of a sentence through SKU matching and product name string matching
@@ -74,7 +75,14 @@ def match(
     phrases = get_phrases_from_sentence(sentence, alias_map)
 
     for phrase in phrases:
-        token_matches = get_product_candidates(phrase, product_map, alias_map, trademark_names = trademark_names, genes = genes)
+        token_matches = get_product_candidates(
+            phrase,
+            product_map,
+            alias_map,
+            trademark_names = trademark_names,
+            genes = genes,
+            gene_product_map = gene_product_map,
+        )
 
         results.extend(token_matches)
     

@@ -67,6 +67,7 @@ class ProjectManagerWindow(QWidget):
 
         self.product_index_cache_path = f"{project_dir}/cache/product_index.msgpack"
         self.genes_path = f"data/genes.csv"
+        self.genes_product_map_path = f"data/gene_product_map.json"
         
 
         self.setWindowTitle(
@@ -400,6 +401,7 @@ class ProjectManagerWindow(QWidget):
             self.auto_results_path,
             str(self.project_dir / "project.json"),
             self.genes_path,
+            self.genes_product_map_path,
         )
 
         self.annotator_window.closed.connect(

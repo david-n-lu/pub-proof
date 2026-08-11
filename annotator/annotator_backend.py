@@ -45,6 +45,7 @@ class AnnotatorBackend:
         auto_match_path,
         config_path,
         genes_path,
+        gene_product_map_path,
     ):
         """
         Store paths and initialize empty state.
@@ -58,6 +59,7 @@ class AnnotatorBackend:
         self.auto_match_path = auto_match_path
         self.config_path = config_path
         self.genes_path = genes_path
+        self.gene_product_map_path = gene_product_map_path
 
         # Product data
         self.product_map = {}
@@ -65,6 +67,7 @@ class AnnotatorBackend:
         self.shortened_sku_map = {}
         self.trademark_names = []
         self.genes = set()
+        self.gene_product_map = None
 
         # Search dataframe
         self.product_df = None
@@ -159,6 +162,10 @@ class AnnotatorBackend:
             genes.update(rows_norm)
 
         self.genes = genes
+
+        gene_product_map_path = resource_path(self.gene_product_map_path)
+        with open(gene_product_map_path, "r", encoding="utf-8") as f:
+            self.gene_product_map = json.load(f)
 
     
 
@@ -367,6 +374,7 @@ class AnnotatorBackend:
             shortened_sku_map = self.shortened_sku_map,
             trademark_names = self.trademark_names,
             genes = self.genes,
+            gene_product_map = self.gene_product_map,
         )
 
         self.auto_results = {

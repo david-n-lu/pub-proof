@@ -57,6 +57,7 @@ class AnnotatorWindow(QWidget):
         auto_match_path,
         config_path = None,
         genes_path = None,
+        genes_product_map_path = None,
     ):
         super().__init__()
 
@@ -70,6 +71,7 @@ class AnnotatorWindow(QWidget):
             auto_match_path=auto_match_path,
             config_path=config_path,
             genes_path=genes_path,
+            gene_product_map_path=genes_product_map_path,
         )
     
 

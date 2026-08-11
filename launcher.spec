@@ -7,6 +7,7 @@ a = Analysis(
     binaries=[],
     datas=[
         ("data/genes.csv", "data"),
+        ("data/gene_product_map.json", "data"),
     ],
     hiddenimports=[],
     hookspath=[],
