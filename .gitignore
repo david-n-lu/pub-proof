@@ -74,3 +74,4 @@ build/
 
 !data/genecopoeia_test.csv
 !data/genes.csv
+!data/genes_product_map.json
