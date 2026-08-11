@@ -1,0 +1,109 @@
+{
+  "plasmid": [
+    "OmicsLink™ Expression-Ready ORF cDNA Clones",
+    "OmicsLink™ shRNA Clone",
+    "miTarget™ 3′ UTR miRNA Target Clones",
+    "GLuc-ON™ Promoter Reporter Clones",
+    "GeneHero™ CRISPR-Cas9 sgRNA"
+  ],
+  "clone": [
+    "OmicsLink™ Expression-Ready ORF cDNA Clones",
+    "OmicsLink™ shRNA Clone",
+    "miTarget™ 3′ UTR miRNA Target Clones",
+    "GLuc-ON™ Promoter Reporter Clones"
+  ],
+  "sgrna": [
+    "GeneHero™ CRISPR-Cas9 sgRNA"
+  ],
+  "crispr": [
+    "GeneHero™ CRISPR-Cas9 sgRNA"
+  ],
+  "cas9": [
+    "GeneHero™ CRISPR-Cas9 sgRNA"
+  ],
+  "grna": [
+    "GeneHero™ CRISPR-Cas9 sgRNA"
+  ],
+  "shrna": [
+    "OmicsLink™ shRNA Clone"
+  ],
+  "knockdown": [
+    "OmicsLink™ shRNA Clone"
+  ],
+  "silencing": [
+    "OmicsLink™ shRNA Clone"
+  ],
+  "mirna": [
+    "miTarget™ 3′ UTR miRNA Target Clones",
+    "MiExpress™ Precursor miRNA Clone"
+  ],
+  "3'": [
+    "miTarget™ 3′ UTR miRNA Target Clones"
+  ],
+  "3": [
+    "miTarget™ 3′ UTR miRNA Target Clones"
+  ],
+  "utr": [
+    "miTarget™ 3′ UTR miRNA Target Clones"
+  ],
+  "target": [
+    "miTarget™ 3′ UTR miRNA Target Clones"
+  ],
+  "precursor": [
+    "MiExpress™ Precursor miRNA Clone"
+  ],
+  "mir": [
+    "MiExpress™ Precursor miRNA Clone"
+  ],
+  "promoter": [
+    "GLuc-ON™ Promoter Reporter Clones"
+  ],
+  "reporter": [
+    "GLuc-ON™ Promoter Reporter Clones",
+    "miTarget™ 3′ UTR miRNA Target Clones"
+  ],
+  "luciferase": [
+    "GLuc-ON™ Promoter Reporter Clones",
+    "miTarget™ 3′ UTR miRNA Target Clones"
+  ],
+  "gluc": [
+    "GLuc-ON™ Promoter Reporter Clones",
+    "miTarget™ 3′ UTR miRNA Target Clones"
+  ],
+  "orf": [
+    "OmicsLink™ Expression-Ready ORF cDNA Clones"
+  ],
+  "open": [
+    "OmicsLink™ Expression-Ready ORF cDNA Clones"
+  ],
+  "reading": [
+    "OmicsLink™ Expression-Ready ORF cDNA Clones"
+  ],
+  "frame": [
+    "OmicsLink™ Expression-Ready ORF cDNA Clones"
+  ],
+  "cdna": [
+    "OmicsLink™ Expression-Ready ORF cDNA Clones"
+  ],
+  "overexpression": [
+    "OmicsLink™ Expression-Ready ORF cDNA Clones"
+  ],
+  "mab": [
+    "rabbit mab"
+  ],
+  "antibody": [
+    "rabbit mab"
+  ],
+  "monoclonal": [
+    "rabbit mab"
+  ],
+  "recombinant": [
+    "Human Recombinant Protein"
+  ],
+  "purified": [
+    "Human Recombinant Protein"
+  ],
+  "protein": [
+    "Human Recombinant Protein"
+  ]
+}
